@@ -1,0 +1,23 @@
+<nav aria-label="breadcrumb" class="margen-top-migas">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/inicio']">
+        Menú
+      </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/jugador', 'listar-juegos']">
+        Lista juegos
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Juego seleccionado
+    </li>
+  </ol>
+</nav>
+<app-juego-administrador-jugador
+  [esAdministrador]="false"
+  [idJuego]="idJuego"
+  [mostarOcultarNoticia]="noticia"
+>
+</app-juego-administrador-jugador>

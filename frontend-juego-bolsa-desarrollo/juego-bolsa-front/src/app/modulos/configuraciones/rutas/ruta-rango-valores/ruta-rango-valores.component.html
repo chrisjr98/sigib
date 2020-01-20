@@ -1,0 +1,125 @@
+<nav aria-label="breadcrumb" class="margen-top-migas">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/administrador','menu']">
+        Menú administrador
+      </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/administrador','menu','configuraciones','menu-ajustes']">
+        Menú ajustes
+      </a>
+    </li>
+    <li class="breadcrumb-item active"
+        aria-current="page">
+      Rango valores
+    </li>
+  </ol>
+</nav>
+
+
+<div class="contenido">
+  <h3>Gestión de configuraciones por nivel</h3>
+  <p>Ingrese, edite y desactive las configuraciones por nivel.</p>
+  <div class="row separacion-top-1 separacion-fondo-1">
+    <div class="col-sm-12">
+      <div class="row">
+
+        <div class="col-sm-9">
+          <app-barra-busqueda
+            [small]="ayudaBarraBusqueda"
+            [placeholder]="placeholder"
+            (eventoBuscar)="buscarBarra($event)"
+          ></app-barra-busqueda>
+        </div>
+
+<!--        <div class="col-sm-3">-->
+          <!--    <ml-select-estado-->
+          <!--      (estadoSeleccionado)="escucharEstadoSeleccionado ($event)">-->
+          <!--    </ml-select-estado>-->
+<!--        </div>-->
+
+        <div class="col-sm-3">
+          <button
+            class="btn btn-block btn-success"
+            (click)="abrirModalCrearConfiguracion()"
+          >
+            <i class="fas fa-plus"></i> NUEVO
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row separacion-top-2 separacion-fondo-1">
+  <div class="col-sm-12">
+    <p-table
+      [responsive]="true"
+      [columns]="columnas"
+      [value]="configuraciones"
+      [lazy]="true"
+      (onLazyLoad)="cargarDatosLazy($event)"
+      [paginator]="true"
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [loading]="loading"
+      [first]="skip"
+      [resizableColumns]="true"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="text-center" *ngFor="let col of columns" [style.width]="col.width">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columnas.length">
+            No existen registros
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData let-rowIndex let-columns="columns">
+        <tr>
+          <td class="text-center" *ngFor="let col of columns">
+            <div *ngIf="col.header === '#'">
+              {{configuraciones.indexOf(rowData) + 1}}
+            </div>
+
+            <div *ngIf="col.field==='nivelJuego'">
+              {{rowData['nivelJuego']['nombre']}}
+            </div>
+
+            <div *ngIf="col.header==='Acciones'">
+              <div style="padding-top: 0.2rem; padding-bottom: 0.2rem">
+                <button pButton type="button" class="btn btn-primary" (click)="abrirModalEditarConfiguracion(rowData)"
+                ><i class="fas fa-edit"></i>
+                </button>
+                <!--
+                <button class="btn btn-block btn-info btn-sm"
+                        (click)="abrirModalEditarConfiguracion(rowData)">EDITAR
+                </button>
+                -->
+                <div style="padding-top: 0.2rem; padding-bottom: 0.2rem">
+                  <button pButton type="button" class="btn btn-primary" (click)="abrirModalVerConfiguracion(rowData)"
+                  ><i class="far fa-sticky-note"></i>
+                  </button>
+                  <!--
+                  <button class="btn btn-block btn-info btn-sm"
+                          (click)="abrirModalVerConfiguracion(rowData)">VER DETALLES
+                  </button>
+                  -->
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </div>
+</div>

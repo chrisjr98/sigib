@@ -1,0 +1,79 @@
+<div class="row border-accion">
+  <div [ngClass]="!esRentaFija ? 'col-md-12' : 'col-md-7'">
+    <div class="row">
+      <div
+        [ngClass]="!esRentaFija ? 'col-md-6' : 'col-md-4'"
+        class="text-center"
+      >
+        <img [src]="pathLogo" class="img-fluid imagen-emisor" />
+      </div>
+      <div
+        *ngIf="!esRentaFija"
+        [ngClass]="!esRentaFija ? 'col-md-6' : 'col-md-3'"
+      >
+        <h5 class="text-center vertical-center">{{ nombreEmisor }}</h5>
+      </div>
+      <div
+        class="text-center azul"
+        [ngClass]="!esRentaFija ? 'col-md-3' : 'col-md-4'"
+        *ngIf="esRentaFija"
+      >
+        <strong>Precio</strong> ${{ precio }}
+      </div>
+      <div
+        class="text-center azul"
+        [ngClass]="!esRentaFija ? 'col-md-3' : 'col-md-4'"
+        *ngIf="esRentaFija"
+      >
+        <strong>Interés</strong> {{ rendimiento }}%
+      </div>
+    </div>
+  </div>
+  <div *ngIf="esRentaFija" class="col-md-5">
+    <div class="row">
+      <div class="col-md-6 text-center text-danger" *ngIf="esRentaFija">
+        <strong>Turno</strong> {{ numeroRonda }}
+      </div>
+      <div class="col-md-6 text-center azul" *ngIf="esRentaFija">
+        <strong>Tipo</strong> {{ tipoRentaFija }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  
+<div class="card" style="width: 100%;">
+  <div class="card-body papeles-renta">
+<div [ngClass]="!esRentaFija ? 'col-lg-3' : 'col-lg-2'">
+        <img [src]="pathLogo" width="100%" class="img-fluid imagen-emisor" />
+      </div>
+      <div
+        *ngIf="!esRentaFija"
+        [ngClass]="!esRentaFija ? 'col-lg-9' : 'col-lg-1'"
+      >
+        <h5 class="text-center vertical-center">{{ nombreEmisor }}</h5>
+      </div>
+      <div *ngIf="esRentaFija" class="col-lg-2">
+        <h5 class="card-text text-center vertical-center azul">
+            <strong>Precio</strong> ${{ precio }}
+        </h5>
+      </div>
+      <div *ngIf="esRentaFija" class="col-lg-2">
+        <h5 class="card-text text-center vertical-center azul">
+            <strong>Interés</strong> {{ rendimiento }}%
+        </h5>
+      </div>
+      <div *ngIf="esRentaFija" class="col-lg-1">
+        <h5 class="card-text text-center text-danger vertical-center">
+            <strong>Turno</strong> {{ numeroRonda }}
+        </h5>
+      </div>
+      <div *ngIf="esRentaFija" class="col-lg-2">
+        <h5 class="card-text text-center vertical-center azul">
+          <strong>Tipo</strong> {{ tipoRentaFija }}
+        </h5>
+      </div>
+  </div>
+</div>
+
+  -->

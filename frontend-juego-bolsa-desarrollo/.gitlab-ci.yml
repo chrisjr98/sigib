@@ -1,0 +1,180 @@
+image: node:10.15.1
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+
+before_script:
+  - cd $PROJECT_NAME && npm i
+  - ls
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$SSH_BACKEND_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - git config --global user.email "eadepto@hotmail.com"
+  - git config --global user.name "Adrian Eguez"
+  - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+  - echo $PROJECT_NAME
+  - echo $APP_NAME_PRE_PRODUCCION
+
+
+
+stages:
+  - build
+  - test
+  - deploy
+  - prod
+
+build:
+  stage: build
+  only:
+    - desarrollo
+  script:
+    - pwd
+    - ls
+    - npm run build
+
+lint:
+  stage: test
+  only:
+    - desarrollo
+  script:
+    
+    - npm run lint
+  
+
+#test:
+#    stage: test
+#    only:
+#      - desarrollo
+#    script:
+#      npm run test
+
+
+      
+#e2e:
+#    stage: test
+#    only:
+#      - desarrollo
+#    script:
+#      -npm run e2e
+
+
+# test:
+#  when: manual
+#  stage: test
+#  only:
+#    - desarrollo
+#  script:
+#    - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
+#    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+#    - apt-get -qq update -y
+#    - apt-get -qq install -y google-chrome-stable xvfb gtk2-engines-pixbuf xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps default-jre
+#    - Xvfb :0 -ac -screen 0 1024x768x24 &
+#    - export DISPLAY=:99
+#    - node ./node_modules/.bin/webdriver-manager update
+#    - npm run test -- --watch=false --browsers=ChromeHeadlessCI
+#    - npm run e2e -- --protractor-config="./e2e/protractor-ci.conf.js"
+
+
+build_dev:
+  stage: deploy
+  only:
+    - desarrollo
+  script:
+    - cd ci-cd
+    - node copiar-contenido.js dev
+    - cd ..
+    - pwd
+    - npm run build -- --base-href=/$APP_NAME_TEST/ 
+#    - npm run compress
+    - ssh -Tv git@gitlab.com
+    - echo "Clonando repo"
+    - rm -rf backend/
+    - echo $REPO_BACKEND
+    - git clone $REPO_BACKEND backend
+    - pwd
+    - cd backend
+    - git checkout desarrollo
+    - ls
+    - rm -rf backend-juego-bolsa/publico/front-dev
+    - git status
+    - git add .
+    - git commit -m "Eliminando archivos" || true
+    - cd backend-juego-bolsa/publico/
+    - ls
+    - mkdir $APP_NAME_TEST
+    - cd $APP_NAME_TEST
+    - pwd
+    - ls 
+    - cp -a ../../../../dist/$APP_BUILD/. ../$APP_NAME_TEST/
+    - pwd
+    - ls
+    - rm index.html
+    - cd .. # /frontEnd/backend/backend/publico
+    - pwd
+    - cd .. # /frontEnd/backend/backend
+    - pwd
+    - git add .
+    - git commit -m "Deploy frontend dev" || true
+    - git push origin desarrollo || true
+    
+build_prod:
+  stage: prod
+  only:
+    - desarrollo
+  script:
+    - node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod
+
+    
+build_test:
+  stage: deploy
+  only:
+    - test
+  script:
+    - cd ci-cd
+    - node copiar-contenido.js test
+    - cd ..
+    - pwd
+#    - node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod --base-href=/$URL_PROXY/$APP_NAME_PRE_PRODUCCION/ && npm run compress
+#    - npm run build -- --prod --base-href=/$URL_PROXY/$APP_NAME_PRE_PRODUCCION/ && npm run compress
+    - npm run build -- --prod --base-href=/$URL_PROXY/$APP_NAME_PRE_PRODUCCION/
+    - ssh -Tv git@gitlab.com
+    - echo "Clonando repo"
+    - rm -rf backend/
+    - echo $REPO_BACKEND
+    - git clone $REPO_BACKEND backend
+    - pwd
+    - cd backend
+    - git checkout test
+    - git status
+    - ls
+    - rm -rf backend-juego-bolsa/publico/front-app
+    - git status
+    - git add .
+    - git commit -m "Eliminando archivos" || true
+    - cd backend-juego-bolsa/publico/
+    - mkdir $APP_NAME_PRE_PRODUCCION
+    - cd $APP_NAME_PRE_PRODUCCION
+    - pwd
+    - cp -a ../../../../dist/juego-bolsa-front/. ../front-app/
+    - pwd
+    - ls
+    - rm index.html
+    - cd .. # /frontEnd/backend/backend/publico
+    - pwd
+    - cd .. # /frontEnd/backend/backend
+    - pwd
+    - cd .. # /frontEnd/backend
+    - pwd
+    - cd .. # /frontEnd/
+    - pwd
+    - cd ci-cd
+    - node copiar-contenido-backend.js test
+    - cd ..
+    - cd backend
+    - cd backend-juego-bolsa
+    - git add .
+    - git commit -m "Deploy front test" || true
+    - git push origin test || true

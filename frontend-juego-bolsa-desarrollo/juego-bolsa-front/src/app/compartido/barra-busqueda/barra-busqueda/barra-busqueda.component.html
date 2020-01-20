@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h5 *ngIf="tituloBarra">
+      {{tituloBarra}}
+    </h5>
+    <form autocomplete="off"
+          [formGroup]="formBusqueda"
+          (ngSubmit)="buscar()">
+      <div class="input-group mb-12">
+        <input type="text"
+               class="form-control"
+               aria-describedby="busquedaHelp"
+               [placeholder]="placeholder"
+               formControlName="palabraBusqueda">
+        <div *ngIf="mostrarBotonBuscar">
+          <button class="btn btn-outline-secondary"
+                  type="btn">
+            <i class="fas fa-search">
+            </i>
+            BUSCAR
+          </button>
+        </div>
+      </div>
+      <small *ngIf="small"
+             id="busquedaHelp"
+             class="form-text text-muted ayuda-span">
+        {{small}}
+      </small>
+    </form>
+  </div>
+</div>
+
+

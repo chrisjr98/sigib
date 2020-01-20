@@ -1,0 +1,88 @@
+<nav aria-label="breadcrumb" class="margen-top-migas">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/administrador','menu']">
+        Menú administrador
+      </a>
+    </li>
+    <li class="breadcrumb-item active"
+        aria-current="page">
+      Lista juegos
+    </li>
+  </ol>
+</nav>
+
+<h2>Lista de juegos</h2>
+<p>Busque juegos para revisar los historiales de ranking de los participantes o ingrese como administrador a un nuevo
+  juego</p>
+<div class="row">
+  <div class="col-md-9">
+    <app-barra-busqueda
+      [tituloBarra]="tituloBarraBusqueda"
+      [small]="ayudaBarraBusqueda"
+      [placeholder]="placeholder"
+      (eventoBuscar)="buscarJuego($event)"
+    ></app-barra-busqueda>
+  </div>
+  <div class="col-md-3">
+    <br>
+    <button class="btn btn-block btn-success espaciado"
+            (click)="irACrearNuevoJuego()">
+      NUEVO JUEGO
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4"
+           (click)="cargarJuegos('espera')">
+        <br>
+        <button [class]="tipoFiltro === 'espera' ? 'btn btn-block btn-warning' : 'btn btn-block btn-primary'">
+          En espera
+        </button>
+      </div>
+      <div class="col-md-4"
+           (click)="cargarJuegos('jugando')">
+        <br>
+        <button [class]="tipoFiltro === 'jugando' ? 'btn btn-block btn-warning' : 'btn btn-block btn-primary'">
+          Jugando
+        </button>
+      </div>
+      <div class="col-md-4"
+           (click)="cargarJuegos('terminado')">
+        <br>
+        <button [class]="tipoFiltro === 'terminado' ? 'btn btn-block btn-warning' : 'btn btn-block btn-primary'">
+          Finalizado
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+
+  <div class="col-md-10">
+    <br>
+    <br>
+    <app-lista-juegos
+      [arregloJuegos]="juegos"
+      [mostrarAdmin]="true"
+      [tipoUsuario]="tipoUsuario"
+
+    >
+    </app-lista-juegos>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <br>
+    <button class="btn btn-sm btn-info btn-block"
+            *ngIf="juegos?.length > 0 && mostrarCargarMas"
+            (click)="cargarJuegos(tipoFiltro, true)">
+      Cargar más
+    </button>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<br>
+<br>
+<br>

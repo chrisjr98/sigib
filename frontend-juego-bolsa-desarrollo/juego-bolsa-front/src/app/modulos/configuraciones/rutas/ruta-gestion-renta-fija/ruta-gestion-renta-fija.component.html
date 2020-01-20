@@ -1,0 +1,115 @@
+<nav aria-label="breadcrumb" class="margen-top-migas">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/administrador','menu']">
+        Menú administrador
+      </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/administrador','menu','configuraciones','menu-ajustes']">
+        Menú ajustes
+      </a>
+    </li>
+    <li class="breadcrumb-item active"
+        aria-current="page">
+      Renta fija
+    </li>
+  </ol>
+</nav>
+<h2>Gestión de renta fija</h2>
+<p>Cree, edite y liste renta fija</p>
+
+<div class="row">
+  <div class="col-md-3 justify-content-center">
+    <br>
+    <app-select-general *ngIf="opcionesHabilitado"
+                        [registros]="opcionesHabilitado"
+                        [opcionEtiqueta]="'etiqueta'"
+                        [placeholder]="'Filtre por estado'"
+                        (opcionSeleccionada)="buscarPorEstado($event)"
+    ></app-select-general>
+  </div>
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-3">
+    <br>
+    <button class="btn btn-block btn-success"
+            (click)="abrirDialogo()">
+      <i class="fas fa-plus"></i> NUEVO
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <br>
+    <p-table
+      [columns]="columnas"
+      [value]="rentaFija"
+      [lazy]="true"
+      (onLazyLoad)="cargarDatosLazy($event)"
+      [paginator]="true"
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [loading]="loading"
+      [first]="this.queryParams.skip"
+      [resizableColumns]="true"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th class="text-center" *ngFor="let col of columns" [style.width]="col.width">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex let-columns="columns">
+        <tr>
+          <td class="text-center" *ngFor="let col of columns">
+            <div *ngIf="col.field==='tipoValor'">
+              {{rowData[col.field]}}
+            </div>
+            <div *ngIf="col.field==='tiempo'">
+              {{rowData[col.field]}}
+            </div>
+            <div *ngIf="col.header === 'Estado'">
+              <button class="btn btn-block btn-success btn-sm" (click)="actualizarEstado(rowData)" [ngClass]="{
+                      'btn-danger':rowData[col.field] === estados.Inactivo,
+                      'btn-success':rowData[col.field] === estados.Activo
+                      }">{{rowData[col.field] === estados.Activo ? 'Activo' : 'Inactivo'}}</button>
+            </div>
+            <div *ngIf="col.field==='acciones'">
+              <button pButton type="button" class="btn btn-primary" (click)="abrirModalEditar(rowData)"
+              >Editar
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns.length">
+            No existen registros
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+
+<!--<p-table [columns]="cols" [value]="cars" [paginator]="true" [rows]="10">-->
+<!--  <ng-template pTemplate="header" let-columns>-->
+<!--    <tr>-->
+<!--      <th *ngFor="let col of columns">-->
+<!--        {{col.header}}-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--  <ng-template pTemplate="body" let-rowData let-columns="columns">-->
+<!--    <tr>-->
+<!--      <td *ngFor="let col of columns">-->
+<!--        {{rowData[col.field]}}-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </ng-template>-->
+<!--</p-table>-->
+

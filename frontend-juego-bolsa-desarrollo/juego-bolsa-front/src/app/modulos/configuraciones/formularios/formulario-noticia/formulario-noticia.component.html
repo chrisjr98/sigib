@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-sm-12">
+    <form class="form-horizontal"
+          *ngIf="formularioNoticia"
+          [formGroup]="formularioNoticia"
+          novalidate autocomplete="off">
+      <fieldset>
+        <div class="row" >
+          <div class="col-sm-6">
+            <mat-form-field>
+              <mat-label>Título</mat-label>
+              <input matInput placeholder="Ej. Noticia 1" formControlName="titulo" maxlength="60">
+              <mat-error *ngIf="mensajesError.titulo.length > 0">
+                <div *ngFor="let mensaje of mensajesError.titulo">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field>
+              <mat-label>Descripción</mat-label>
+              <textarea type="text" matInput placeholder="Ej. La afectación de servicios" formControlName="descripcion"></textarea>
+              <mat-error *ngIf="mensajesError.descripcion.length > 0">
+                <div *ngFor="let mensaje of mensajesError.descripcion">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field>
+              <mat-label>Tipo</mat-label>
+              <select matNativeControl [value]="noticia?.tipo"
+                      [selectedIndex]="indiceArregloTiposNoticia"
+                          formControlName="tipo">
+                <option value="{{tipo | json}}"
+                            *ngFor="let tipo of tipoNoticia"
+                > {{tipo.nombre}}</option>
+              </select>
+              <mat-error *ngIf="mensajesError.tipo.length > 0">
+                <div *ngFor="let mensaje of mensajesError.tipo">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field>
+              <mat-label>Nivel</mat-label>
+              <select matNativeControl [value]="noticia?.nivelJuego"
+                      [selectedIndex]="indiceArregloNivelNoticia"
+                      formControlName="nivelJuego">
+                <option value="{{nivelJuego | json}}" *ngFor="let nivelJuego of nivelJuego"> {{nivelJuego.nombre}}</option>
+              </select>
+              <mat-error *ngIf="mensajesError.nivelJuego.length > 0">
+                <div *ngFor="let mensaje of mensajesError.nivelJuego">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

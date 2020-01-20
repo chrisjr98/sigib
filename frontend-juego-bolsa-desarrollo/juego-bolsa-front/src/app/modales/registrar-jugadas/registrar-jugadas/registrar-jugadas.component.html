@@ -1,0 +1,377 @@
+<div *ngIf="data.esAdministrador === true">
+  <h3>Jugadas</h3>
+  <p>Selecciona un jugador y registra las jugadas.</p>
+  <div>
+    <div class="row" *ngIf="nombreJugadorSeleccionado">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <div class="row">
+          <div
+            [ngClass]="
+              arregloRF.length > 0 &&
+              !(data.nivel.toUpperCase() === 'PRINCIPIANTE' || data.nivel.toUpperCase() === 'BÁSICO')
+                ? 'col-sm-6'
+                : 'col-sm-12'
+            "
+          >
+            <button
+              (click)="mostrar('accion')"
+              [class]="
+                mostrarAcciones
+                  ? 'btn btn-sm btn-block btn-warning'
+                  : 'btn btn-sm btn-block btn-primary'
+              "
+            >
+              Comprar acciones
+            </button>
+          </div>
+          <div
+            class="col-sm-6"
+            *ngIf="
+              arregloRF.length > 0 &&
+              !(data.nivel.toUpperCase() === 'PRINCIPIANTE' || data.nivel.toUpperCase() === 'BÁSICO')
+            "
+          >
+            <button
+              [hidden]="!(arregloRF.length > 0)"
+              (click)="mostrar('rentaFija')"
+              [class]="
+                mostrarPapelesRentaFija
+                  ? 'btn btn-sm btn-block btn-warning'
+                  : 'btn btn-sm btn-block btn-primary'
+              "
+            >
+              Comprar renta fija
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <p>Jugador Seleccionado:</p>
+        <h5>
+          <span class="bold">{{
+            nombreJugadorSeleccionado
+              ? nombreJugadorSeleccionado
+              : "Selecciona uno."
+          }}</span>
+        </h5>
+        <app-listbox-participantes
+          [arregloJugadores]="arregloJugadoresModal"
+          (opcionSeleccionada)="setearJugador($event)"
+          (nombreJugadorSeleccionado)="setearJugador($event)"
+        >
+        </app-listbox-participantes>
+      </div>
+      <div class="col-sm-10">
+        <br />
+        <div class="row tamano-minimo-contenedor">
+          <div class="col-sm-12" *ngIf="mostrarAcciones">
+            <div class="row justify-content-center">
+              <div
+                class="col-sm-6 tamano-contenido-sin-scroll"
+                *ngIf="
+                  arregloEmisorModalPrimeraMitad.length > 0 &&
+                  jugadorAcrearAdmin
+                "
+              >
+                <div
+                  class="row separacion-fondo-1 "
+                  *ngFor="
+                    let emisor of arregloEmisorModalPrimeraMitad;
+                    let i = index
+                  "
+                >
+                  <div
+                    *ngIf="emisor"
+                    class="tamano-jugadas animated fadeInUp"
+                    [style.animation-delay]="i * 0.2 + 's'"
+                  >
+                    <app-ingreso-cantidad-acciones-renta-fija
+                      [emisor]="emisor"
+                      (enviarValorComprar)="
+                        setearValorComprarEmisor($event, emisor)
+                      "
+                      (enviarValorVende)="
+                        seteraValorVendeEmisor($event, emisor)
+                      "
+                    >
+                    </app-ingreso-cantidad-acciones-renta-fija>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-sm-6 tamano-contenido-sin-scroll separacion-izquierda-2"
+                *ngIf="
+                  arregloEmisorModalSegundaMitad.length > 0 &&
+                  jugadorAcrearAdmin
+                "
+              >
+                <div
+                  class="row separacion-fondo-1 "
+                  *ngFor="
+                    let emisor of arregloEmisorModalSegundaMitad;
+                    let i = index
+                  "
+                >
+                  <div
+                    *ngIf="emisor"
+                    class="tamano-jugadas animated fadeInUp"
+                    [style.animation-delay]="i * 0.2 + 's'"
+                  >
+                    <app-ingreso-cantidad-acciones-renta-fija
+                      [emisor]="emisor"
+                      (enviarValorComprar)="
+                        setearValorComprarEmisor($event, emisor)
+                      "
+                      (enviarValorVende)="
+                        seteraValorVendeEmisor($event, emisor)
+                      "
+                    >
+                    </app-ingreso-cantidad-acciones-renta-fija>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="col-sm-12"
+                *ngIf="arregloEmisorModal.length > 0 && jugadorAcrearAdmin"
+              >
+                <br />
+                <div class="row">
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-10">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <button
+                          mat-button
+                          (click)="guardarEmisorJugada()"
+                          class="btn btn-success btn-sm btn-block"
+                          [disabled]="!(arregloEmisoresAGuardar.length > 0)"
+                        >
+                          Guardar acciones
+                        </button>
+                      </div>
+                      <div class="col-sm-6">
+                        <button
+                          mat-button
+                          mat-dialog-close
+                          class="btn btn-secondary btn-sm btn-block"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row"
+            *ngIf="mostrarPapelesRentaFija && jugadorAcrearAdmin"
+          >
+            <div class="col-sm-12">
+              <app-comprar-acciones-reta-fija
+                [emisoresRentaFijaEnRonda]="arregloRF"
+                (emitirCantidades)="mapearJugadasPapelesRentaFija($event)"
+              >
+                <div class="row" *ngIf="mostrarSinDatos">
+                  <div class="col-sm-12">
+                    <h4>
+                      {{
+                        arregloRF.length > 0
+                          ? "Renta Fija en espera."
+                          : "No se emitieron Renta Fija."
+                      }}
+                    </h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6" *ngIf="!mostrarSinDatos">
+                    <button
+                      mat-button
+                      (click)="seGuardaronLosPapelesDeRentaFija()"
+                      class="btn btn-success btn-sm btn-block"
+                    >
+                      Guardar papeles renta fija
+                    </button>
+                  </div>
+                  <div class="col-sm-6">
+                    <button
+                      mat-button
+                      mat-dialog-close
+                      class="btn btn-secondary btn-sm btn-block"
+                    >
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              </app-comprar-acciones-reta-fija>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="data.esAdministrador === false">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Realizar Jugada</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div [ngClass]="
+        arregloRF.length > 0 &&
+        !(data.nivel.toUpperCase() === 'PRINCIPIANTE' || data.nivel.toUpperCase() === 'BÁSICO')
+          ? 'col-sm-6'
+          : 'col-sm-12'
+      ">
+          <button
+            (click)="mostrar('accion')"
+            [disabled]="comproRentaVariable"
+            class="btn btn-sm btn-block btn-primary"
+          >
+            Comprar acciones
+          </button>
+        </div>
+        <div
+          class="col-sm-6"
+          *ngIf="
+            arregloRF.length > 0 &&
+            !(data.nivel.toUpperCase() === 'PRINCIPIANTE' || data.nivel.toUpperCase() === 'BÁSICO')
+          "
+        >
+          <button
+            [hidden]="!(arregloRF.length > 0)"
+            (click)="mostrar('rentaFija')"
+            class="btn btn-sm btn-block btn-primary"
+          >
+            Comprar renta fija
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-sm-12" *ngIf="mostrarAcciones">
+      <div class="row justify-content-center">
+        <div
+          class="col-sm-5 tamano-contenido-sin-scroll"
+          *ngIf="arregloEmisorModalPrimeraMitad?.length > 0"
+        >
+          <div
+            class="row separacion-fondo-1 "
+            *ngFor="let emisor of arregloEmisorModalPrimeraMitad; let i = index"
+          >
+            <div
+              *ngIf="emisor"
+              class="tamano-jugadas animated fadeInUp"
+              [style.animation-delay]="i * 0.2 + 's'"
+            >
+              <app-ingreso-cantidad-acciones-renta-fija
+                [emisor]="emisor"
+                (enviarValorComprar)="setearValorComprarEmisor($event, emisor)"
+                (enviarValorVende)="seteraValorVendeEmisor($event, emisor)"
+              >
+              </app-ingreso-cantidad-acciones-renta-fija>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-sm-5 tamano-contenido-sin-scroll separacion-izquierda-2"
+          *ngIf="arregloEmisorModalSegundaMitad?.length > 0"
+        >
+          <div
+            class="row separacion-fondo-1 "
+            *ngFor="let emisor of arregloEmisorModalSegundaMitad; let i = index"
+          >
+            <div
+              *ngIf="emisor"
+              class="tamano-jugadas animated fadeInUp"
+              [style.animation-delay]="i * 0.2 + 's'"
+            >
+              <app-ingreso-cantidad-acciones-renta-fija
+                [emisor]="emisor"
+                (enviarValorComprar)="setearValorComprarEmisor($event, emisor)"
+                (enviarValorVende)="seteraValorVendeEmisor($event, emisor)"
+              >
+              </app-ingreso-cantidad-acciones-renta-fija>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <button
+                mat-button
+                (click)="guardarEmisorJugada()"
+                class="btn btn-success"
+                [disabled]="!(arregloEmisoresAGuardar.length > 0)"
+              >
+                Guardar
+              </button>
+            </div>
+            <div class="col-sm-6">
+              <button mat-button mat-dialog-close class="btn btn-secondary">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div>
+    <div class="row" *ngIf="mostrarPapelesRentaFija">
+      <div class="col-sm-12">
+        <app-comprar-acciones-reta-fija
+          [emisoresRentaFijaEnRonda]="arregloRF"
+          (emitirCantidades)="mapearJugadasPapelesRentaFija($event)"
+        >
+          <div class="row" *ngIf="mostrarSinDatos">
+            <div class="col-sm-12">
+              <h4>
+                {{
+                  arregloRF.length > 0
+                    ? "Renta Fija en espera."
+                    : "No se emitieron Renta Fija."
+                }}
+              </h4>
+            </div>
+          </div>
+          <div class="row separacion-top-1">
+            <div class="col-sm-6" *ngIf="!mostrarSinDatos">
+              <button
+                mat-button
+                (click)="seGuardaronLosPapelesDeRentaFija()"
+                class="btn btn-success"
+              >
+                Guardar papeles renta fija
+              </button>
+            </div>
+            <div class="col-sm-6">
+              <button mat-button mat-dialog-close class="btn btn-secondary">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </app-comprar-acciones-reta-fija>
+      </div>
+    </div>
+  </div>
+</div>

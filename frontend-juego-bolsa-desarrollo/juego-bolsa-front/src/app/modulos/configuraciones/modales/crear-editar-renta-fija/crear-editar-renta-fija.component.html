@@ -1,0 +1,31 @@
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3 mat-dialog-title>
+      <span class="bold">{{data.rentaFija ? 'Editar' : 'Crear'}} papel de renta fija</span>
+    </h3>
+    <p>Ingresa los campos requeridos para crear una papel de renta fija</p>
+  </div>
+</div>
+
+<app-renta-fija-formulario
+  (rentaFijaValida)="validarFormulario($event)"
+  [rentaFija]="data.rentaFija"
+>
+  <div class="d-flex flex-row-reverse">
+    <div class="p-2">
+      <button class="btn btn-primary"
+              [disabled]="!formularioValido"
+              (click)="metodoCrearEditar()">
+        Guardar
+      </button>
+    </div>
+    <div class="p-2">
+      <button mat-dialog-close
+              class="btn btn-outline-secondary">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</app-renta-fija-formulario>
+

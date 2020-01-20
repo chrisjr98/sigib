@@ -1,0 +1,90 @@
+<nav aria-label="breadcrumb" class="margen-top-migas">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/inicio']">
+        Menú
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Lista de juegos
+    </li>
+  </ol>
+</nav>
+<div class="row separacion-izquierda-2">
+  <div class="col-md-12">
+    <h2>Lista de juegos</h2>
+  </div>
+  <div class="col-md-9">
+    <p>Selecciona un juego para empezar a jugar.</p>
+  </div>
+  <div class="col-md-3">
+    <button
+      class="btn btn-danger btn-sm btn-block"
+      (click)="limpiarLocalStorage()"
+    >
+      Limpiar cache
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
+        <br />
+        <button
+          [class]="
+            tipoJuegos === 'iniciado'
+              ? 'btn btn-sm btn-block btn-primary'
+              : 'btn btn-sm btn-block btn-warning'
+          "
+          (click)="listaDeJuegos('porIniciar')"
+        >
+          Por iniciar
+        </button>
+      </div>
+      <div class="col-md-6">
+        <br />
+        <button
+          [class]="
+            tipoJuegos === 'porIniciar'
+              ? 'btn btn-sm btn-block btn-primary'
+              : 'btn btn-sm btn-block btn-warning'
+          "
+          (click)="listaDeJuegos('iniciado')"
+        >
+          En juego
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="row ">
+      <app-lista-juegos
+        [arregloJuegos]="arregloJuegos"
+        [tipoUsuario]="tipoUsuario"
+      >
+      </app-lista-juegos>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <br />
+    <br />
+    <button
+      class="btn btn-sm btn-block btn-info"
+      (click)="listaDeJuegos(tipoJuegos, true)"
+      *ngIf="mostrarCargarMas"
+    >
+      Cargar más
+    </button>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<br />
+<br />
+<br />

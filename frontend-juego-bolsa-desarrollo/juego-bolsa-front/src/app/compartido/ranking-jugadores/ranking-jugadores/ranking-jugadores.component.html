@@ -1,0 +1,326 @@
+<div md-dialog-content>
+  <h2 class="modal-title">Resumen de la partida</h2>
+  <div class="row contenido-modal">
+    <div class="col-sm-12">
+      <div class="modal-body" *ngIf="data.esAdministrador">
+        <p-carousel
+          [value]="rankingJugadores"
+          styleClass="custom-carousel"
+          [numVisible]="1"
+          [pageLinks]="1"
+          [circular]="true"
+          [autoplayInterval]="0"
+          [responsive]="true"
+        >
+          <ng-template let-car pTemplate="item">
+            <div class="car-details">
+              <div class="p-grid p-nogutter">
+                <div class="justify-content-center">
+                  <div class="row justify-content-center card-img-top card-img">
+                    <img class="imagen-trofeo animated bounceOut 	infinite " [src]="car.source" [alt]="car.nombre" />
+                  </div>
+                  <div class="row justify-content-center ">
+                    <h2>Nombre:</h2>
+                    <h2 style="color: #002589">{{ car.nombre }}</h2>
+                  </div>
+                  <div class="row justify-content-center ">
+                    <h2>Puesto:</h2>
+                    <h2 style="color: #002589">
+                      {{ car.indice + 1 }} / {{ rankingJugadores.length }}
+                    </h2>
+                  </div>
+                </div>
+                <div class="row justify-content-center"></div>
+
+                <p-table
+                  [columns]="columnasAcciones"
+                  [value]="car.acciones"
+                  [resizableColumns]="true"
+                  [responsive]="true"
+                  [scrollable]="true"
+                  scrollHeight="50vh"
+                >
+                  <ng-template pTemplate="caption">
+                    <tr style="color: #4ea132">
+                      <td>
+                        Renta Variable
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th class="text-center" *ngFor="let col of columns">
+                        {{ col.header }}
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowData
+                    let-rowIndex
+                    let-columns="columns"
+                  >
+                    <tr>
+                      <td class="text-center" *ngFor="let col of columns">
+                        <div *ngIf="col.field === 'emisor'">
+                          {{ rowData.emisorJuego.emisor.nombre }}
+                        </div>
+                        <div *ngIf="col.field === 'cantidad'">
+                          {{ rowData.cantidad }}
+                        </div>
+                        <div *ngIf="col.field === 'precio'">
+                          $ {{ rowData.emisorJuego.precioActual }}
+                        </div>
+                        <div *ngIf="col.field === 'valor'">
+                          $
+                          {{
+                            rowData.emisorJuego.precioActual * rowData.cantidad
+                          }}
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                      <td [attr.colspan]="columns.length">
+                        No tiene acciones
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                <p-table
+                  [columns]="columnasRenta"
+                  [value]="car.rentaFija"
+                  [resizableColumns]="true"
+                  [responsive]="true"
+                  [scrollable]="true"
+                  scrollHeight="50vh"
+                >
+                  <ng-template pTemplate="caption">
+                    <tr style="color: #4ea132">
+                      <td>
+                        Renta Fija
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th class="text-center" *ngFor="let col of columns">
+                        {{ col.header }}
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowData
+                    let-rowIndex
+                    let-columns="columns"
+                  >
+                    <tr>
+                      <td class="text-center" *ngFor="let col of columns">
+                        <div *ngIf="col.field === 'emisor'">
+                          {{ rowData.rentaEmisor }}
+                        </div>
+                        <div *ngIf="col.field === 'cantidad'">
+                          {{ rowData.rentaCantidad }}
+                        </div>
+                        <div *ngIf="col.field === 'precio'">
+                          $ {{ rowData.rentaPrecio }}
+                        </div>
+                        <div *ngIf="col.field === 'valor'">
+                          $ {{ rowData.rentaValor }}
+                        </div>
+                        <div *ngIf="col.field === 'estado'">
+                          {{ rowData.rentaEstado }}
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                      <td [attr.colspan]="columns.length">
+                        No tiene renta fija
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="footer">
+                    <tr>
+                      <td colspan="4">Subtotal Acciones:</td>
+                      <td>$ {{ car.subtotal }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Dinero actual:</td>
+                      <td>$ {{ car.dineroActual }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Total:</td>
+                      <td>$ {{ car.total }}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <div class="modal-body" *ngIf="!data.esAdministrador">
+        <p-carousel
+          [value]="rakingJugadoresJugador"
+          styleClass="custom-carousel"
+          [numVisible]="1"
+          [pageLinks]="1"
+          [circular]="true"
+          [autoplayInterval]="0"
+          [responsive]="true"
+        >
+          <ng-template let-car pTemplate="item">
+            <div class="car-details">
+              <div class="p-grid p-nogutter">
+                <div class="row justify-content-center ">
+                  <img class="imagen-trofeo animated bounceOut 	infinite" [src]="car.source" [alt]="car.nombre" />
+                </div>
+                <div class="row justify-content-center ">
+                  <h2>Nombre:</h2>
+                  <h2 style="color: #002589">{{ car.nombre }}</h2>
+                </div>
+                <div class="row justify-content-center ">
+                  <h2>Puesto:</h2>
+                  <h2 style="color: #002589">{{ car.indice + 1 }}</h2>
+                </div>
+                <p-table
+                  [columns]="columnasAcciones"
+                  [value]="car.acciones"
+                  [resizableColumns]="true"
+                  [responsive]="true"
+                  [scrollable]="true"
+                  scrollHeight="50vh"
+                >
+                  <ng-template pTemplate="caption">
+                    <tr style="color: #4ea132">
+                      <td>
+                        Renta Variable
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th class="text-center" *ngFor="let col of columns">
+                        {{ col.header }}
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowData
+                    let-rowIndex
+                    let-columns="columns"
+                  >
+                    <tr>
+                      <td class="text-center" *ngFor="let col of columns">
+                        <div *ngIf="col.field === 'emisor'">
+                          {{ rowData.emisorJuego.emisor.nombre }}
+                        </div>
+                        <div *ngIf="col.field === 'cantidad'">
+                          {{ rowData.cantidad }}
+                        </div>
+                        <div *ngIf="col.field === 'precio'">
+                          $ {{ rowData.emisorJuego.precioActual }}
+                        </div>
+                        <div *ngIf="col.field === 'valor'">
+                          $
+                          {{
+                            rowData.emisorJuego.precioActual * rowData.cantidad
+                          }}
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                      <td [attr.colspan]="columns.length">
+                        No tiene acciones
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+                <p-table
+                  [columns]="columnasRenta"
+                  [value]="car.rentaFija"
+                  [resizableColumns]="true"
+                  [responsive]="true"
+                  [scrollable]="true"
+                  scrollHeight="50vh"
+                >
+                  <ng-template pTemplate="caption">
+                    <tr style="color: #4ea132">
+                      <td>
+                        Renta Fija
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="header" let-columns>
+                    <tr>
+                      <th class="text-center" *ngFor="let col of columns">
+                        {{ col.header }}
+                      </th>
+                    </tr>
+                  </ng-template>
+                  <ng-template
+                    pTemplate="body"
+                    let-rowData
+                    let-rowIndex
+                    let-columns="columns"
+                  >
+                    <tr>
+                      <td class="text-center" *ngFor="let col of columns">
+                        <div *ngIf="col.field === 'emisor'">
+                          {{ rowData.rentaEmisor }}
+                        </div>
+                        <div *ngIf="col.field === 'cantidad'">
+                          {{ rowData.rentaCantidad }}
+                        </div>
+                        <div *ngIf="col.field === 'precio'">
+                          $ {{ rowData.rentaPrecio }}
+                        </div>
+                        <div *ngIf="col.field === 'valor'">
+                          $ {{ rowData.rentaValor }}
+                        </div>
+                        <div *ngIf="col.field === 'estado'">
+                          {{ rowData.rentaEstado }}
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                      <td [attr.colspan]="columns.length">
+                        No tiene renta fija
+                      </td>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="footer">
+                    <tr>
+                      <td colspan="4">Subtotal Acciones:</td>
+                      <td>$ {{ car.subtotal }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Dinero actual:</td>
+                      <td>$ {{ car.dineroActual }}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">Total:</td>
+                      <td>$ {{ car.total }}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    </div>
+  </div>
+</div>

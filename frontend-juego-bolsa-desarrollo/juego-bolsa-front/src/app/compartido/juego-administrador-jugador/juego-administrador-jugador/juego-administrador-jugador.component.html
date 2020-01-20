@@ -1,0 +1,222 @@
+<div class="row">
+  <div class="col-sm-12 ">
+    <div class="row" style = "text-align-all: center">
+      <div class="col-sm-4 ">
+        <h5>
+          Juego:
+          <span class="nombre-juego">
+        {{ juego?.nombreJuego ? juego.nombreJuego : "no" }}
+      </span>
+        </h5>
+      </div>
+      <div class="col-sm-4">
+
+          <span class="bold"> Jugada : </span>
+          {{ rondaActual }}
+
+      </div>
+
+        <span class="bold">
+      Tiempo ronda :
+    </span>
+        <div *ngIf="!(+rondaActual !== 0)">
+          00:00
+        </div>
+        <countdown
+            #countdown
+            [config]="{
+        leftTime: tiempoRonda ? tiempoRonda : tiempo ? tiempo : 0,
+        format: 'm:s',
+        notify: [tiempoComenzarAudio]
+      }"
+            (event)="handleEvent($event)"
+            *ngIf="+rondaActual !== 0"
+        >
+        </countdown>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-sm-12" *ngIf="esAdministrador">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [ngClass]="{
+                'btn-warning': +rondaActual === 0
+              }"
+              [disabled]="inhabilitarBotonEmpezarRonda"
+              (click)="empezarRonda()"
+            >
+              {{ +rondaActual === 0 ? "Iniciar Juego" : "Empezar ronda" }}
+            </button>
+          </div>
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [disabled]="!inhabilitarBotonEmpezarRonda"
+              (click)="empezarTiempo()"
+            >
+              Iniciar tiempo
+            </button>
+          </div>
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [disabled]="!inhabilitarBotonEmpezarRonda"
+              (click)="terminarRonda()"
+            >
+              Terminar ronda
+            </button>
+          </div>
+          <div class="col-sm-3" *ngIf="juego">
+            <button
+              class="btn btn-outline-danger btn-block btn-sm"
+              type="btn"
+              (click)="terminarJuego()"
+            >
+              terminar juego
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [disabled]="rondaActual == 0 || inhabilitarBotonMostrarNoticias"
+              (click)="mostrarNoticiaNormal()"
+            >
+              {{ "Mostrar Noticia" }}
+            </button>
+          </div>
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [disabled]="rondaActual === 0"
+              (click)="mostrarAyuda()"
+            >
+              {{ (this.verAyuda ? "Ocultar" : "Mostrar") + " Ayuda" }}
+            </button>
+          </div>
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [disabled]="rondaActual == 0 || inhabilitarBotonOpcionesRonda"
+              (click)="abrirModalOpcionesRonda()"
+            >
+              Opciones de ronda
+            </button>
+          </div>
+          <div class="col-sm-3">
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="btn"
+              [hidden]="rondaActual == 0"
+              [disabled]="inhabilitarBotonCaja"
+              (click)="abrirModalCaja()"
+            >
+              Caja
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-10" *ngIf="!esAdministrador">
+    <div class="row">
+      <div class="col-sm-5" *ngIf="juego?.mostrarAyuda">
+        <button
+          class="btn btn-success btn-block"
+          type="btn"
+          (click)="abrirModalVerJugadas()"
+        >
+          Ver mis jugadas
+        </button>
+      </div>
+      <div class="col-sm-5">
+        <button
+          class="btn btn-success btn-block"
+          type="btn"
+          (click)="abrirModalRegistrarJugada()"
+          [disabled]="inhabilitarBotonRealizarJugada"
+        >
+          Realizar jugada
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row separacion-top-1">
+  <div class="col-md-12 align-self-center">
+    <div *ngIf="noticias && this.mostarOcultarNoticia">
+      <app-mostrar-noticias [noticias]="noticias"></app-mostrar-noticias>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-5">
+    <app-mostrar-auspiciantes-ronda
+      *ngIf="emisores"
+      [auspiciantes]="emisores"
+      [idsEmisoresGanan]="idEmisoresPositivos"
+      [idsEmisoresPierden]="idEmisoresNegativos"
+    ></app-mostrar-auspiciantes-ronda>
+  </div>
+
+  <div class="col-sm-7">
+    <app-grafico-acciones
+      *ngIf="informacionGrafico"
+      [informacionGrafico]="informacionGrafico"
+    ></app-grafico-acciones>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6" *ngIf="esAdministrador">
+    <button
+      [class]="
+        mostrarFiltroJugadores
+          ? 'btn btn-sm btn-block btn-primary'
+          : 'btn btn-sm btn-block btn-warning'
+      "
+      (click)="mostrarFiltroJugadores = !mostrarFiltroJugadores"
+    >
+      {{ mostrarFiltroJugadores ? "actualizar" : "mostrar" }} jugadas
+    </button>
+
+    <app-filter-accion-jugador *ngIf="mostrarFiltroJugadores">
+    </app-filter-accion-jugador>
+  </div>
+  <div class="col-sm-6">
+    <div
+      *ngIf="
+        arregloRF.length > 0 &&
+        !(juego.nivelJuego.nombre.toUpperCase() === 'PRINCIPIANTE' || juego.nivelJuego.nombre.toUpperCase() === 'BÁSICO')
+      "
+    >
+      <app-acciones-emisor-ronda
+        [idJuego]="idJuego"
+        [accionesORentaFija]="arregloRF"
+        [esRentaFija]="arregloRF.length > 0"
+      >
+      </app-acciones-emisor-ronda>
+    </div>
+  </div>
+</div>

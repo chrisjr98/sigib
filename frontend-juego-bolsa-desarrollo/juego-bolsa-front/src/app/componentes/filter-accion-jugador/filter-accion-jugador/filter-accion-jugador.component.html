@@ -1,0 +1,64 @@
+<p-table
+  #dt
+  [columns]="columnas"
+  [value]="accionesJugador"
+  [rows]="2"
+  [paginator]="true"
+>
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input
+        type="text"
+        pInputText
+        size="auto"
+        placeholder="Filtro por nombre o ronda"
+        (input)="dt.filterGlobal($event.target.value, 'contains')"
+        style="width:auto"
+      />
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{ col.header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      <td *ngFor="let col of columns">
+        <div *ngIf="col.field === 'participante'">
+          {{ rowData[col.field] ? rowData[col.field] : "No Tiene" }}
+        </div>
+        <div *ngIf="col.field === 'tipoAccion'">
+          {{
+            rowData[col.field] == 1
+              ? "Compró renta fia"
+              : rowData[col.field] == 2
+              ? "Vendió acciones"
+              : rowData[col.field] == 3
+              ? "Compró acciones"
+              : "No Tiene"
+          }}
+        </div>
+        <div *ngIf="col.field === 'emisor'">
+          {{ rowData[col.field] ? rowData[col.field] : "No Tiene" }}
+        </div>
+        <div *ngIf="col.field === 'cantidad'">
+          {{ rowData[col.field] ? rowData[col.field] : "No Tiene" }}
+        </div>
+        <div *ngIf="col.field === 'ronda'">
+          {{ rowData[col.field] ? rowData[col.field] : "No Tiene" }}
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td [attr.colspan]="columnas.length">
+        No existen registros
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

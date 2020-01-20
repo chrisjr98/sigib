@@ -1,0 +1,49 @@
+<p>Ingresa los campos requeridos para crear una papel de renta fija</p>
+
+<div class="row">
+  <div class="col-sm-12">
+
+    <form class="form-horizontal"
+          [formGroup]="formularioRentaFijaEmisor"
+          novalidate autocomplete="off">
+      <fieldset>
+        <div class="row">
+          <div class="col-md-12">
+            <label>Renta fija</label>
+            <p-dropdown [options]="rentasFijas"
+                        formControlName="rentaFija"
+                        optionLabel="tipoValor"
+                        placeholder="Elija un tipo"
+                        [filter]="true" filterBy="tipoValor"></p-dropdown>
+            <mat-error *ngIf="mensajesError.rentaFija.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rentaFija">{{mensaje}}</div>
+            </mat-error>
+          </div>
+        </div>
+        <div class="row separacion-top-2">
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Rendimiento</mat-label>
+              <input matInput placeholder="Ej: 8" type="number" formControlName="rendimiento" required>
+              <mat-hint  style="color: #0a1971"> Ingreso porcentaje(1-100) rendimiento renta fija</mat-hint>
+              <mat-error *ngIf="mensajesError.rendimiento.length > 0">
+                <div *ngFor="let mensaje of mensajesError.rendimiento">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field>
+              <mat-label>Plazo</mat-label>
+              <input matInput placeholder="Ej: 8" type="number" formControlName="tiempo" required>
+              <mat-hint  style="color: #0a1971"> Ingreso plazo de renta fija</mat-hint>
+              <mat-error *ngIf="mensajesError.tiempo.length > 0">
+                <div *ngFor="let mensaje of mensajesError.tiempo">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </fieldset>
+      <ng-content></ng-content>
+    </form>
+  </div>
+</div>

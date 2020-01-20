@@ -1,0 +1,69 @@
+<div class="card" style="width: 100%;">
+  <div class="card-body">
+    <div class="row">
+      <div
+        class="col-sm-3
+        text-center"
+      >
+        <h6
+          class="text-center
+          vertical-center"
+        >
+          {{ jugador }}
+        </h6>
+      </div>
+      <div class="col-sm-2">
+        <h6
+          class="card-text
+            text-center
+            vertical-center"
+        >
+          {{
+            tipoAccion == 1
+              ? 'Compró Renta fija'
+              : tipoAccion == 2
+              ? 'Vendió Acciones'
+              : tipoAccion == 3
+              ? 'Compró Acciones'
+              : 'Sin registro'
+          }}
+        </h6>
+      </div>
+      <div class="col-sm-2">
+        <h6
+          class="card-text
+            text-center
+            vertical-center"
+        >
+          {{
+            tipoAccion == 1
+              ? 'Renta fija'
+              : tipoAccion == 2
+              ? 'Acciones'
+              : tipoAccion == 3
+              ? 'Acciones'
+              : 'Sin registro'
+          }}
+        </h6>
+      </div>
+      <div class="col-sm-3">
+        <h6
+          class="card-text
+          text-center
+          vertical-center"
+        >
+          {{ emisor }}
+        </h6>
+      </div>
+      <div class="col-sm-2">
+        <h6
+          class="card-text
+          text-center
+          vertical-center"
+        >
+          {{ cantidad }} unidades
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

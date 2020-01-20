@@ -1,0 +1,202 @@
+<div class="col-sm-12">
+  <form class="form-horizontal"
+        [formGroup]="formularioConfiguracion"
+        novalidate autocomplete="off">
+    <fieldset>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Dinero Jugador</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="dineroJugador" required>
+            <mat-hint  style="color: #0a1971"> Ingreso dinero inicial del participante</mat-hint>
+            <mat-error *ngIf="mensajesError.dineroJugador.length > 0">
+              <div *ngFor="let mensaje of mensajesError.dineroJugador">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Stock Acciones</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="stockAcciones" required>
+            <mat-hint  style="color: #0a1971"> Ingreso stock inicial acciones del emisor</mat-hint>
+            <mat-error *ngIf="mensajesError.stockAcciones.length > 0">
+              <div *ngFor="let mensaje of mensajesError.stockAcciones">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>PVP Inicial Acción</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoInicialPvpAccion" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial precio acción</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoInicialPvpAccion.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoInicialPvpAccion">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>PVP Final Acción</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinPvpAccion" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final precio acción</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinPvpAccion.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinPvpAccion">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>PVP Inicial Renta</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoInicialPvpRenta" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial precio renta fija</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoInicialPvpRenta.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoInicialPvpRenta">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>PVP Final Renta</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinPvpRenta" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final precio renta fija</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinPvpRenta.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinPvpRenta">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Inicial Noticia Positiva</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoInicialNotiPos" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial en precio para la noticia positiva</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoInicialNotiPos.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoInicialNotiPos">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Final Noticia Positiva</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinNotiPos" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final en precio para la noticia positiva</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinNotiPos.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinNotiPos">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Inicial Noticia Negativa</mat-label>
+            <input matInput placeholder="Ej: 10 " type="number" formControlName="rangoInicialNotiNeg" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial en precio para la noticia negativa</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoInicialNotiNeg.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoInicialNotiNeg">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Final Noticia Negativa</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinNotiNeg" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final en precio para la noticia positiva</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinNotiNeg.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinNotiNeg">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Inicial Boom</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoIniBoom" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial en precio para la noticia BOOM</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoIniBoom.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoIniBoom">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Final Boom</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinBoom" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final en precio para la noticia BOOM</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinBoom.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinBoom">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Inicial Crush</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoIniCrush" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial en precio para la noticia CRUSH</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoIniCrush.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoIniCrush">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Final Crush</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinCrush" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final en precio para la noticia CRUSH</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinCrush.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinCrush">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Inicial Split</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoIniSplit" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial en número acciones para la noticia SPLIT</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoIniSplit.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoIniSplit">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Final Split</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinSplit" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final en número acciones para la noticia SPLIT</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinSplit.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinSplit">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Inicial Contra-Split</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number"formControlName="rangoIniConSplit" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango inicial en número acciones para la noticia CONTRASPLIT</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoIniConSplit.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoIniConSplit">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Rango Final Contra Split</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="rangoFinConSplit" required>
+            <mat-hint  style="color: #0a1971"> Ingreso rango final en número acciones para la noticia CONTRASPLIT</mat-hint>
+            <mat-error *ngIf="mensajesError.rangoFinConSplit.length > 0">
+              <div *ngFor="let mensaje of mensajesError.rangoFinConSplit">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-6">
+          <mat-form-field>
+            <mat-label>Tiempo Pitido</mat-label>
+            <input matInput placeholder="Ej: 10.23 " type="number" formControlName="tiempoPitido" required>
+            <mat-hint  style="color: #0a1971"> Ingreso el tiempo para iniciar pitido para terminar ronda</mat-hint>
+            <mat-error *ngIf="mensajesError.tiempoPitido.length > 0">
+              <div *ngFor="let mensaje of mensajesError.tiempoPitido">{{mensaje}}</div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

@@ -1,0 +1,28 @@
+<p-carousel class="text-center" headerText="Resumen de la partida" [value]="resultados" numVisible="1" circular="circular">
+  <ng-template let-resultado pTemplate="item">
+    <div class="ui-grid ui-grid-responsive text-center">
+      <div class="ui-grid-col-12"
+           *ngIf="resultado.numeroPuesto !== 1 && resultado.numeroPuesto !== 2 && resultado.numeroPuesto !== 3"
+           style="padding-bottom: 51px">
+      </div>
+      <div class="ui-grid-row">
+        <h1 class="ui-grid-col-12">{{'#' + resultado.numeroPuesto}}</h1>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12" *ngIf="resultado.numeroPuesto === 1"><img src="assets/imagenes/trofeos/primer-lugar.png" width="100"></div>
+        <div class="ui-grid-col-12" *ngIf="resultado.numeroPuesto === 2"><img src="assets/imagenes/trofeos/segundo-lugar.png" width="100"></div>
+        <div class="ui-grid-col-12" *ngIf="resultado.numeroPuesto === 3"><img src="assets/imagenes/trofeos/tercer-lugar.png" width="100"></div>
+      </div>
+      <div class="ui-grid-row">
+        <h1 class="ui-grid-col-12">{{resultado.dineroGanado | currency}}</h1>
+      </div>
+      <div class="ui-grid-row">
+        <h4 class="ui-grid-col-12">{{resultado.participante}}</h4>
+      </div>
+      <div class="ui-grid-col-12"
+           style="padding-top: 55px"
+           *ngIf="resultado.numeroPuesto !== 1 && resultado.numeroPuesto !== 2 && resultado.numeroPuesto !== 3">
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

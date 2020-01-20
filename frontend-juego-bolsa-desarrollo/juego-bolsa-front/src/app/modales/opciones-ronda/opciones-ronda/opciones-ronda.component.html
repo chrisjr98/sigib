@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h3 class="text-center" mat-dialog-title>
+      <span class="bold">Opciones de ronda</span>
+    </h3>
+  </div>
+</div>
+
+<div mat-dialog-content class="justify-content-center">
+  <div class="" *ngFor="let tipoNoticia of tiposNoticias">
+    <div class="row">
+      <div class="col-sm-12" style="margin-top: 1rem">
+        <button
+          type="button"
+          [ngClass]="{
+          'color-boom': tipoNoticia.nombre === 'BOOM',
+          'color-crush': tipoNoticia.nombre === 'CRUSH',
+          'color-split': tipoNoticia.nombre === 'SPLIT',
+          'color-contra-split': tipoNoticia.nombre === 'CONTRA SPLIT'
+          }"
+          class="btn btn-block "
+          [disabled]="tipoNoticia.bloquearBoton"
+          (click)="emitirOpcion(tipoNoticia)"
+        >{{tipoNoticia.nombre}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-actions class="justify-content-end">
+  <div class="d-flex flex-row-reverse">
+    <div class="p-2">
+      <button
+        type="button"
+        mat-button
+        mat-dialog-close
+        class="btn btn-outline-secondary"
+        (click)="emitirOpcion()"
+      >CANCELAR</button>
+    </div>
+  </div>
+</mat-dialog-actions>

@@ -1,0 +1,20 @@
+<div class="row" *ngIf="emisor !== undefined">
+  <div class="col-sm-8">
+    <app-accion-emisor
+      [esRentaFija]="false"
+      [nombreEmisor]="emisor?.emisorNombre"
+      [pathLogo]="emisor?.path"
+    >
+    </app-accion-emisor>
+
+  </div>
+  <div class="col-sm-4">
+    <app-input-cantidad
+      [idEmisor]="emisor?.id"
+      [esRentaFija]="esRentaFija"
+      (enviarValorComprar)="seteoValorCompra($event)"
+      (enviarValorVende)="seteoValorVende($event)">
+    </app-input-cantidad>
+  </div>
+</div>
+
