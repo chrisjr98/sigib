@@ -5,6 +5,4 @@ Comandos de inicio
 
 npm install -g @angular/cli
 
-npm install -g @angular/cli
-
 npm i -g @nestjs/cli
