@@ -1,0 +1,90 @@
+<div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="[ '/aplicacion', 'inicio' ]">Inicio</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+</div>
+
+<div class="row justify-content-center titulo">
+  <h2 align="center"> Productora</h2>
+</div>
+<hr>
+
+<div class="row justify-content-center  with-little-margin">
+  <div class="col-8">
+    <div class="row justify-content-center">
+      <div class="col-8">
+          <h4> Lista de Productoras</h4>
+      </div>  
+      <div class="col-4">
+          <button class="btn btn-outline-success with-little-margin"
+          [routerLink]="['/aplicacion', 'productora','crear']">
+          Nuevo
+        </button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form>
+              <div class="form-group">
+                  <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Buscar por nombre o propietario o pais"
+                  [(ngModel)]="patron"
+                  name="patron"
+                >
+              </div>
+              </form>            
+        </div>  
+        <div class="col-4">
+            <button
+            class="btn btn-outline-info my-2 my-sm-0"
+            (click)="buscar(0)"
+          >Buscar</button>
+        </div>
+    </div>
+  </div>
+  
+  <div class="col-2"></div>  
+</div>
+
+<p-dataView [value]="productoras" [paginator]="true" [rows]="limite"
+    [lazy]="true" (onLazyLoad)="loadData($event)" [totalRecords]="totalProductoras"
+    [emptyMessage]="emptyMessage">
+
+    <p-header>
+      <div class="ui-helper-clearfix">
+          <div class="ui-g">
+              <div class="ui-g-12 ui-md-12" style="text-align:right">
+                  <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+              </div>
+          </div>
+      </div>
+  </p-header>
+
+    <ng-template let-productora pTemplate="listItem">
+        <div class="row justify-content-center">
+          <div class="col-md-8"
+          [ngStyle]="{'background-color': productora.id==elementoResaltado? '#d7f1f6' : 'white' }">
+              <app-productora-resumido
+              [productora]="productora">
+              </app-productora-resumido>
+          </div>
+        </div>
+    </ng-template>
+    <ng-template let-productora pTemplate="gridItem">
+        <div class="ui-g-12 ui-md-5"
+        [ngStyle]="{'background-color': productora.id==elementoResaltado? '#d7f1f6' : 'white' }">
+          <app-productora-resumido
+          [productora]="productora">
+          </app-productora-resumido>
+        </div>
+        <div class="ui-g-12 ui-md-1"></div>
+    </ng-template>
+</p-dataView>

@@ -1,0 +1,45 @@
+scalar Date
+scalar Any
+
+input ProductoraCrear{
+    nombre: String!
+    propietario: String
+    fundador: String
+    pais: String
+    fechaFundacion: Date
+}
+
+input ActualizacionProductora{
+
+    nombre: String
+    propietario: String
+    fundador: String
+    pais: String
+    fechaFundacion: Date
+    rutaImagen: String
+}
+
+type Productora{
+    id: ID!
+    nombre: String!
+    propietario: String
+    fundador: String
+    pais: String
+    fechaFundacion: Date
+    activo: Boolean
+    rutaImagen: String
+}
+
+type Query{
+    encontrarTodasProductoras( skip: Int, take: Int): [Productora]
+    encontrarUnaProductora(id: Int): Productora
+    buscarProductora(palabraBusqueda: String, skip: Int, take: Int): [Productora]
+    contarProductoras: Int
+    contarProductorasBuscadas(palabraBusqueda: String): Int
+}
+
+type Mutation{
+    crearProductora(productora: ProductoraCrear): Productora
+    editarProductora(id: Int, actualizaciones: ActualizacionProductora): Any
+    activarDesactivarProductora(id: Int): Any
+}

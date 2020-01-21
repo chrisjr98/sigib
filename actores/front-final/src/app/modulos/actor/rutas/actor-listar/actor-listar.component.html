@@ -1,0 +1,140 @@
+<div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a [routerLink]="[ '/aplicacion', 'inicio' ]">Inicio</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a [routerLink]="[ '/aplicacion', 'pelicula', 'listar' ]">Pelicula</a>
+              </li>
+            </ol>
+          </nav>
+        </div>
+</div>
+<div class="row justify-content-center titulo">
+  <h2> Actor</h2>
+</div>
+<hr>
+
+<div class="row justify-content-center ">
+  <div class="col-8">
+    <div class="row justify-content-center with-little-margin">
+      <div class="col-8">
+          <h4> Lista de Actores</h4>
+      </div>  
+
+    </div>
+  </div>
+  
+</div>
+
+
+
+<div class="row justify-content-center with-little-margin">
+  <div class="col-12">
+          <p-table [columns]="columnas" [value]="actores" [lazy]="true" (onLazyLoad)="loadData($event)" [paginator]="true" 
+          [rows]="filas" [totalRecords]="totalActores" [loading]="loading"
+          [resizableColumns]="true">
+
+          <ng-template pTemplate='emptymessage' let-columns>
+                <tr>
+                    <td [attr.colspan]="5">
+                        <h3>No hay actores para mostrar :(</h3>
+                    </td>
+                </tr>
+            </ng-template>
+
+          <ng-template pTemplate="caption">
+                  <div style="text-align: left">   
+                      <div class="row">
+                          <div class="col-sm-3">
+                                  <input type="text" pInputText 
+                                  class="llenar-campo" 
+                                  placeholder="Buscar por nombre o pais" 
+                                  [(ngModel)]="palabraBuscada"
+                                  id="palabraBuscada">
+                          </div>
+                          <div class="col-sm-1">
+                                  <button class="btn btn-outline-info"
+                                  (click)="buscar()">
+                                      Buscar
+                                  </button>
+                          </div>
+                          <div class="col-sm-1"></div>
+                          <div class="col-sm-1">
+                              <button class="btn btn-outline-success"
+                              [routerLink]="['/aplicacion','actor','crear', idPelicula]">
+                              Nuevo
+                            </button>
+                          </div>
+                      </div>
+                      
+                  </div>
+          </ng-template>
+
+          <ng-template pTemplate="colgroup" let-columns>
+                  <colgroup>
+                      <col *ngFor="let col of columns" [style.width]="col.width">
+                      <col [style.width]="widthEstado">
+                      <col style.width="45%">
+                  </colgroup>
+              </ng-template>
+
+          <ng-template pTemplate="header" let-columns >
+              <tr>
+                  <th pResizableColumn *ngFor="let col of columns">
+                      {{col.header}}
+                  </th>
+                  <th pResizableColumn>Estado</th>
+                  <th pResizableColumn>Detalles</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr
+              [ngStyle]="{'background-color': rowData.id==resaltado? '#d7f1f6' : 'white' }">
+                  <td *ngFor="let col of columns;" class="ui-resizable-column cursor-initial">
+                      {{rowData[col.field]}}
+                  </td>
+                  <td class="ui-resizable-column">
+                      <div class="row justify-content-center">
+                          <div class="col-12">
+                                <button class=" btn btn-sm btn-block"
+                                [ngClass]="{'btn-success': rowData.activo, 'btn-danger': !rowData.activo}"
+                                (click)="activarDesactivar(rowData.id)">
+                                    {{ rowData.activo? "Activo": "Inactivo" }}
+                                </button>
+                          </div>
+                      </div>
+                  </td>
+                  <td class="ui-resizable-column">
+                      <div class="row justify-content-center">
+                      
+                          <div class="col-6">
+                              <button class="btn btn-sm btn-block btn-warning"
+                              [routerLink]="['/aplicacion','actor','editar', rowData.id, idPelicula]" >
+                                  Editar
+                              </button>
+                          </div>
+                          <div class="col-6">
+                              <button class="btn btn-sm btn-block btn-info"
+                              [routerLink]="['/aplicacion','actor','detalle', rowData.id, idPelicula]" >
+                                  Ver Detalles
+                              </button>
+                          </div>
+                      </div>     
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-3">
+        <button class="btn btn-warning btn-block" 
+        [routerLink]="[ '/aplicacion', 'pelicula', 'listar' ]">
+            Volver a Peliculas
+        </button>
+    </div>
+</div>

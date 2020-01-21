@@ -1,0 +1,131 @@
+<form
+autocomplete="off"
+spellcheck="false"
+  [formGroup]="formulario">
+  <fieldset>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="nombreId">Nombre </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="nombreId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar nombre "
+        formControlName="nombre">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorNombre.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorNombre">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="paisId">Pais </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="paisId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar pais origen "
+        formControlName="pais">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorPais.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorPais">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="premiosId">Premios </label>
+  
+      <div class="col-sm-6">
+        <input
+        id="premiosId"
+        class="form-control"
+        type="number"
+        placeholder="Ingresar numero de premios "
+        formControlName="premios">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorPremios.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorPremios">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="nominacionesId">Nominaciones </label>
+  
+      <div class="col-sm-6">
+        <input
+        id="nominacionesId"
+        class="form-control"
+        type="number"
+        placeholder="Ingresar numero de nominaciones "
+        formControlName="nominaciones">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorNominaciones.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorNominaciones">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="sexoId">Sexo </label>
+  
+      <div class="col-sm-10">
+        <select
+        class="form-control form-control-sm"
+        id="sexoId"
+        formControlName="sexo"
+        >
+         <option value="Seleccionar Una">Seleccionar Una</option>  
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+
+      </select>
+
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorSexo.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorSexo">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+
+  </fieldset>
+</form>

@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a [routerLink]="[ '/aplicacion', 'inicio' ]">Inicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a [routerLink]="[ '/aplicacion', 'pelicula', 'listar' ]">Pelicula</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a [routerLink]="[ '/aplicacion', 'actor', 'listar', peliculaId ]">Actor</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+</div>
+<div class="row justify-content-center with-margin">
+  <div class="col-4">
+      <h2 align="center"> Editar Actor</h2>
+  </div>
+</div>
+
+<div class="row justify-content-center"
+*ngIf="!actor">
+<h3>Actor no encontrada</h3>
+</div>
+<div
+*ngIf="actor">
+
+<div class="row justify-content-center">
+  <h6>Puede hacer cambios en esta pantalla de la pelicula {{actor.nombre.toUpperCase()}}</h6>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+      <app-formulario-actor
+        (formularioValido)="formularioEsValido($event)"
+        [actor]="actor"
+        [puedeEditarFormulario]="true"
+      ></app-formulario-actor>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+
+    <div class="col-sm-6 justify-content-center">
+      <div class="row">
+        <button
+          class="btn btn-primary btn-block"
+          (click)="editar()"
+          [disabled]="botonEditarDisable">Editar
+        </button>
+      </div>
+      <br>
+      <div class="row">
+        <button
+          class="btn btn-warning btn-block"
+          (click)="cancelar()">Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>

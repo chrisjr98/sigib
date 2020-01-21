@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Cambiar Foto</h1>
+<div mat-dialog-content>
+  <p-fileUpload name="file" [url]="data.url" 
+  chooseLabel="Escoger archivo"
+  cancelLabel="Cancelar"
+  uploadLabel="Subir"
+  accept="image/*"
+  (onUpload)="cambiarImagen($event)">
+  <ng-template pTemplate="content">
+    <ul *ngIf="file">
+      <li>{{file.name}} - {{file.size}} bytes</li>
+    </ul>
+  </ng-template>
+</p-fileUpload>
+</div>
+
+<div mat-dialog-actions>
+  <button class="btn btn-warning"
+  (click)="onNoClick()">
+    Cancelar
+  </button>
+</div>

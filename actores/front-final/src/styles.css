@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.with-margin {
+    margin-bottom: 50px;
+}
+
+.cursor-initial:hover{
+    cursor: context-menu;
+}
+
+.with-little-margin {
+    margin-bottom: 10px;
+}
+div.b {
+    font-size: small;
+    line-height: 100%;
+    text-align: right;
+}
+
+.letra-pequenia{
+    font-size: small;
+}
+
+.color-cyan{
+    color: darkcyan
+}
+
+.titulo{
+    font-weight: 700;
+    text-decoration: underline;
+    background-color:skyblue;
+}
+
+body{
+    background-image: url("http://localhost:3000/fondo-trans.png");
+    height: 100%;
+ }
+
+ .container {
+     min-width: 100%;
+    min-height:100%;
+    position:relative;
+ }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="socket.io.js"></script>
+
+
+
+    <title>cliente</title>
+</head>
+
+<body>
+    <h1>Ola k ase cliente</h1>
+
+    <script>
+         var nombreUsuario ;
+
+        serverCliente = io('http://localhost:3001/producto');
+
+        serverCliente.on('connect', () => {
+            console.log('CONECTADO a cliente id:', serverCliente.id);
+        });
+
+        serverCliente.on('disconnect', () => {
+            console.log('DESCONECTADO cliente id:', serverCliente.id);
+        });
+
+        serverCliente.on('mensaje',(mensaje) => {
+            console.log(mensaje)
+        })
+
+        function logear(nombre){
+
+            if(nombreUsuario){
+                console.log('cambiaste tu nombre a ',nombreUsuario,':O');
+                serverCliente.emit('avisar',nombreUsuario +' cambio su nombre a '+ nombre);
+            }else{
+                
+                console.log('Hola',nombreUsuario,'acabas de iniciar sesion :D');
+                serverCliente.emit('logear',nombre);
+            }
+            nombreUsuario = nombre;
+            
+        }
+
+        function enviarMensaje(mensaje){
+            console.log('tu dijiste:', mensaje);
+            serverCliente.emit('avisar',nombreUsuario+' dijo: '+mensaje);
+        }
+
+
+    </script>
+</body>
+
+</html>

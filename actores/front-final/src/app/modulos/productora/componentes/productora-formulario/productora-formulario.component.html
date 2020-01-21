@@ -1,0 +1,122 @@
+<form
+autocomplete="off"
+spellcheck="false"
+  [formGroup]="formulario">
+  <fieldset>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="nombreId">Nombre </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="nombreId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar nombre "
+        formControlName="nombre">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorNombre.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorNombre">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="fechaId">Fecha Fundacion </label>
+        <div class="col-sm-10">
+            <input
+            id="fechaId"
+            class="form-control"
+            type="date"
+            placeholder="Ingresar fecha"
+            formControlName="fechaFundacion">
+            
+            <div class="alert alert-warning" 
+        *ngIf="mensajesErrorFundacion.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorFundacion">
+                          <p> {{mensaje}}</p>
+             </span>
+      </div>
+        </div>
+      
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="fundadorId">Fundador </label>
+        <div class="col-sm-10">
+            <input
+            id="fundadorId"
+            class="form-control"
+            type="text"
+            placeholder="Ingresar nombre fundador"
+            formControlName="fundador">
+
+            <div class="alert alert-warning" *ngIf="mensajesErrorFundador.length > 0">
+              <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorFundador">
+                <p>{{mensaje}}</p>
+              </span>
+            </div>
+    
+        </div>
+            
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="paisId">Pais</label>
+      <div class="col-sm-10">
+          <input
+          id="paisId"
+          class="form-control"
+          type="text"
+          placeholder="Ingresar nombre pais"
+          formControlName="pais"
+          *ngIf="soloVerFormulario|| puedeEditarFormulario">  
+          <p-dropdown [options]="paises" formControlName="pais"
+          placeholder="Selecciona un pais" 
+          optionLabel="name" [showClear]="true"
+          *ngIf="!(soloVerFormulario|| puedeEditarFormulario)"
+          ></p-dropdown>
+
+          <div class="alert alert-warning" 
+          *ngIf="mensajesErrorPais.length > 0">
+  
+              <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorPais">
+                 <p> {{mensaje}}</p>
+              </span>
+        </div>
+        
+      </div>
+        
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="propietarioId">Propietario </label>
+      <div class="col-sm-10">
+          <input
+          id="propietarioId"
+          class="form-control"
+          type="text"
+          placeholder="Ingresar nombre propietario"
+          formControlName="propietario">
+
+          <div class="alert alert-warning" *ngIf="mensajesErrorPropietario.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorPropietario">
+              <p> {{mensaje}}</p>
+            </span>
+          </div>
+      </div>
+        
+    </div>
+  </fieldset>
+</form>

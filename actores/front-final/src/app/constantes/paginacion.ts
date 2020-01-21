@@ -1,0 +1,1 @@
+export const LIMITE_PAGINACION = 2

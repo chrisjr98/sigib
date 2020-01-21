@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a [routerLink]="[ '/aplicacion', 'inicio' ]">Inicio</a>
+          </li>
+        </ol>
+      </nav>
+    </div>
+</div>
+<div class="row justify-content-center with-margin titulo">
+  <div class="col-4">
+      <h2 align="center"> Crear Usuario</h2>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <h6>Llenar todos los campos para crear un nuevo usuario</h6>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+      <app-usuario-formulario
+        (formularioValido)="formularioEsValido($event)"
+      ></app-usuario-formulario>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <div class="row">
+        <button
+          class="btn btn-primary btn-block"
+          (click)="crear()"
+          [disabled]="crearDisable">Crear
+        </button>
+      </div>
+      <br>
+      <div class="row">
+        <button
+          class="btn btn-warning btn-block"
+          (click)="cancelar()">Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+  

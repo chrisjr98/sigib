@@ -1,0 +1,53 @@
+.menu-opcion{
+    cursor: pointer;
+    border-width: 0.1rem;
+    text-align: center;
+    text-decoration: underline;
+    
+}
+
+.menu-opcion:hover{
+    border-style: solid;
+    color: darkcyan;
+    border-color: darkcyan;
+    /*text-shadow: 2px 2px rgb(31, 33, 34);*/
+    font-weight: 700;
+}
+
+.titulo{
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.color-cyan{
+    color: darkcyan
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: teal;
+    color: white;
+ }
+
+ .cursor-initial{
+     cursor: initial;
+ }
+
+ .header{
+     background-color: teal;
+     padding-top: 0.5em;
+     color: white;
+ }
+
+ color-blanco{
+     color: white;
+ }
+
+ animacion-larga{
+    animation-duration: 3s;
+    animation-delay: 2s;
+    /*animation-iteration-count: infinite;*/  
+ }

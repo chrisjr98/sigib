@@ -1,0 +1,196 @@
+<form
+autocomplete="off"
+spellcheck="false"
+  [formGroup]="formulario">
+  <fieldset>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="nombreId">Nombre </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="nombreId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar nombre "
+        formControlName="nombre">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorNombre.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorNombre">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="anioId">Año de Produccion </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="anioId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar año "
+        formControlName="anioProduccion">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorAnio.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorAnio">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="generoId">Genero </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="generoId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar genero "
+        formControlName="genero">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorGenero.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorGenero">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="premiosId">Premios </label>
+  
+      <div class="col-sm-6">
+        <input
+        id="premiosId"
+        class="form-control"
+        type="number"
+        placeholder="Ingresar numero de premios "
+        formControlName="premios">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorPremios.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorPremios">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="taquillaId">Taquilla </label>
+  
+      <div class="col-sm-6">
+        <input
+        id="taquillaId"
+        class="form-control"
+        type="number"
+        placeholder="Ingresar taquilla"
+        formControlName="taquilla">
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorTaquilla.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorTaquilla">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row">
+      <label
+        class="col-sm-2 col-form-label"
+        for="ratingId">Rating </label>
+  
+      <div class="col-sm-10">
+        <!-- <select
+        class="form-control form-control-sm"
+        id="ratingId"
+        formControlName="rating"
+        >
+          <option >1</option>
+          <option >2</option>
+          <option >3</option>
+          <option >4</option>
+          <option >5</option>
+      </select> -->
+      <p-rating formControlName="rating" id="rating"></p-rating>
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorRating.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorRating">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row" *ngIf="!productoraFija">
+      <label
+        class="col-sm-2 col-form-label"
+        for="productoraId">Productora </label>
+  
+      <div class="col-sm-10">
+        <select
+        class="form-control form-control-sm"
+        id="productoraId"
+        formControlName="productora"
+        >
+          <option value="Seleccionar Una">Seleccionar Una Productora</option>
+          <option *ngFor="let productora of productoras;">
+            {{productora.nombre}}
+          </option>
+      </select>
+
+
+        <div class="alert alert-warning" 
+        *ngIf="mensajesErrorProductora.length > 0">
+            <span class="help-block text-warning" *ngFor="let mensaje of mensajesErrorProductora">
+                        <p> {{mensaje}}</p>
+             </span>
+      </div>
+
+      </div>
+      
+    </div>
+    <div class="form-group row" *ngIf="productoraFija">
+      <label
+        class="col-sm-2 col-form-label"
+        for="productoraId">Productora </label>
+  
+      <div class="col-sm-10">
+        <input
+        id="productoraId"
+        class="form-control"
+        type="text"
+        placeholder="Ingresar productora"
+        formControlName="productora">
+
+      </div>
+      
+    </div>
+  </fieldset>
+</form>

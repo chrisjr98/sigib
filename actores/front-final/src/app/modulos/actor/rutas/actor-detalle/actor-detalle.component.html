@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="[ '/aplicacion', 'inicio' ]">Inicio</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a [routerLink]="[ '/aplicacion', 'pelicula', 'listar' ]">Pelicula</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a [routerLink]="[ '/aplicacion', 'actor', 'listar', idPelicula ]">Actor</a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="row justify-content-center with-margin">
+  <div class="col-4">
+      <h2 align="center"> Detalle Pelicula</h2>
+  </div>
+</div>
+<div class="row justify-content-center"
+*ngIf="!actor">
+<h3>Pelicula no encontrada</h3>
+</div>
+<div
+*ngIf="actor">
+<div class="row justify-content-center with-little-margin">
+  <h6>NO puede hacer cambios en esta pantalla del actor {{actor.nombre.toUpperCase()}}</h6>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-6">
+      <app-formulario-actor
+        [actor]="actor"
+        [soloVerFormulario]="true"
+      ></app-formulario-actor>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-sm-6">
+
+      <div class="row">
+        <button
+          class="btn btn-warning btn-block"
+          (click)="cancelar()">Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
