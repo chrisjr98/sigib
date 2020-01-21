@@ -23,7 +23,6 @@ import { CountdownComponent, CountdownEvent } from 'ngx-countdown';
 import { environment } from '../../../../environments/environment';
 import { LocalStorageService } from '../../../servicios/rest/servicios/local-storage.service';
 import { TablaJugadasComponent } from '../../tabla-jugadas/tabla-jugadas/tabla-jugadas.component';
-import { RankingJugadoresComponent } from '../../ranking-jugadores/ranking-jugadores/ranking-jugadores.component';
 import { ModalMostrarNoticiaComponent } from '../../../modales/modal-mostrar-noticia/modal-mostrar-noticia/modal-mostrar-noticia.component';
 import { Subscription } from 'rxjs';
 import { EmpezarRondaInterface } from '../../../interfaces/interfaces/empezar-ronda.interface';
@@ -766,13 +765,9 @@ export class JuegoAdministradorJugadorComponent implements OnInit, OnDestroy {
               this._cargandoService.deshabilitarCargando();
             }
           );
-        const ventanaModal = this.matDialog.open(RankingJugadoresComponent, {
+        const ventanaModal = this.matDialog.open(OpcionesRondaComponent, {
           width: '800px',
           height: '800px',
-          data: {
-            juego: this.juego,
-            esAdministrador: true
-          }
         });
         const resultadoModal$ = ventanaModal.afterClosed();
         resultadoModal$.subscribe(respuestaModalRanking => {});
@@ -781,14 +776,9 @@ export class JuegoAdministradorJugadorComponent implements OnInit, OnDestroy {
   }
 
   terminarJuegoJugador(raking) {
-    const ventanaModal = this.matDialog.open(RankingJugadoresComponent, {
+    const ventanaModal = this.matDialog.open(OpcionesRondaComponent, {
       width: '800px',
       height: '800px',
-      data: {
-        juego: this.juego,
-        rakingJugadores: raking,
-        esAdministrador: false
-      }
     });
     const resultadoModal$ = ventanaModal.afterClosed();
     resultadoModal$.subscribe(tipoNoticia => {});

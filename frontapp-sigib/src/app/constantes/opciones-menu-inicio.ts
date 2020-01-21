@@ -1,13 +1,13 @@
 export const OPCIONES_MENU_INICIO = [
   {
-    textoBoton: 'JUGAR',
-    descripcionOpcion: 'Empieza el juego con los demas participantes.',
-    pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-jugar.png',
+    textoBoton: 'INFORMACIÓN',
+    descripcionOpcion: 'Revisa calendario, académico y noticias.',
+    pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-info.png',
     dirigirA: ['../jugador']
   },
   {
-    textoBoton: 'ADMINISTRAR',
-    descripcionOpcion: 'Administrar los juegos iniciados.',
+    textoBoton: 'EMPEZAR',
+    descripcionOpcion: 'Sistema de gestión para estudiantes, docente y administradores.',
     pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-admin.png',
     dirigirA: ['../administrador']
   },
@@ -18,13 +18,13 @@ export const DATOS_LISTA_JUEGOS = [
     nombre: 'Juego 1',
     estado: 'J',
     totalParticipantes: '17',
-    pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-jugar.jpeg'
+    pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-info.jpeg'
   },
   {
     nombre: 'Juego 2',
     estado: 'CO',
     totalParticipantes: '27',
-    pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-jugar.jpeg'
+    pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-info.jpeg'
   },
 ];
 
@@ -33,4 +33,4 @@ export const DATOS_VALORES_ACCIONES_AUSPICIANTES = {
   valorAccionAuspiciantes: [65, 59, 80, 81, 56, 55, 40],
 };
 
-export const PATH_IMAGEN = 'assets/imagenes/opciones-menu-inicio/opcion-jugar.png';
+export const PATH_IMAGEN = 'assets/imagenes/opciones-menu-inicio/opcion-info.png';

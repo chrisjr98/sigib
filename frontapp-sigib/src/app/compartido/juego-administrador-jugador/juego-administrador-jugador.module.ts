@@ -11,8 +11,6 @@ import {OpcionesRondaModule} from '../../modales/opciones-ronda/opciones-ronda.m
 import {OpcionesRondaComponent} from '../../modales/opciones-ronda/opciones-ronda/opciones-ronda.component';
 import {DialogModule} from 'primeng/dialog';
 import {ComprarAccionesRetaFijaModule} from '../../componentes/comprar-acciones-reta-fija/comprar-acciones-reta-fija.module';
-import {RankingJugadoresComponent} from '../ranking-jugadores/ranking-jugadores/ranking-jugadores.component';
-import {RankingJugadoresModule} from '../ranking-jugadores/ranking-jugadores.module';
 import { CountdownModule } from 'ngx-countdown';
 import {TablaJugadasComponent} from '../tabla-jugadas/tabla-jugadas/tabla-jugadas.component';
 import {TablaJugadasModule} from '../tabla-jugadas/tabla-jugadas.module';
@@ -36,7 +34,6 @@ import {ConfirmacionModule} from '../../componentes/confirmacion/confirmacion.mo
     OpcionesRondaModule,
     DialogModule,
     ComprarAccionesRetaFijaModule,
-    RankingJugadoresModule,
     CountdownModule,
     TablaJugadasModule,
     ModalMostrarNoticiaModule,
@@ -47,7 +44,6 @@ import {ConfirmacionModule} from '../../componentes/confirmacion/confirmacion.mo
   ],
   entryComponents: [
     OpcionesRondaComponent,
-    RankingJugadoresComponent,
     TablaJugadasComponent,
     ModalMostrarNoticiaComponent,
     ModalConfirmacionComponent,
