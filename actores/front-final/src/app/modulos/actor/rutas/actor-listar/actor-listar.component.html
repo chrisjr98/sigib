@@ -22,19 +22,19 @@
     <div class="row justify-content-center with-little-margin">
       <div class="col-8">
           <h4> Lista de Actores</h4>
-      </div>  
+      </div>
 
     </div>
   </div>
-  
+
 </div>
 
 
 
 <div class="row justify-content-center with-little-margin">
   <div class="col-12">
-          <p-table [columns]="columnas" [value]="actores" [lazy]="true" (onLazyLoad)="loadData($event)" [paginator]="true" 
-          [rows]="filas" [totalRecords]="totalActores" [loading]="loading"
+          <p-table [columns]="columnas" [value]="actores" [lazy]="true" (onLazyLoad)="loadData($event)" [paginator]="true"
+          [rows]="filas" [to    talRecords]="totalActores" [loading]="loading"
           [resizableColumns]="true">
 
           <ng-template pTemplate='emptymessage' let-columns>
@@ -46,12 +46,12 @@
             </ng-template>
 
           <ng-template pTemplate="caption">
-                  <div style="text-align: left">   
+                  <div style="text-align: left">
                       <div class="row">
                           <div class="col-sm-3">
-                                  <input type="text" pInputText 
-                                  class="llenar-campo" 
-                                  placeholder="Buscar por nombre o pais" 
+                                  <input type="text" pInputText
+                                  class="llenar-campo"
+                                  placeholder="Buscar por nombre o pais"
                                   [(ngModel)]="palabraBuscada"
                                   id="palabraBuscada">
                           </div>
@@ -69,7 +69,7 @@
                             </button>
                           </div>
                       </div>
-                      
+
                   </div>
           </ng-template>
 
@@ -109,7 +109,7 @@
                   </td>
                   <td class="ui-resizable-column">
                       <div class="row justify-content-center">
-                      
+
                           <div class="col-6">
                               <button class="btn btn-sm btn-block btn-warning"
                               [routerLink]="['/aplicacion','actor','editar', rowData.id, idPelicula]" >
@@ -122,7 +122,7 @@
                                   Ver Detalles
                               </button>
                           </div>
-                      </div>     
+                      </div>
                   </td>
               </tr>
           </ng-template>
@@ -132,7 +132,7 @@
 
 <div class="row justify-content-center">
     <div class="col-sm-3">
-        <button class="btn btn-warning btn-block" 
+        <button class="btn btn-warning btn-block"
         [routerLink]="[ '/aplicacion', 'pelicula', 'listar' ]">
             Volver a Peliculas
         </button>

@@ -26,30 +26,19 @@ export class FormularioNoticiaComponent implements OnInit {
   @Output() noticiaValida: EventEmitter< NoticiaInterface| boolean> = new EventEmitter();
   @Input() noticia: Noticia;
   mensajesError = {
-    titulo: [],
-    descripcion: [],
-    tipo: [],
-    nivelJuego: [],
+    cedula: [],
+    nombre: [],
   };
   formularioNoticia: FormGroup;
   subscribers = [];
   mostrarFormularioNoticia = false;
-  tipoNoticia: TipoNoticiaInterface[];
-  nivelJuego: NivelJuegoInterface[];
-  indiceArregloTiposNoticia: number;
-  indiceArregloNivelNoticia: number;
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _formBuilder: FormBuilder,
-    // tslint:disable-next-line:variable-name
-    private  readonly _nivelesSevice: NivelJuegoRestService,
-    // tslint:disable-next-line:variable-name
-    private readonly  _tipoService: TipoNoticiaRestService,
   ) {
   }
 
   ngOnInit() {
-    this.cargaTipoNoticia();
   }
 
   iniciarFormulario() {
@@ -60,18 +49,14 @@ export class FormularioNoticiaComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioNoticia = this._formBuilder.group({
-      titulo: [this.noticia ? this.noticia.titulo : '', VALIDACION_TITULO_NOTICIA],
-      descripcion: [this.noticia ? this.noticia.descripcion : '', VALIDACION_DESCRIPCION_NOTICIA],
-      tipo: [this.noticia ? this.noticia.tipo : '', VALIDACION_TIPO_NOTICIA],
-      nivelJuego: [this.noticia ? this.noticia.nivelJuego : '', VALIDACION_NIVEL_NOTICIA],
+      cedula: [this.noticia ? this.noticia.titulo : '', VALIDACION_TITULO_NOTICIA],
+      nombre: [this.noticia ? this.noticia.descripcion : '', VALIDACION_DESCRIPCION_NOTICIA],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('titulo', MENSAJES_VALIDACION_TITULO_NOTICIA);
-    this.verificarCampoFormControl('descripcion', MENSAJES_VALIDACION_DESCRIPCION_NOTICIA);
-    this.verificarCampoFormControl('tipo', MENSAJES_VALIDACION_TITULO_NOTICIA);
-    this.verificarCampoFormControl('nivelJuego', MENSAJES_VALIDACION_NIVEL_NOTICIA);
+    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_NOTICIA);
+    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_NOTICIA);
   }
 
   private _verificarFormulario() {
@@ -108,24 +93,5 @@ export class FormularioNoticiaComponent implements OnInit {
         }
       );
     this.subscribers.push(subscriber);
-  }
-
-  cargaTipoNoticia() {
-    this._tipoService.findAll()
-      .pipe(
-        mergeMap( (tipoServicio: [TipoNoticiaInterface[], number]) => {
-          this.tipoNoticia = tipoServicio[0];
-          return  this._nivelesSevice.findAll();
-        }),
-      )
-      .subscribe((respuestaNiveles: [NivelJuegoInterface[], number]) => {
-        this.nivelJuego = respuestaNiveles[0];
-        if (this.noticia) {
-          this.indiceArregloTiposNoticia = this.noticia.tipo  ? this.tipoNoticia.findIndex(tipo => tipo.id === this.noticia.tipo.id) : -1;
-          // tslint:disable-next-line:max-line-length
-          this.indiceArregloNivelNoticia = this.noticia.nivelJuego ? this.nivelJuego.findIndex(nivel => nivel.id === this.noticia.nivelJuego.id) : -1;
-        }
-        this.iniciarFormulario();
-      });
   }
 }

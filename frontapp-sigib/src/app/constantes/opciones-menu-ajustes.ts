@@ -1,32 +1,26 @@
 export const OPCIONES_MENU_AJUSTES = [
   {
-    textoBoton: 'NOTICIAS',
-    descripcionOpcion: 'Gestiona tus noticias',
-    pathImagen: 'assets/imagenes/opciones-menu-ajustes/noticia.png',
+    textoBoton: 'USUARIOS',
+    descripcionOpcion: 'Gestiona los usuarios del sistema',
+    pathImagen: 'assets/imagenes/opciones-menu-ajustes/usuarios.svg',
     dirigirA: ['../noticias']
   },
   {
-    textoBoton: 'EMISORES',
-    descripcionOpcion: 'Gestiona tus emisores',
-    pathImagen: 'assets/imagenes/opciones-menu-ajustes/emisor.png',
+    textoBoton: 'ROLES',
+    descripcionOpcion: 'Gestiona los roles o perfiles del sistema',
+    pathImagen: 'assets/imagenes/opciones-menu-ajustes/rol.svg',
     dirigirA: ['../emisores']
   },
   {
-    textoBoton: 'RENTA FIJA',
-    descripcionOpcion: 'Gestiona tus papeles de renta fija',
-    pathImagen: 'assets/imagenes/opciones-menu-ajustes/papeles.png',
+    textoBoton: 'PERMISOS',
+    descripcionOpcion: 'Asigna los permisos a los recpectivos roles',
+    pathImagen: 'assets/imagenes/opciones-menu-ajustes/permiso.svg',
     dirigirA: ['../renta-fija']
   },
   {
-    textoBoton: 'NIVELES',
-    descripcionOpcion: 'Gestiona tus niveles de complejidad',
-    pathImagen: 'assets/imagenes/opciones-menu-ajustes/nivel.png',
+    textoBoton: 'CONSTANTES',
+    descripcionOpcion: 'Gestiona las constantes del sistema y valores por defecto',
+    pathImagen: 'assets/imagenes/opciones-menu-ajustes/constantes.svg',
     dirigirA: ['../nivel']
-  },
-  {
-    textoBoton: 'RANGOS',
-    descripcionOpcion: 'Gestiona tus rangos',
-    pathImagen: 'assets/imagenes/opciones-menu-ajustes/acciones.png',
-    dirigirA: ['../rango-valores']
   }
 ];

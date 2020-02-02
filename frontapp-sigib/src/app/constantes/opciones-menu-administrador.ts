@@ -1,14 +1,26 @@
 export const OPCIONES_MENU_ADMINISTRADOR = [
   {
-    textoBoton: 'JUEGOS',
-    descripcionOpcion: 'Revisa la lista de juegos, su estado y crea nuevos juegos',
-    pathImagen: 'assets/imagenes/opciones-menu-administrador/juegos.svg',
+    textoBoton: 'FACTURACIÓN',
+    descripcionOpcion: 'Gestiona tus factura y comprobantes de venta',
+    pathImagen: 'assets/imagenes/opciones-menu-administrador/factura.svg',
     dirigirA: ['../juegos/listar-juegos']
   },
   {
-    textoBoton: 'AJUSTES',
-    descripcionOpcion: 'Configuración de los juegos',
-    pathImagen: 'assets/imagenes/opciones-menu-administrador/ajustes.svg',
+    textoBoton: 'ACADÉMICO',
+    descripcionOpcion: 'Módulo académico para estudiantes y docentes',
+    pathImagen: 'assets/imagenes/opciones-menu-administrador/academico.svg',
+    dirigirA: ['../configuraciones']
+  },
+    {
+    textoBoton: 'CONFIGURACIONES',
+    descripcionOpcion: 'Usuarios, Roles, Permisos y Constantes del sistema',
+    pathImagen: 'assets/imagenes/opciones-menu-administrador/configuracion.svg',
+    dirigirA: ['../configuraciones']
+  },
+    {
+    textoBoton: 'INVENTARIO',
+    descripcionOpcion: 'Revisa tu stock en productos',
+    pathImagen: 'assets/imagenes/opciones-menu-administrador/maquillaje.svg',
     dirigirA: ['../configuraciones']
   }
 ];

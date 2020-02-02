@@ -23,17 +23,11 @@ import {NUMERO_FILAS_TABLAS} from '../../../../constantes/numero-filas-tablas';
 export class RutaGestionNoticiasComponent implements OnInit {
 
   noticias: NoticiaInterface[];
-  tiposNoticias: TipoNoticiaInterface[];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
-  nivelesJuego: NivelJuegoInterface[];
   estados = ESTADOS;
   columnas = [
-    {field: 'titulo', header: 'Título', width: '20%'},
-    {field: 'descripcion', header: 'Descripción', width: '40%'},
-    {field: 'tipo', header: 'Tipo', width: '10%'},
-    {field: 'nivel', header: 'Nivel', width: '10%'},
-    {field: 'habilitado', header: 'Estado', width: '10%'},
-    {field: 'acciones', header: 'Acciones', width: '10%'},
+    {field: 'cedula', header: 'Cédula', width: '20%'},
+    {field: 'Nombre', header: 'Nombre', width: '40%'},
   ];
   rows = NUMERO_FILAS_TABLAS;
   totalRecords: number;
@@ -56,10 +50,6 @@ export class RutaGestionNoticiasComponent implements OnInit {
     private readonly _cargandoService: CargandoService,
     // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
-    // tslint:disable-next-line:variable-name
-    private readonly _tipoNoticiaService: TipoNoticiaRestService,
-    // tslint:disable-next-line:variable-name
-    private readonly _nivelJuegoRestService: NivelJuegoRestService,
     public dialogo: MatDialog,
   ) {
   }
@@ -77,8 +67,6 @@ export class RutaGestionNoticiasComponent implements OnInit {
         }, error => {
           console.error('Error en acceder a la ruta');
         });
-    this.cargarTiposNoticia();
-    this.cargarNiveles();
   }
 
   actualizarEstado(registro) {
@@ -117,11 +105,6 @@ export class RutaGestionNoticiasComponent implements OnInit {
     const seBuscoPorEstado = this.queryParams.where.habilitado === 1 || this.queryParams.where.habilitado === 0;
     const seBuscoPorNivel = this.queryParams.where.nivelJuego;
     const seBuscoPorTipoEstadoNivel = seBuscoPorTipo || seBuscoPorEstado || seBuscoPorNivel;
-    if (seBuscoPorTipoEstadoNivel) {
-      this.buscarPorTipoEstadoNivel(this.queryParams.skip);
-    } else {
-      this.buscar(this.queryParams.skip);
-    }
   }
 
   buscar(skip: number) {
@@ -172,83 +155,5 @@ export class RutaGestionNoticiasComponent implements OnInit {
         }
       });
 
-  }
-
-
-  private cargarTiposNoticia() {
-    this._tipoNoticiaService.findAll()
-      .subscribe(
-        (respuesta: [TipoNoticiaInterface[], number]) => {
-          this.tiposNoticias = respuesta[0];
-        }
-        , error => {
-          console.error(error);
-          this._toasterService.pop('error', 'Error', 'Error al cargar los tipo de noticias');
-        }
-      );
-  }
-
-  private cargarNiveles() {
-    this._nivelJuegoRestService.findAll()
-      .subscribe(
-        (respuesta: [NivelJuegoInterface[], number]) => {
-          this.nivelesJuego = respuesta[0];
-        }
-        , error => {
-          console.error(error);
-          this._toasterService.pop('error', 'Error', 'Error al cargar los niveles de juego');
-        }
-      );
-  }
-
-  buscarPorTipoNoticia(evento) {
-    this.queryParams.where.tipo = evento ? evento.id : undefined;
-    this.queryParams.skip = 0;
-    this.buscarPorTipoEstadoNivel(this.queryParams.skip);
-  }
-
-  buscarPorNivel(evento) {
-    this.queryParams.where.nivelJuego = evento ? evento.id : undefined;
-    this.queryParams.skip = 0;
-    this.buscarPorTipoEstadoNivel(this.queryParams.skip);
-  }
-
-  buscarPorEstado(evento) {
-    this.queryParams.where.habilitado = evento ? evento.valor : undefined;
-    this.queryParams.skip = 0;
-    this.buscarPorTipoEstadoNivel(this.queryParams.skip);
-  }
-
-  buscarPorTipoEstadoNivel(skip) {
-    this.queryParams.where = {
-      tipo: this.queryParams.where.tipo,
-      nivelJuego: this.queryParams.where.nivelJuego,
-      habilitado: this.queryParams.where.habilitado
-    };
-    const consulta = {
-      where: this.queryParams.where,
-      relations: ['tipo', 'nivelJuego'],
-      skip,
-      take: this.rows,
-      order: {id: 'DESC'}
-    };
-    this._noticiaService.obtenerNoticiasLike(consulta)
-      .subscribe(
-        (respuesta: [NoticiaInterface[], number]) => {
-          this.noticias = respuesta[0];
-          this.totalRecords = respuesta[1];
-          this.loading = false;
-          this._router.navigate(this.ruta, {
-            queryParams: {
-              skip: this.queryParams.skip,
-              where: JSON.stringify(this.queryParams.where),
-            }
-          });
-        }, error => {
-          this.loading = false;
-          console.error('Error en el servidor', error);
-          this._toasterService.pop('error', 'Error', 'Error al cargar las noticia');
-        }
-      );
   }
 }
