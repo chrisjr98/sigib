@@ -27,7 +27,7 @@ export class RutaGestionNoticiasComponent implements OnInit {
   estados = ESTADOS;
   columnas = [
     {field: 'cedula', header: 'Cédula', width: '20%'},
-    {field: 'Nombre', header: 'Nombre', width: '40%'},
+    {field: 'nombre', header: 'Nombre', width: '40%'},
   ];
   rows = NUMERO_FILAS_TABLAS;
   totalRecords: number;
