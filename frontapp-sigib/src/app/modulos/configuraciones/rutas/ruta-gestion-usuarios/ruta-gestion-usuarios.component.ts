@@ -18,12 +18,29 @@ import { UsuarioRestService } from 'src/app/servicios/rest/servicios/usuario-res
 })
 export class RutaGestionUsuariosComponent implements OnInit {
 
-  usuarios: UsuarioInterface[];
+  usuarios: UsuarioInterface[] = [
+    {
+      cedula: '1704125883',
+      nombre: 'Cristhian',
+      password: '1234'
+    },
+        {
+      cedula: '1714125883',
+      nombre: 'Manuel',
+      password: '1234'
+    },
+        {
+      cedula: '1704452883',
+      nombre: 'Esteban',
+      password: '1234'
+    }
+  ];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
     {field: 'cedula', header: 'Cédula', width: '20%'},
     {field: 'nombre', header: 'Nombre', width: '40%'},
+    {field: 'acciones', header: 'Acciones', width: '40%'},
   ];
   rows = NUMERO_FILAS_TABLAS;
   totalRecords: number;
@@ -91,7 +108,7 @@ export class RutaGestionUsuariosComponent implements OnInit {
   buscarPorNombre(busqueda: string) {
     this.busqueda = busqueda.trim();
     this.queryParams.where = this.busqueda === '' ? {} : {titulo: this.busqueda};
-    this.buscar(this.queryParams.skip);
+    //this.buscar(this.queryParams.skip);
   }
 
   cargarDatosLazy(event) {

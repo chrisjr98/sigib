@@ -95,7 +95,6 @@
           [paginator]="true"
           [rows]="rows"
           [totalRecords]="totalRecords"
-          [loading]="loading"
           [first]="this.queryParams.skip"
           [resizableColumns]="true"
           [responsive]="true"
@@ -112,23 +111,11 @@
 
             <tr>
               <td class="text-center" *ngFor="let col of columns">
-                <div *ngIf="col.field==='titulo'">
+                <div *ngIf="col.field==='nombre'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='descripcion'">
+                <div *ngIf="col.field==='cedula'">
                   {{rowData[col.field]}}
-                </div>
-                <div *ngIf="col.field==='nivel'">
-                  {{rowData.nivelJuego.nombre}}
-                </div>
-                <div *ngIf="col.field==='tipo'">
-                  {{rowData.tipo.nombre}}
-                </div>
-                <div *ngIf="col.header === 'Estado'">
-                  <button class="btn btn-block btn-success btn-sm" (click)="actualizarEstado(rowData)" [ngClass]="{
-                      'btn-danger':rowData[col.field] === estados.Inactivo,
-                      'btn-success':rowData[col.field] === estados.Activo
-                      }">{{rowData[col.field] === estados.Activo ? 'Activo' : 'Inactivo'}}</button>
                 </div>
                 <div *ngIf="col.field==='acciones'">
                   <button pButton type="button" class="btn btn-primary" (click)="abrirDialogo(rowData)"
