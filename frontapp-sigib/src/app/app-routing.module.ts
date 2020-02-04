@@ -3,7 +3,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {RutaInicioComponent} from './rutas/ruta-inicio/ruta-inicio.component';
 import {RutaNoEncontradaComponent} from './rutas/ruta-no-encontrada/ruta-no-encontrada.component';
 import {RUTAS_ADMINISTRADOR} from './constantes/rutas-administrador';
-import {RUTAS_CONFIGURACIONES} from './constantes/rutas-usuarios';
 
 const routes: Routes = [
   {

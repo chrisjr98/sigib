@@ -9,7 +9,7 @@ export const OPCIONES_MENU_AJUSTES = [
     textoBoton: 'ROLES',
     descripcionOpcion: 'Gestiona los roles o perfiles del sistema',
     pathImagen: 'assets/imagenes/opciones-menu-ajustes/rol.svg',
-    dirigirA: ['../emisores']
+    dirigirA: ['../roles']
   },
   {
     textoBoton: 'PERMISOS',

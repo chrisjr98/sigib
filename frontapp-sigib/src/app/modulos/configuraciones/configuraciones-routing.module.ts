@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {RutaGestionUsuariosComponent} from './rutas/ruta-gestion-usuarios/ruta-gestion-usuarios.component';
 import {MenuAjustesComponent} from '../../componentes/menu-ajustes/menu-ajustes/menu-ajustes.component';
+import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gestion-roles.component';
 
 const routes: Routes = [
   {
@@ -16,15 +17,15 @@ const routes: Routes = [
         component: RutaGestionUsuariosComponent
       },
       {
-        path: 'nivel',
+        path: 'roles',
+        component: RutaGestionRolesComponent
+      },
+      {
+        path: 'permisos',
         component: RutaGestionUsuariosComponent
       },
       {
-        path: 'renta-fija',
-        component: RutaGestionUsuariosComponent
-      },
-      {
-        path: 'rango-valores',
+        path: 'constantes',
         component: RutaGestionUsuariosComponent
       },
       {
