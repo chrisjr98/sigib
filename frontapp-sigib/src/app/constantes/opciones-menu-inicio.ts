@@ -9,7 +9,7 @@ export const OPCIONES_MENU_INICIO = [
     textoBoton: 'EMPEZAR',
     descripcionOpcion: 'Sistema de gestión para estudiantes, docente y administradores.',
     pathImagen: 'assets/imagenes/opciones-menu-inicio/opcion-admin.png',
-    dirigirA: ['../administrador']
+    dirigirA: ['../administrador/login']
   },
 ];
 

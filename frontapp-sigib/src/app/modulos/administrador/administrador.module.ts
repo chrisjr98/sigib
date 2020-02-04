@@ -10,12 +10,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MenuAjustesModule} from '../../componentes/menu-ajustes/menu-ajustes.module';
 import {ConfiguracionesModule} from '../configuraciones/configuraciones.module';4
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
+import { RegistroFormularioComponent } from './formularios/registro-formulario/registro-formulario.component';
 
 
 @NgModule({
   declarations: [
     RutaMenuAdministradorComponent,
-
+    RutaLoginComponent,
+    RegistroFormularioComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     ConfiguracionesModule,
     AutoCompleteModule
     ],
-  entryComponents: []
+  entryComponents: [
+  ]
 })
 export class AdministradorModule {
 }

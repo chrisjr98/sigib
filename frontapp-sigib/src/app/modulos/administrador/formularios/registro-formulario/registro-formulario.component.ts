@@ -1,13 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Registro} from '../../clases/registro';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {
-  MENSAJES_VALIDACION_NOMBRE_JUGADOR, MENSAJES_VALIDACION_PASSWORD_JUGARDOR,
-  VALIDACION_NOMBRE_JUGADOR,
-  VALIDACION_PASSWORD_JUGARDOR
-} from '../../constantes/validaciones-formulario/validacion-registro';
-import {generarMensajesError} from '../../funciones/generar-mensajes-error';
 import {debounceTime} from 'rxjs/operators';
+import { Registro } from 'src/app/clases/registro';
 
 @Component({
   selector: 'app-registro-formulario',
@@ -25,7 +19,7 @@ export class RegistroFormularioComponent implements OnInit {
   formularioRegistro: FormGroup;
 
   subscribers = [];
-  mostrarFormularioRegistro = false;
+  mostrarFormularioRegistro = true;
 
 
   constructor(
@@ -53,24 +47,25 @@ export class RegistroFormularioComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioRegistro = this._formBuilder.group({
-      nombre: [this.registro ? this.registro.nombre : '', VALIDACION_NOMBRE_JUGADOR],
-      password: [this.registro ? this.registro.password : '', VALIDACION_PASSWORD_JUGARDOR],
+      nombre: [this.registro ? this.registro.nombre : '', ],
+      password: [this.registro ? this.registro.password : '', ],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_NOMBRE_JUGADOR);
-    this.verificarCampoFormControl('password', MENSAJES_VALIDACION_PASSWORD_JUGARDOR);
+    this.verificarCampoFormControl('nombre', );
+    this.verificarCampoFormControl('password', );
+    this.verificarCampoFormControl('perfil', );
   }
 
-  verificarCampoFormControl(campo, mensajeValidacion) {
+  verificarCampoFormControl(campo) {
     const campoFormControl = this.formularioRegistro.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(100))
       .subscribe(
         valor => {
-          this.mensajesError[campo] = generarMensajesError(campoFormControl, this.mensajesError[campo], mensajeValidacion);
+return true
         }
       );
     this.subscribers.push(subscriber);
@@ -86,7 +81,7 @@ export class RegistroFormularioComponent implements OnInit {
           if (registroValido) {
             this.registroValido.emit(formulario);
           } else {
-            this.registroValido.emit(false);
+            this.registroValido.emit(true);
           }
         }
       ));
