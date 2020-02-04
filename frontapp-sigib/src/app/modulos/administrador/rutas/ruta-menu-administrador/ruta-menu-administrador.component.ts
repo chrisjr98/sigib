@@ -13,6 +13,13 @@ export class RutaMenuAdministradorComponent implements OnInit {
     private readonly _router: Router
   ) { }
 
+    text: string;
+
+    results: string[];
+
+    search(event) {
+            this.results = ['asdfsadfdas','asdfasdf','afdasdfsdfda'];
+    }
   ngOnInit() {
   }
 

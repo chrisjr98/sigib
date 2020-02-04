@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {PrincipalRestService} from '../rest-principal.service';
 import {environment} from '../../../../environments/environment';
-import {NoticiaInterface} from '../../../interfaces/interfaces/noticia.interface';
+import {UsuarioInterface} from '../../../interfaces/interfaces/usuario.interface';
 import {Observable} from 'rxjs';
 
 @Injectable(
@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
   }
 )
-export class NoticiaRestService extends PrincipalRestService<NoticiaInterface> {
+export class NoticiaRestService extends PrincipalRestService<UsuarioInterface> {
   constructor(
     // tslint:disable-next-line:variable-name
     public readonly _http: HttpClient,

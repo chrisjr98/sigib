@@ -1,7 +1,6 @@
 import {Component, EventEmitter, HostListener, OnInit} from '@angular/core';
 import {CargandoService} from './servicios/cargando-service/cargando-service';
 import {MostrarListaAuspiciantesService} from './servicios/mostrar-lista-auspiciantes/mostrar-lista-auspiciantes.service';
-import {SocketJuegoService} from './servicios/rest/servicios/socket-juego-rest.service';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +17,6 @@ export class AppComponent implements OnInit {
     private readonly _cargandoService: CargandoService,
     // tslint:disable-next-line:variable-name
     private readonly _mostrarListaAuspiciantes: MostrarListaAuspiciantesService,
-    // tslint:disable-next-line:variable-name
-    private readonly _socketJuegoService: SocketJuegoService,
   ) {
   }
 

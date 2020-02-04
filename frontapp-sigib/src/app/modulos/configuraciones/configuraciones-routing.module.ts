@@ -1,13 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RutaGestionNoticiasComponent} from './rutas/ruta-gestion-noticias/ruta-gestion-noticias.component';
-import {RutaGestionRentaFijaComponent} from './rutas/ruta-gestion-renta-fija/ruta-gestion-renta-fija.component';
-import {RutaGestionEmisoresComponent} from './rutas/ruta-gestion-emisores/ruta-gestion-emisores.component';
-import {RutaGestionNoticiasEmisorComponent} from './rutas/ruta-gestion-noticias-emisor/ruta-gestion-noticias-emisor.component';
-import {RutaRangoValoresComponent} from './rutas/ruta-rango-valores/ruta-rango-valores.component';
-import {RutaGestionNivelComponent} from './rutas/ruta-gestion-nivel/ruta-gestion-nivel.component';
+import {RutaGestionUsuariosComponent} from './rutas/ruta-gestion-usuarios/ruta-gestion-usuarios.component';
 import {MenuAjustesComponent} from '../../componentes/menu-ajustes/menu-ajustes/menu-ajustes.component';
-import {RutaGestionRentaFijaEmisorComponent} from './rutas/ruta-gestion-renta-fija-emisor/ruta-gestion-renta-fija-emisor.component';
 
 const routes: Routes = [
   {
@@ -19,34 +13,34 @@ const routes: Routes = [
       },
       {
         path: 'noticias',
-        component: RutaGestionNoticiasComponent
+        component: RutaGestionUsuariosComponent
       },
       {
         path: 'nivel',
-        component: RutaGestionNivelComponent
+        component: RutaGestionUsuariosComponent
       },
       {
         path: 'renta-fija',
-        component: RutaGestionRentaFijaComponent
+        component: RutaGestionUsuariosComponent
       },
       {
         path: 'rango-valores',
-        component: RutaRangoValoresComponent
+        component: RutaGestionUsuariosComponent
       },
       {
         path: 'emisores',
         children: [
           {
             path: '',
-            component: RutaGestionEmisoresComponent
+            component: RutaGestionUsuariosComponent
           },
           {
             path: ':id/noticias',
-            component: RutaGestionNoticiasEmisorComponent
+            component: RutaGestionUsuariosComponent
           },
           {
             path: ':idEmisor/papeles-renta-fija',
-            component: RutaGestionRentaFijaEmisorComponent
+            component: RutaGestionUsuariosComponent
           }
         ]
       },
