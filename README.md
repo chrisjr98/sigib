@@ -9,4 +9,5 @@ npm i -g @nestjs/cli
 
 
 * Nos ubicamos en la dirección "/workspace/sigib/frontapp-sigib/"
+* Por primeras vez instalamos las dependencias "npm install"
 * Comando:$ ng serve
