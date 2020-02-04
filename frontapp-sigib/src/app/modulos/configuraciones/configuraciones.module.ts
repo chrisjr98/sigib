@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {TextMaskModule} from 'angular2-text-mask';
 import {ConfiguracionesRoutingModule} from './configuraciones-routing.module';
-import {FormularioNoticiaComponent} from './formularios/formulario-usuario/formulario-usuario.component';
+import {FormularioUsuarioComponent} from './formularios/formulario-usuario/formulario-usuario.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {CrearEditarUsuarioComponent} from './modales/crear-editar-usuario/crer-editar-usuario.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -20,7 +20,7 @@ import {MatButtonModule} from '@angular/material';
 @NgModule({
   declarations: [
     RutaGestionUsuariosComponent,
-    FormularioNoticiaComponent,
+    FormularioUsuarioComponent,
     CrearEditarUsuarioComponent,
   ],
   imports: [

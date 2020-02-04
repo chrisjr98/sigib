@@ -60,7 +60,7 @@
         <app-select-general *ngIf="tiposNoticias"
                             [registros]="tiposNoticias"
                             [opcionEtiqueta]="'nombre'"
-                            [placeholder]="'Filtre por tipo de noticia'"
+                            [placeholder]="'Filtre por tipo de nombre'"
                             (opcionSeleccionada)="buscarPorTipoNoticia($event)"
         ></app-select-general>
       </div>
@@ -68,7 +68,7 @@
         <app-select-general *ngIf="nivelesJuego"
                             [registros]="nivelesJuego"
                             [opcionEtiqueta]="'nombre'"
-                            [placeholder]="'Filtre por nivel de juego'"
+                            [placeholder]="'Filtre por cedula'"
                             (opcionSeleccionada)="buscarPorNivel($event)"
         ></app-select-general>
       </div>
@@ -89,7 +89,7 @@
       <div class="col-sm-12">
         <p-table
           [columns]="columnas"
-          [value]="noticias"
+          [value]="usuarios"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
           [paginator]="true"

@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UsuarioInterface} from '../../../../interfaces/interfaces/usuario.interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {
-  MENSAJES_VALIDACION_DESCRIPCION_NOTICIA, MENSAJES_VALIDACION_NIVEL_NOTICIA,
-  MENSAJES_VALIDACION_TITULO_NOTICIA,
-  VALIDACION_DESCRIPCION_NOTICIA, VALIDACION_NIVEL_NOTICIA, VALIDACION_TIPO_NOTICIA,
-  VALIDACION_TITULO_NOTICIA
-} from '../../../../constantes/validaciones-formulario/validacion-noticia';
+  MENSAJES_VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_NIVEL_USUARIO,
+  MENSAJES_VALIDACION_TITULO_USUARIO,
+  VALIDACION_DESCRIPCION_USUARIO, VALIDACION_NIVEL_USUARIO, VALIDACION_TIPO_USUARIO,
+  VALIDACION_TITULO_USUARIO
+} from '../../../../constantes/validaciones-formulario/validacion-usuario';
 import {debounceTime, map, mergeMap} from 'rxjs/operators';
 import {generarMensajesError} from '../../../../funciones/generar-mensajes-error';
 import { Usuario } from "../../../../clases/usuario";
@@ -17,17 +17,17 @@ import {pipe} from 'rxjs';
   templateUrl: './formulario-usuario.component.html',
   styleUrls: ['./formulario-usuario.component.scss']
 })
-export class FormularioNoticiaComponent implements OnInit {
+export class FormularioUsuarioComponent implements OnInit {
 
-  @Output() noticiaValida: EventEmitter< UsuarioInterface| boolean> = new EventEmitter();
-  @Input() noticia: Usuario;
+  @Output() usuarioValida: EventEmitter< UsuarioInterface| boolean> = new EventEmitter();
+  @Input() usuario: Usuario;
   mensajesError = {
     cedula: [],
     nombre: [],
   };
-  formularioNoticia: FormGroup;
+  formularioUsuario: FormGroup;
   subscribers = [];
-  mostrarFormularioNoticia = false;
+  mostrarFormularioUsuario = false;
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _formBuilder: FormBuilder,
@@ -44,30 +44,30 @@ export class FormularioNoticiaComponent implements OnInit {
   }
 
   private _inicializarFormulario() {
-    this.formularioNoticia = this._formBuilder.group({
-      cedula: [this.noticia ? this.noticia.cedula : '', VALIDACION_TITULO_NOTICIA],
-      nombre: [this.noticia ? this.noticia.nombre : '', VALIDACION_DESCRIPCION_NOTICIA],
+    this.formularioUsuario = this._formBuilder.group({
+      cedula: [this.usuario ? this.usuario.cedula : '', VALIDACION_TITULO_USUARIO],
+      nombre: [this.usuario ? this.usuario.nombre : '', VALIDACION_DESCRIPCION_USUARIO],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_NOTICIA);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_NOTICIA);
+    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
+    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
   }
 
   private _verificarFormulario() {
-    const formularioFormGroup = this.formularioNoticia;
+    const formularioFormGroup = this.formularioUsuario;
     const subscriber = formularioFormGroup
       .valueChanges
       .subscribe(
         formulario => {
-          const noticiaValidada = formularioFormGroup.valid;
-          if (noticiaValidada) {
+          const UsuarioValidada = formularioFormGroup.valid;
+          if (UsuarioValidada) {
             formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
             formulario.tipo = this.setearValorSelect(formulario.tipo);
-            this.noticiaValida.emit(formulario);
+            this.usuarioValida.emit(formulario);
           } else {
-            this.noticiaValida.emit(false);
+            this.usuarioValida.emit(false);
           }
         }
       );
@@ -79,7 +79,7 @@ export class FormularioNoticiaComponent implements OnInit {
     return esString ? JSON.parse(campo) : campo;
   }
   verificarCampoFormControl(campo, mensajeValidacion) {
-    const campoFormControl = this.formularioNoticia.get(campo);
+    const campoFormControl = this.formularioUsuario.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))

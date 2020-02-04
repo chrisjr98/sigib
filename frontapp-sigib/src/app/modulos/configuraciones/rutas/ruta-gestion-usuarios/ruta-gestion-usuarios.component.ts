@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NoticiaRestService} from '../../../../servicios/rest/servicios/noticia-rest.service';
 import {UsuarioInterface} from '../../../../interfaces/interfaces/usuario.interface';
 import {ESTADOS} from '../../../../constantes/estados';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {CrearEditarUsuarioComponent} from '../../modales/crear-editar-usuario/crer-editar-usuario.component';
 import {OPCIONES_HABILITADO_SELECT} from '../../../../constantes/opciones-habilitado-select';
 import {NUMERO_FILAS_TABLAS} from '../../../../constantes/numero-filas-tablas';
+import { UsuarioRestService } from 'src/app/servicios/rest/servicios/usuario-rest.service';
 
 @Component({
   selector: 'app-ruta-gestion-usuarios',
@@ -18,7 +18,7 @@ import {NUMERO_FILAS_TABLAS} from '../../../../constantes/numero-filas-tablas';
 })
 export class RutaGestionUsuariosComponent implements OnInit {
 
-  noticias: UsuarioInterface[];
+  usuarios: UsuarioInterface[];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
@@ -37,7 +37,7 @@ export class RutaGestionUsuariosComponent implements OnInit {
 
   constructor(
     // tslint:disable-next-line:variable-name
-    private readonly _noticiaService: NoticiaRestService,
+    private readonly _usuarioService: UsuarioRestService,
     // tslint:disable-next-line:variable-name
     private readonly _activatedRoute: ActivatedRoute,
     // tslint:disable-next-line:variable-name
@@ -68,22 +68,22 @@ export class RutaGestionUsuariosComponent implements OnInit {
   actualizarEstado(registro) {
     this._cargandoService.habilitarCargando();
     const habilitado = registro.habilitado === ESTADOS.Inactivo;
-    const noticiaEnArreglo = this.noticias.find(
-      noticia => registro.id === noticia.id,
+    const usuarioEnArreglo = this.usuarios.find(
+      usuario => registro.id === usuario.id,
     );
-    const indiceNoticia = this.noticias.indexOf(noticiaEnArreglo);
-    this._noticiaService.updateOne(registro.id, {habilitado}).subscribe(
+    const indiceusuario = this.usuarios.indexOf(usuarioEnArreglo);
+    this._usuarioService.updateOne(registro.id, {habilitado}).subscribe(
       () => {
-        this.noticias[indiceNoticia].habilitado = habilitado
+        this.usuarios[indiceusuario].habilitado = habilitado
           ? ESTADOS.Activo
           : ESTADOS.Inactivo;
-        this._toasterService.pop('success', 'Éxito', 'La noticia se ha editado correctamente');
+        this._toasterService.pop('success', 'Éxito', 'La usuario se ha editado correctamente');
         this._cargandoService.deshabilitarCargando();
       },
       error => {
         console.error(error);
         this._cargandoService.deshabilitarCargando();
-        this._toasterService.pop('error', 'Error', 'Error al editar la noticia');
+        this._toasterService.pop('error', 'Error', 'Error al editar la usuario');
       },
     );
   }
@@ -111,10 +111,10 @@ export class RutaGestionUsuariosComponent implements OnInit {
       take: this.rows,
       order: {id: 'DESC'}
     };
-    this._noticiaService.obtenerNoticiasLike(consulta)
+    this._usuarioService.obtenerUsuariosLike(consulta)
       .subscribe(
         (respuesta: [UsuarioInterface[], number]) => {
-          this.noticias = respuesta[0];
+          this.usuarios = respuesta[0];
           this.totalRecords = respuesta[1];
           this.loading = false;
           this._router.navigate(this.ruta, {
@@ -126,27 +126,27 @@ export class RutaGestionUsuariosComponent implements OnInit {
         }, error => {
           this.loading = false;
           console.error('Error en el servidor', error);
-          this._toasterService.pop('error', 'Error', 'Error al cargar las noticia');
+          this._toasterService.pop('error', 'Error', 'Error al cargar las usuario');
         }
       );
   }
 
-  abrirDialogo(noticiaSeleccionada?): void {
+  abrirDialogo(usuarioSeleccionada?): void {
     const dialogRef = this.dialogo.open(
       CrearEditarUsuarioComponent,
       {
-        data: {noticia: noticiaSeleccionada},
+        data: {usuario: usuarioSeleccionada},
       }
     );
     const resultadoModal$ = dialogRef.afterClosed();
     resultadoModal$
       .subscribe((registroCreado: UsuarioInterface) => {
         if (registroCreado) {
-          if (noticiaSeleccionada) {
-            const indiceRegistro = this.noticias.indexOf(noticiaSeleccionada);
-            this.noticias[indiceRegistro] = registroCreado;
+          if (usuarioSeleccionada) {
+            const indiceRegistro = this.usuarios.indexOf(usuarioSeleccionada);
+            this.usuarios[indiceRegistro] = registroCreado;
           } else {
-            this.noticias.unshift(registroCreado);
+            this.usuarios.unshift(registroCreado);
           }
         }
       });

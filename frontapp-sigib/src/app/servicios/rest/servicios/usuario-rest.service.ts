@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
     providedIn: 'root'
   }
 )
-export class NoticiaRestService extends PrincipalRestService<UsuarioInterface> {
+export class UsuarioRestService extends PrincipalRestService<UsuarioInterface> {
   constructor(
     // tslint:disable-next-line:variable-name
     public readonly _http: HttpClient,
@@ -19,17 +19,17 @@ export class NoticiaRestService extends PrincipalRestService<UsuarioInterface> {
     super(_http);
     this.url = environment.url;
     this.port = environment.port;
-    this.segmento = 'noticia';
+    this.segmento = 'usuario';
   }
 
-  obtenerNoticiasLike(
+  obtenerUsuariosLike(
     datos,
   ): Observable<any> {
     return this._http.get(
       this.url +
       `:${this.port}/${
         this.segmento
-      }/buscar-noticias-like?datos=${JSON.stringify(
+      }/buscar-usuarios-like?datos=${JSON.stringify(
         datos,
       )}`,
     );

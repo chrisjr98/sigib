@@ -3,7 +3,7 @@ export const OPCIONES_MENU_AJUSTES = [
     textoBoton: 'USUARIOS',
     descripcionOpcion: 'Gestiona los usuarios del sistema',
     pathImagen: 'assets/imagenes/opciones-menu-ajustes/usuarios.svg',
-    dirigirA: ['../noticias']
+    dirigirA: ['../usuarios']
   },
   {
     textoBoton: 'ROLES',

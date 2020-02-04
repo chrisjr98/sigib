@@ -13,21 +13,19 @@ import {FooterModule} from './componentes/footer/footer.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule, MatInputModule} from '@angular/material';
 import {TextMaskModule} from 'angular2-text-mask';
-import {UsuarioFormularioComponent} from './formularios/usuario-formulario/usuario-formulario.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
-import {NoticiaRestService} from './servicios/rest/servicios/noticia-rest.service';
 import {ConfiguracionesModule} from './modulos/configuraciones/configuraciones.module';
 import {AdministradorModule} from './modulos/administrador/administrador.module';
 import {JugadorGuard} from './servicios/guard/jugador.guard';
 import {AdministradorGuard} from './servicios/guard/administrador.guard';
+import { UsuarioRestService } from './servicios/rest/servicios/usuario-rest.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RutaInicioComponent,
     RutaNoEncontradaComponent,
-    UsuarioFormularioComponent,
     AppComponent,
     RutaNoEncontradaComponent,
   ],
@@ -50,7 +48,7 @@ import {AdministradorGuard} from './servicios/guard/administrador.guard';
     AdministradorModule,
   ],
   providers: [
-    NoticiaRestService,
+    UsuarioRestService,
     CookieService,
     JugadorGuard,
     AdministradorGuard,

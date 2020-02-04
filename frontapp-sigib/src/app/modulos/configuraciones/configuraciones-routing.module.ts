@@ -12,7 +12,7 @@ const routes: Routes = [
         component: MenuAjustesComponent,
       },
       {
-        path: 'noticias',
+        path: 'usuarios',
         component: RutaGestionUsuariosComponent
       },
       {
@@ -35,7 +35,7 @@ const routes: Routes = [
             component: RutaGestionUsuariosComponent
           },
           {
-            path: ':id/noticias',
+            path: ':id/usuarios',
             component: RutaGestionUsuariosComponent
           },
           {

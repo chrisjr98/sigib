@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {CargandoService} from '../../../../servicios/cargando-service/cargando-service';
-import {NoticiaRestService} from '../../../../servicios/rest/servicios/noticia-rest.service';
 import {ToasterService} from 'angular2-toaster';
 import {RutaGestionUsuariosComponent} from '../../rutas/ruta-gestion-usuarios/ruta-gestion-usuarios.component';
 import {UsuarioInterface} from '../../../../interfaces/interfaces/usuario.interface';
 import {ESTADOS} from '../../../../constantes/estados';
 import { Usuario } from "../../../../clases/usuario";
+import { UsuarioRestService } from 'src/app/servicios/rest/servicios/usuario-rest.service';
 @Component({
   selector: 'app-crer-editar-usuario',
   templateUrl: './crer-editar-usuario.component.html',
@@ -23,7 +23,7 @@ export class CrearEditarUsuarioComponent implements OnInit {
     // tslint:disable-next-line:variable-name
     private readonly _cargandoService: CargandoService,
     // tslint:disable-next-line:variable-name
-    private readonly _noticiaService: NoticiaRestService,
+    private readonly _usuarioService: UsuarioRestService,
     // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
 
@@ -32,9 +32,9 @@ export class CrearEditarUsuarioComponent implements OnInit {
 
   ngOnInit() {
   }
-  validarFormulario(noticia) {
-    if (noticia) {
-      this.crearEditarUsuario = noticia;
+  validarFormulario(usuario) {
+    if (usuario) {
+      this.crearEditarUsuario = usuario;
       this.formularioValido = true;
     } else {
       this.formularioValido = false;
@@ -44,7 +44,7 @@ export class CrearEditarUsuarioComponent implements OnInit {
   metodoCrearEditar() {
     this._cargandoService.habilitarCargando();
     if (this.data.usuario) {
-      this._noticiaService
+      this._usuarioService
         .updateOne(this.data.usuario.id, this.crearEditarUsuario)
         .subscribe(
           async r => {
@@ -58,7 +58,7 @@ export class CrearEditarUsuarioComponent implements OnInit {
           },
         );
     } else {
-      this._noticiaService
+      this._usuarioService
         .create(this.usuario)
         .subscribe(
           r => {
