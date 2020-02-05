@@ -1,0 +1,41 @@
+<!--<div *ngIf="mostrarFormularioJuego" class="row">-->
+<div class="row">
+  <div class="col-sm-12">
+    <form class="form-horizontal"
+          [formGroup]="formularioJuego"
+          novalidate autocomplete="off">
+      <fieldset>
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field>
+              <mat-label>Beneficiario</mat-label>
+              <input matInput placeholder="Ej: Juan Carlos " formControlName="beneficiario" required>
+              <mat-error *ngIf="mensajesError.nombre.length > 0">
+                <div *ngFor="let mensaje of mensajesError.nombre">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+            </div>
+          <div class="col-sm-4">
+            <mat-form-field>
+              <mat-label>CI</mat-label>
+              <input matInput placeholder="Ej: 1704125883 " formControlName="ci" required>
+              <mat-error *ngIf="mensajesError.nombre.length > 0">
+                <div *ngFor="let mensaje of mensajesError.nombre">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+            <mat-form-field>
+              <mat-label>Comprobante Por</mat-label>
+              <input matInput placeholder="Ej: 1000.00 " formControlName="comprobantePor" required>
+              <mat-error *ngIf="mensajesError.nombre.length > 0">
+                <div *ngFor="let mensaje of mensajesError.nombre">{{mensaje}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          </div>
+      </fieldset>
+      <ng-content></ng-content>
+    </form>
+  </div>
+</div>

@@ -1,8 +1,11 @@
 export class Producto {
 
 nombre:string;
-codigo: string;
-precioUnitario:number;
+identificador: string;
+tipo: string;
+marca: string;
+descontinuado: boolean;
+precioUnitario:string;
 stock?:number;
 
 }
