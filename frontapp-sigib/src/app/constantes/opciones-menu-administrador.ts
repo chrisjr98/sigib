@@ -1,9 +1,9 @@
 export const OPCIONES_MENU_ADMINISTRADOR = [
   {
-    textoBoton: 'FACTURACIÓN',
+    textoBoton: 'FACTURACIÓNN',
     descripcionOpcion: 'Gestiona tus factura y comprobantes de venta',
     pathImagen: 'assets/imagenes/opciones-menu-administrador/factura.svg',
-    dirigirA: ['../juegos/listar-juegos']
+    dirigirA: ['../facturacion']
   },
   {
     textoBoton: 'ACADÉMICO',
