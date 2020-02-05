@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuOpcionesFacturacionComponent } from 'src/app/componentes/menu-opciones-facturacion/menu-opciones-facturacion/menu-opciones-facturacion.component';
 import { RutaGestionFacturaComponent } from './rutas/ruta-gestion-factura/ruta-gestion-factura.component';
 import { RutaGestionComprobanteComponent } from './rutas/ruta-gestion-comprobante/ruta-gestion-comprobante.component';
-import { RegistroComprobanteComponent } from './componentes/registro-comprobante/registro-comprobante/registro-comprobante.component';
+import { RutaGestionClienteComponent } from './rutas/ruta-gestion-cliente/ruta-gestion-cliente.component';
 
 
 const routes: Routes = [
@@ -16,21 +16,16 @@ const routes: Routes = [
       },
       {
         path: 'factura',
-        component:RutaGestionFacturaComponent
+        component: RutaGestionFacturaComponent
       },
       {
         path: 'comprobante',
-                children: [
-          {
-            path: '',
-            component: RutaGestionComprobanteComponent
-          },
-          {
-            path: 'nuevo-comprobante',
-            component: RegistroComprobanteComponent
-          }
-        ]
-      }
+        component:RutaGestionComprobanteComponent
+      },
+      {
+        path: 'clientes',
+        component:RutaGestionClienteComponent
+      },
     ]
   },
   {

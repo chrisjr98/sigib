@@ -5,29 +5,30 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { VALIDACION_TITULO_USUARIO, VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_TITULO_USUARIO, MENSAJES_VALIDACION_DESCRIPCION_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
-import { Comprobante } from 'src/app/clases/comprobante';
-import { ComprobanteInterface } from 'src/app/interfaces/interfaces/comprobante.interface';
+import { Factura } from 'src/app/clases/factura';
+import { FacturaInterface } from 'src/app/interfaces/interfaces/factura.interface';
 
 @Component({
-  selector: 'app-formulario-comprobante',
-  templateUrl: './formulario-comprobante.component.html',
-  styleUrls: ['./formulario-comprobante.component.scss']
+  selector: 'app-formulario-factura',
+  templateUrl: './formulario-factura.component.html',
+  styleUrls: ['./formulario-factura.component.scss']
 })
-export class FormularioComprobanteComponent implements OnInit {
+export class FormularioFacturaComponent implements OnInit {
 
 
-  @Output() comprobanteValido: EventEmitter< ComprobanteInterface| boolean> = new EventEmitter();
-  @Input() comprobante: Comprobante;
+  @Output() facturaValida: EventEmitter< FacturaInterface| boolean> = new EventEmitter();
+  @Input() factura: Factura;
   mensajesError = {
     numero:[],
-    tipo: [],
+    concepto: [],
     formapago: [],
     fecha: [],
-    cantidad: []
+    tcliente: [],
+    estado: []
   };
-  formularioComprobante: FormGroup;
+  formularioFactura: FormGroup;
   subscribers = [];
-  mostrarFormularioComprobante = false;
+  mostrarFormularioFactura = false;
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _formBuilder: FormBuilder,
@@ -44,12 +45,13 @@ export class FormularioComprobanteComponent implements OnInit {
   }
 
   private _inicializarFormulario() {
-    this.formularioComprobante = this._formBuilder.group({
-      numero:   [this.comprobante ? this.comprobante.numero : '', VALIDACION_TITULO_USUARIO],
-      tipo:     [this.comprobante ? this.comprobante.tipo : '', VALIDACION_TITULO_USUARIO],
-      formapago: [this.comprobante ? this.comprobante.formapago : '', VALIDACION_TITULO_USUARIO],
-      fecha:    [this.comprobante ? this.comprobante.fecha : '', VALIDACION_TITULO_USUARIO],
-      cantidad: [this.comprobante ? this.comprobante.cantidad : '', VALIDACION_TITULO_USUARIO]
+    this.formularioFactura = this._formBuilder.group({
+      numero:   [this.factura ? this.factura.numero : '', VALIDACION_TITULO_USUARIO],
+      concepto: [this.factura ? this.factura.concepto : '', VALIDACION_TITULO_USUARIO],
+      formapago: [this.factura ? this.factura.formapago : '', VALIDACION_TITULO_USUARIO],
+      fecha:    [this.factura ? this.factura.fecha : '', VALIDACION_TITULO_USUARIO],
+      tcliente: [this.factura ? this.factura.tcliente : '', VALIDACION_TITULO_USUARIO],
+      estado: [this.factura ? this.factura.estado : '', VALIDACION_TITULO_USUARIO]
     });
   }
 
@@ -59,7 +61,7 @@ export class FormularioComprobanteComponent implements OnInit {
   }
 
   private _verificarFormulario() {
-    const formularioFormGroup = this.formularioComprobante;
+    const formularioFormGroup = this.formularioFactura;
     const subscriber = formularioFormGroup
       .valueChanges
       .subscribe(
@@ -68,9 +70,9 @@ export class FormularioComprobanteComponent implements OnInit {
           if (UsuarioValidada) {
             formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
             formulario.tipo = this.setearValorSelect(formulario.tipo);
-            this.comprobanteValido.emit(formulario);
+            this.facturaValida.emit(formulario);
           } else {
-            this.comprobanteValido.emit(false);
+            this.facturaValida.emit(false);
           }
         }
       );
@@ -82,7 +84,7 @@ export class FormularioComprobanteComponent implements OnInit {
     return esString ? JSON.parse(campo) : campo;
   }
   verificarCampoFormControl(campo, mensajeValidacion) {
-    const campoFormControl = this.formularioComprobante.get(campo);
+    const campoFormControl = this.formularioFactura.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))

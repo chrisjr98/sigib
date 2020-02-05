@@ -5,29 +5,28 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { VALIDACION_TITULO_USUARIO, VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_TITULO_USUARIO, MENSAJES_VALIDACION_DESCRIPCION_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
-import { Comprobante } from 'src/app/clases/comprobante';
-import { ComprobanteInterface } from 'src/app/interfaces/interfaces/comprobante.interface';
+import { ClienteInterface } from 'src/app/interfaces/interfaces/cliente.interface';
+import { Cliente } from 'src/app/clases/cliente';
 
 @Component({
-  selector: 'app-formulario-comprobante',
-  templateUrl: './formulario-comprobante.component.html',
-  styleUrls: ['./formulario-comprobante.component.scss']
+  selector: 'app-formulario-cliente',
+  templateUrl: './formulario-cliente.component.html',
+  styleUrls: ['./formulario-cliente.component.scss']
 })
-export class FormularioComprobanteComponent implements OnInit {
+export class FormularioClienteComponent implements OnInit {
 
-
-  @Output() comprobanteValido: EventEmitter< ComprobanteInterface| boolean> = new EventEmitter();
-  @Input() comprobante: Comprobante;
+  @Output() clienteValido: EventEmitter< ClienteInterface| boolean> = new EventEmitter();
+  @Input() cliente: Cliente;
   mensajesError = {
-    numero:[],
-    tipo: [],
-    formapago: [],
-    fecha: [],
-    cantidad: []
+    nombre: [],
+    apellido: [],
+    cedula: [],
+    direccion: [],
+    telefono: [],
   };
-  formularioComprobante: FormGroup;
+  formularioCliente: FormGroup;
   subscribers = [];
-  mostrarFormularioComprobante = false;
+  mostrarFormularioCliente = false;
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _formBuilder: FormBuilder,
@@ -44,12 +43,12 @@ export class FormularioComprobanteComponent implements OnInit {
   }
 
   private _inicializarFormulario() {
-    this.formularioComprobante = this._formBuilder.group({
-      numero:   [this.comprobante ? this.comprobante.numero : '', VALIDACION_TITULO_USUARIO],
-      tipo:     [this.comprobante ? this.comprobante.tipo : '', VALIDACION_TITULO_USUARIO],
-      formapago: [this.comprobante ? this.comprobante.formapago : '', VALIDACION_TITULO_USUARIO],
-      fecha:    [this.comprobante ? this.comprobante.fecha : '', VALIDACION_TITULO_USUARIO],
-      cantidad: [this.comprobante ? this.comprobante.cantidad : '', VALIDACION_TITULO_USUARIO]
+    this.formularioCliente = this._formBuilder.group({
+      nombre:     [this.cliente ? this.cliente.nombre : '', VALIDACION_TITULO_USUARIO],
+      apellido:   [this.cliente ? this.cliente.apellido : '', VALIDACION_TITULO_USUARIO],
+      cedula:     [this.cliente ? this.cliente.cedula : '', VALIDACION_TITULO_USUARIO],
+      direccion:  [this.cliente ? this.cliente.direccion : '', VALIDACION_TITULO_USUARIO],
+      telefono:   [this.cliente ? this.cliente.telefono : '', VALIDACION_TITULO_USUARIO],
     });
   }
 
@@ -59,7 +58,7 @@ export class FormularioComprobanteComponent implements OnInit {
   }
 
   private _verificarFormulario() {
-    const formularioFormGroup = this.formularioComprobante;
+    const formularioFormGroup = this.formularioCliente;
     const subscriber = formularioFormGroup
       .valueChanges
       .subscribe(
@@ -68,9 +67,9 @@ export class FormularioComprobanteComponent implements OnInit {
           if (UsuarioValidada) {
             formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
             formulario.tipo = this.setearValorSelect(formulario.tipo);
-            this.comprobanteValido.emit(formulario);
+            this.clienteValido.emit(formulario);
           } else {
-            this.comprobanteValido.emit(false);
+            this.clienteValido.emit(false);
           }
         }
       );
@@ -82,7 +81,7 @@ export class FormularioComprobanteComponent implements OnInit {
     return esString ? JSON.parse(campo) : campo;
   }
   verificarCampoFormControl(campo, mensajeValidacion) {
-    const campoFormControl = this.formularioComprobante.get(campo);
+    const campoFormControl = this.formularioCliente.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))

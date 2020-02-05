@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ComprobanteInterface } from 'src/app/interfaces/interfaces/comprobante.interface';
 import { OPCIONES_HABILITADO_SELECT } from 'src/app/constantes/opciones-habilitado-select';
 import { ESTADOS } from 'src/app/constantes/estados';
 import { NUMERO_FILAS_TABLAS } from 'src/app/constantes/numero-filas-tablas';
@@ -9,8 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CargandoService } from 'src/app/servicios/cargando-service/cargando-service';
 import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
-import { CrearEditarRolComponent } from 'src/app/modulos/configuraciones/modales/crear-editar-rol/crear-editar-rol.component';
-import { RolInterface } from 'src/app/interfaces/interfaces/role.interfaces';
+import { CrearEditarComprobanteComponent } from '../../modales/crear-editar-comprobante/crear-editar-comprobante.component';
+import { ComprobanteInterface } from 'src/app/interfaces/interfaces/comprobante.interface';
 
 @Component({
   selector: 'app-ruta-gestion-comprobante',
@@ -20,39 +19,40 @@ import { RolInterface } from 'src/app/interfaces/interfaces/role.interfaces';
 export class RutaGestionComprobanteComponent implements OnInit {
 
 
+
   comprobantes: ComprobanteInterface[] = [
     {
-beneficiario:'cristhian',
-ci: '1704125883',
-comprobantePor:'55.20',
-fecha: '02-12-2020',
-formaPago: 'Efectivo',
-nombre:'Matricula',
-numero: '002',
-realizadoPor: 'Maria',
-tipo:'Pagos'
+      numero:     '5883',
+      tipo:       'matricula',
+      formapago:  'Efectivo en caja',
+      fecha:      '01/03/2019',
+      cantidad:   '70'
+
 
     },
         {
-beneficiario:'cristhian',
-ci: '1704125883',
-comprobantePor:'55.20',
-fecha: '02-12-2020',
-formaPago: 'Efectivo',
-nombre:'Matricula',
-numero: '002',
-realizadoPor: 'Maria',
-tipo:'Pagos'
-
+      numero:     '5884',
+      tipo:       'mensualidad',
+      formapago:  'Deposito en banco',
+      fecha:      '02/03/2019',
+      cantidad:   '50'
+    },
+        {
+      numero:     '5885',
+      tipo:       'mensualidad',
+      formapago:  'Efectivo en caja',
+      fecha:      '03/03/2019',
+      cantidad:   '50'
     }
   ];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
-    {field: 'beneficiario', header: 'Beneficiario', width: '20%'},
-    {field: 'ci', header: 'CI', width: '40%'},
-    {field: 'comprobantePor', header: 'Comprobante Por', width: '40%'},
-    {field: 'acciones', header: 'Acciones', width: '40%'},
+    {field: 'numero', header: 'Numero', width: '20%'},
+    {field: 'tipo', header: 'Tipo', width: '20%'},
+    {field: 'formapago', header: 'FormaDePago', width: '20%'},
+    {field: 'fecha', header: 'Fecha', width: '20%'},
+    {field: 'cantidad', header: 'Cantidad', width: '20%'}
   ];
   rows = NUMERO_FILAS_TABLAS;
   totalRecords: number;
@@ -64,7 +64,7 @@ tipo:'Pagos'
 
   constructor(
     // tslint:disable-next-line:variable-name
-    private readonly _rolervice: UsuarioRestService,
+    private readonly _comprobanteervice: UsuarioRestService,
     // tslint:disable-next-line:variable-name
     private readonly _activatedRoute: ActivatedRoute,
     // tslint:disable-next-line:variable-name
@@ -93,6 +93,7 @@ tipo:'Pagos'
   }
 
   actualizarEstado(registro) {
+
   }
 
   buscarPorNombre(busqueda: string) {
@@ -118,5 +119,27 @@ tipo:'Pagos'
       take: this.rows,
       order: {id: 'DESC'}
     };
+  }
+
+  abrirDialogo(comprobanteSeleccionado?): void {
+    const dialogRef = this.dialogo.open(
+      CrearEditarComprobanteComponent,
+      {
+        data: {comprobante: comprobanteSeleccionado},
+      }
+    );
+    const resultadoModal$ = dialogRef.afterClosed();
+    resultadoModal$
+      .subscribe((registroCreado: ComprobanteInterface) => {
+        if (registroCreado) {
+          if (comprobanteSeleccionado) {
+            const indiceRegistro = this.comprobantes.indexOf(comprobanteSeleccionado);
+            this.comprobantes[indiceRegistro] = registroCreado;
+          } else {
+            this.comprobantes.unshift(registroCreado);
+          }
+        }
+      });
+
   }
 }

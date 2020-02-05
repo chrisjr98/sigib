@@ -16,9 +16,9 @@
   <div class="row separacion-top-1 separacion-fondo-1">
     <div class="col-sm-12 ">
       <h3>
-        Gestión de Factura
+        Gestión de Clientes
       </h3>
-      <p>Gestione las Factura del sistema SIGIB.</p>
+      <p>Gestione los clientes del sistema SIGIB.</p>
     </div>
   </div>
 
@@ -35,7 +35,7 @@
               </button>
             </div>
           </div>
-          <small id="busquedaRolHelp" class="form-text text-muted ayuda-span"> Busque a una factura por el número.
+          <small id="busquedaRolHelp" class="form-text text-muted ayuda-span"> Busque a un cliente por el identificador.
           </small>
         </div>
       </form>
@@ -84,7 +84,7 @@
       <div class="col-sm-12">
         <p-table
           [columns]="columnas"
-          [value]="facturas"
+          [value]="clientes"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
           [paginator]="true"
@@ -106,19 +106,19 @@
 
             <tr>
               <td class="text-center" *ngFor="let col of columns">
-                <div *ngIf="col.field==='numero'">
+                <div *ngIf="col.field==='cedula'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='concepto'">
+                <div *ngIf="col.field==='nombre'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='formapago'">
+                <div *ngIf="col.field==='apellido'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='fecha'">
+                <div *ngIf="col.field==='direccion'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='tcliente'">
+                <div *ngIf="col.field==='telefono'">
                   {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='acciones'">

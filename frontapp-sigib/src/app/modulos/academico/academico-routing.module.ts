@@ -18,7 +18,17 @@ const routes: Routes = [
       },
       {
         path: 'carreras',
-        component:RutaGestionCarrerasComponent
+        children: [
+          {
+            path: '',
+            component: RutaGestionCarrerasComponent
+          },
+          {
+            path: ':id/materias',
+            component: RutaGestionCarrerasComponent
+          }
+        ]
+
       },
       {
         path: 'cursos',
@@ -32,7 +42,7 @@ const routes: Routes = [
         path: 'profesores',
         component: RutaGestionProfesoresComponent
       },
-            {
+      {
         path: 'archivo',
         component: RutaGestionArchivoComponent
       }

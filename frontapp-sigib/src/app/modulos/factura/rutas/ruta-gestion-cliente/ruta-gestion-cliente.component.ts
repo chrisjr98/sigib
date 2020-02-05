@@ -1,38 +1,59 @@
 import { Component, OnInit } from '@angular/core';
-import { CarreraInterface } from 'src/app/interfaces/interfaces/carrera.interface';
+import { ClienteInterface } from 'src/app/interfaces/interfaces/cliente.interface';
 import { OPCIONES_HABILITADO_SELECT } from 'src/app/constantes/opciones-habilitado-select';
 import { ESTADOS } from 'src/app/constantes/estados';
 import { NUMERO_FILAS_TABLAS } from 'src/app/constantes/numero-filas-tablas';
 import { QueryParamsInterface } from 'src/app/interfaces/interfaces/query-params.interface';
-import { CrearEditarCarreraComponent } from '../../modales/crear-editar-carrera/crear-editar-carrera.component';
+import { UsuarioRestService } from 'src/app/servicios/rest/servicios/usuario-rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CargandoService } from 'src/app/servicios/cargando-service/cargando-service';
 import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
+import { CrearEditarUsuarioComponent } from 'src/app/modulos/configuraciones/modales/crear-editar-usuario/crer-editar-usuario.component';
+import { CrearEditarClienteComponent } from '../../modales/crear-editar-cliente/crear-editar-cliente.component';
 
 @Component({
-  selector: 'app-ruta-gestion-carreras',
-  templateUrl: './ruta-gestion-carreras.component.html',
-  styleUrls: ['./ruta-gestion-carreras.component.scss']
+  selector: 'app-ruta-gestion-cliente',
+  templateUrl: './ruta-gestion-cliente.component.html',
+  styleUrls: ['./ruta-gestion-cliente.component.scss']
 })
-export class RutaGestionCarrerasComponent implements OnInit {
+export class RutaGestionClienteComponent implements OnInit {
 
 
-
-  carreras: CarreraInterface[] = [
+  clientes: ClienteInterface[] = [
     {
-      codigo: 'COS01',
-      nombre: 'Cosmetología',
-      duracion:'4 semestres'
+      cedula:   '1704125883',
+      nombre:   'Cristhian',
+      apellido: 'Jumbo',
+      direccion:'Marin',
+      telefono: '0998033447'
+
+
+    },
+        {
+      cedula:   '1714125883',
+      nombre:   'Manuel',
+      apellido: 'Laso',
+      direccion:'Armenia',
+      telefono: '0993825276'
+    },
+        {
+      cedula: '1704452883',
+      nombre: 'Esteban',
+      apellido: 'Guerra',
+      direccion:'Ofelia',
+      telefono: '0998022445'
     }
   ];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
-    {field: 'codigo', header: 'Codigo', width: '20%'},
-    {field: 'nombre', header: 'Nombre', width: '40%'},
-    {field: 'duracion', header: 'Duración', width: '40%'},
-    {field: 'acciones', header: 'Acciones', width: '40%'},
+    {field: 'cedula', header: 'Cédula', width: '20%'},
+    {field: 'nombre', header: 'Nombre', width: '20%'},
+    {field: 'apellido', header: 'Apellido', width: '20%'},
+    {field: 'direccion', header: 'Direccion', width: '20%'},
+    {field: 'telefono', header: 'Telefono', width: '20%'},
+    {field: 'acciones', header: 'Acciones', width: '20%'}
   ];
   rows = NUMERO_FILAS_TABLAS;
   totalRecords: number;
@@ -43,6 +64,8 @@ export class RutaGestionCarrerasComponent implements OnInit {
   ruta = [];
 
   constructor(
+    // tslint:disable-next-line:variable-name
+    private readonly _clienteervice: UsuarioRestService,
     // tslint:disable-next-line:variable-name
     private readonly _activatedRoute: ActivatedRoute,
     // tslint:disable-next-line:variable-name
@@ -71,6 +94,7 @@ export class RutaGestionCarrerasComponent implements OnInit {
   }
 
   actualizarEstado(registro) {
+
   }
 
   buscarPorNombre(busqueda: string) {
@@ -98,29 +122,25 @@ export class RutaGestionCarrerasComponent implements OnInit {
     };
   }
 
-  abrirDialogo(rolSeleccionado?): void {
+  abrirDialogo(clienteSeleccionado?): void {
     const dialogRef = this.dialogo.open(
-      CrearEditarCarreraComponent,
+      CrearEditarClienteComponent,
       {
-        data: {rol: rolSeleccionado},
+        data: {cliente: clienteSeleccionado},
       }
     );
     const resultadoModal$ = dialogRef.afterClosed();
     resultadoModal$
-      .subscribe((registroCreado: CarreraInterface) => {
+      .subscribe((registroCreado: ClienteInterface) => {
         if (registroCreado) {
-          if (rolSeleccionado) {
-            const indiceRegistro = this.carreras.indexOf(rolSeleccionado);
-            this.carreras[indiceRegistro] = registroCreado;
+          if (clienteSeleccionado) {
+            const indiceRegistro = this.clientes.indexOf(clienteSeleccionado);
+            this.clientes[indiceRegistro] = registroCreado;
           } else {
-            this.carreras.unshift(registroCreado);
+            this.clientes.unshift(registroCreado);
           }
         }
       });
 
   }
-    irNoticiasEmisor(idCarrera: number) {
-    this._router.navigate(['administrador', 'menu', 'academico', 'menu-academico', 'carreras', idCarrera, 'materias']);
-  }
-
 }

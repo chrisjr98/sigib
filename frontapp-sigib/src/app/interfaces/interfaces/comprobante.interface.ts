@@ -1,12 +1,7 @@
-export interface ComprobanteInterface {
-id?: number;
+export interface ComprobanteInterface{
 numero: string;
-ci:string;
-nombre: string;
 tipo: string;
+formapago: string;
 fecha: string;
-formaPago:string;
-realizadoPor: string;
-comprobantePor:string;
-beneficiario:string;
+cantidad: string;
 }

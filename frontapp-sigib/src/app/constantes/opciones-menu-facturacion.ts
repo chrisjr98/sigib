@@ -10,5 +10,11 @@ export const OPCIONES_MENU_FACTURACION = [
     descripcionOpcion: 'Gestiona los comprobantes de pago',
     pathImagen: 'assets/imagenes/opciones-menu-facturacion/comprobante.svg',
     dirigirA: ['../comprobante']
+  },
+  {
+    textoBoton: 'CLIENTES',
+    descripcionOpcion: 'Gestiona tus clientes',
+    pathImagen: 'assets/imagenes/opciones-menu-academico/opcion-estudiantes.png',
+    dirigirA: ['../clientes']
   }
 ];

@@ -5,14 +5,9 @@
         Menú Principal
       </a>
     </li>
-    <li class="breadcrumb-item">
-      <a [routerLink]="['/administrador','menu','facturacion','menu-factura']">
-        Menú facturación
-      </a>
-    </li>
     <li class="breadcrumb-item active"
         aria-current="page">
-      Comprobantes
+      Facturación
     </li>
   </ol>
 </nav>
@@ -23,7 +18,7 @@
       <h3>
         Gestión de Comprobantes
       </h3>
-      <p>Gestione los Comprobantes del sistema SIGIB.</p>
+      <p>Gestione las comprobantes del sistema SIGIB.</p>
     </div>
   </div>
 
@@ -40,14 +35,14 @@
               </button>
             </div>
           </div>
-          <small id="busquedaRolHelp" class="form-text text-muted ayuda-span"> Busque a un comprobantes por número.
+          <small id="busquedaRolHelp" class="form-text text-muted ayuda-span"> Busque a una comprobante por el número.
           </small>
         </div>
       </form>
     </div>
     <div class="col-lg-3">
       <button class="btn btn-block btn-success"
-              [routerLink]="['/administrador/menu/facturacion/menu-factura/comprobante/nuevo-comprobante']">
+              (click)="abrirDialogo()">
         <i class="fas fa-plus"></i>
         NUEVO
       </button>
@@ -111,13 +106,19 @@
 
             <tr>
               <td class="text-center" *ngFor="let col of columns">
-                <div *ngIf="col.field==='beneficiario'">
+                <div *ngIf="col.field==='numero'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='ci'">
+                <div *ngIf="col.field==='tipo'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='comprobantePor'">
+                <div *ngIf="col.field==='formapago'">
+                  {{rowData[col.field]}}
+                </div>
+                <div *ngIf="col.field==='fecha'">
+                  {{rowData[col.field]}}
+                </div>
+                <div *ngIf="col.field==='cantidad'">
                   {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='acciones'">

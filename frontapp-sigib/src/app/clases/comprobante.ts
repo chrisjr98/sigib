@@ -1,11 +1,7 @@
-export class Comprobante {
-numero: number;
-ci:string;
-nombre: string;
+export class Comprobante{
+numero: string;
 tipo: string;
+formapago: string;
 fecha: string;
-formaPago:string;
-realizadoPor: string;
-comprobantePor:number;
-beneficiario:string;
+cantidad: string;
 }
