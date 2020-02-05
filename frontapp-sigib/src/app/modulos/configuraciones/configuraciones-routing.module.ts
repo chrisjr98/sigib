@@ -1,65 +1,62 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {RutaGestionUsuariosComponent} from './rutas/ruta-gestion-usuarios/ruta-gestion-usuarios.component';
-import {MenuAjustesComponent} from '../../componentes/menu-ajustes/menu-ajustes/menu-ajustes.component';
-import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gestion-roles.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { RutaGestionUsuariosComponent } from "./rutas/ruta-gestion-usuarios/ruta-gestion-usuarios.component";
+import { MenuAjustesComponent } from "../../componentes/menu-ajustes/menu-ajustes/menu-ajustes.component";
+import { RutaGestionRolesComponent } from "./rutas/ruta-gestion-roles/ruta-gestion-roles.component";
 
 const routes: Routes = [
   {
-    path: 'menu-ajustes',
+    path: "menu-ajustes",
     children: [
       {
-        path: '',
-        component: MenuAjustesComponent,
+        path: "",
+        component: MenuAjustesComponent
       },
       {
-        path: 'usuarios',
+        path: "usuarios",
         component: RutaGestionUsuariosComponent
       },
       {
-        path: 'roles',
+        path: "roles",
         component: RutaGestionRolesComponent
       },
       {
-        path: 'permisos',
+        path: "permisos",
         component: RutaGestionUsuariosComponent
       },
       {
-        path: 'constantes',
+        path: "constantes",
         component: RutaGestionUsuariosComponent
       },
       {
-        path: 'emisores',
+        path: "emisores",
         children: [
           {
-            path: '',
+            path: "",
             component: RutaGestionUsuariosComponent
           },
           {
-            path: ':id/usuarios',
+            path: ":id/usuarios",
             component: RutaGestionUsuariosComponent
           },
           {
-            path: ':idEmisor/papeles-renta-fija',
+            path: ":idEmisor/papeles-renta-fija",
             component: RutaGestionUsuariosComponent
           }
         ]
-      },
+      }
     ]
   },
   {
-    path: '',
-    redirectTo: 'menu-ajustes',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "menu-ajustes",
+    pathMatch: "full"
   }
-
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ConfiguracionesRoutingModule {
-}
+
+export class ConfiguracionesRoutingModule {}

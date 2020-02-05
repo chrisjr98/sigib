@@ -1,12 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { MenuAjustesComponent } from "./menu-ajustes/menu-ajustes.component";
+import { MenuAcademicoAdministradorComponent } from "./menu-academico-administrador/menu-academico-administrador.component";
 import { OpcionMenuModule } from "../../compartido/opcion-menu/opcion-menu.module";
 import { RouterModule } from "@angular/router";
 
 @NgModule({
-  declarations: [MenuAjustesComponent],
-  exports: [MenuAjustesComponent],
+  declarations: [MenuAcademicoAdministradorComponent],
+  exports: [MenuAcademicoAdministradorComponent],
   imports: [CommonModule, OpcionMenuModule, RouterModule]
 })
-export class MenuAjustesModule {}
+
+export class MenuAcademicoAdministradorModule {}

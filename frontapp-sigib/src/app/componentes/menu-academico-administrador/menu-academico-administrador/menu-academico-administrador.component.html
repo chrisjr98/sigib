@@ -1,0 +1,93 @@
+<nav aria-label="breadcrumb" class="margen-top-migas">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a [routerLink]="['/administrador', 'menu']">
+              Menú Principal
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Menú Académico
+          </li>
+        </ol>
+      </nav>
+      
+      <div class="container">
+        <h2>Menú Académico</h2>
+        <p>Selecciona una opción del menú Académico.</p>
+        <div class="row">
+          <div class="col-md-2"></div>
+      
+          <div
+            class="col-md-3 separacion-top-6 animated fadeInLeft"
+            [style.animation-delay]="'0.2s'"
+          >
+            <app-opcion-menu
+              [textoBoton]="opcionesMenuAcademicoAdministrador[0].textoBoton"
+              [descripcionOpcion]="opcionesMenuAcademicoAdministrador[0].descripcionOpcion"
+              [pathImagen]="opcionesMenuAcademicoAdministrador[0].pathImagen"
+              [routerLink]="opcionesMenuAcademicoAdministrador[0].dirigirA"
+            >
+            </app-opcion-menu>
+          </div>
+          <div class="col-md-2"></div>
+          <div
+            class="col-md-3 separacion-top-6 animated fadeInLeft"
+            [style.animation-delay]="'0.4s'"
+          >
+            <app-opcion-menu
+              [textoBoton]="opcionesMenuAcademicoAdministrador[1].textoBoton"
+              [descripcionOpcion]="opcionesMenuAcademicoAdministrador[1].descripcionOpcion"
+              [pathImagen]="opcionesMenuAcademicoAdministrador[1].pathImagen"
+              [routerLink]="opcionesMenuAcademicoAdministrador[1].dirigirA"
+            >
+            </app-opcion-menu>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+      
+          <div
+            class="col-md-3 separacion-top-6 animated fadeInLeft"
+            [style.animation-delay]="'0.6s'"
+          >
+            <app-opcion-menu
+              [textoBoton]="opcionesMenuAcademicoAdministrador[2].textoBoton"
+              [descripcionOpcion]="opcionesMenuAcademicoAdministrador[2].descripcionOpcion"
+              [pathImagen]="opcionesMenuAcademicoAdministrador[2].pathImagen"
+              [routerLink]="opcionesMenuAcademicoAdministrador[2].dirigirA"
+            >
+            </app-opcion-menu>
+          </div>
+          <div class="col-md-2"></div>
+          <div
+            class="col-md-3 separacion-top-6 animated fadeInLeft"
+            [style.animation-delay]="'0.8s'"
+          >
+            <app-opcion-menu
+              [textoBoton]="opcionesMenuAcademicoAdministrador[3].textoBoton"
+              [descripcionOpcion]="opcionesMenuAcademicoAdministrador[3].descripcionOpcion"
+              [pathImagen]="opcionesMenuAcademicoAdministrador[3].pathImagen"
+              [routerLink]="opcionesMenuAcademicoAdministrador[3].dirigirA"
+            >
+            </app-opcion-menu>
+          </div>
+          <div class="col-md-2"></div>
+          <div
+            class="col-md-3 separacion-top-6 animated fadeInLeft"
+            [style.animation-delay]="'0.8s'"
+          >
+            <app-opcion-menu
+              [textoBoton]="opcionesMenuAcademicoAdministrador[4].textoBoton"
+              [descripcionOpcion]="opcionesMenuAcademicoAdministrador[4].descripcionOpcion"
+              [pathImagen]="opcionesMenuAcademicoAdministrador[4].pathImagen"
+              [routerLink]="opcionesMenuAcademicoAdministrador[4].dirigirA"
+            >
+            </app-opcion-menu>
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      

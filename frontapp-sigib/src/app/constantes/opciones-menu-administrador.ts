@@ -9,7 +9,7 @@ export const OPCIONES_MENU_ADMINISTRADOR = [
     textoBoton: 'ACADÉMICO',
     descripcionOpcion: 'Módulo académico para estudiantes y docentes',
     pathImagen: 'assets/imagenes/opciones-menu-administrador/academico.svg',
-    dirigirA: ['../configuraciones']
+    dirigirA: ['../academico']
   },
     {
     textoBoton: 'CONFIGURACIONES',

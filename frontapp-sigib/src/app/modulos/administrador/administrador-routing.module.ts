@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'configuraciones',
         loadChildren: () => import('../configuraciones/configuraciones.module').then(mod => mod.ConfiguracionesModule),
+      },
+      {
+        path: 'academico',
+        loadChildren: () => import('../academico/academico.module').then(mod => mod.AcademicoModule),
       }
     ]
   },

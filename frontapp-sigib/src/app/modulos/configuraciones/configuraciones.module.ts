@@ -16,7 +16,7 @@ import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {PickListModule} from 'primeng/picklist';
 import {MatButtonModule} from '@angular/material';
-import { FormularioRolComponent } from './formularios/formulario-rol/formulario-rol.component';
+import { formularioRolComponent } from './formularios/formulario-rol/formulario-rol.component';
 import { CrearEditarRolComponent } from './modales/crear-editar-rol/crear-editar-rol.component';
 import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gestion-roles.component';
 
@@ -25,7 +25,7 @@ import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gesti
     RutaGestionUsuariosComponent,
     FormularioUsuarioComponent,
     CrearEditarUsuarioComponent,
-    FormularioRolComponent,
+    formularioRolComponent,
     CrearEditarRolComponent,
     RutaGestionRolesComponent,
   ],

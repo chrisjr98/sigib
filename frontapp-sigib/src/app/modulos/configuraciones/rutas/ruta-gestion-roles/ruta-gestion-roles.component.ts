@@ -9,8 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CargandoService } from 'src/app/servicios/cargando-service/cargando-service';
 import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
-import { UsuarioInterface } from 'src/app/interfaces/interfaces/usuario.interface';
-import { CrearEditarUsuarioComponent } from '../../modales/crear-editar-usuario/crer-editar-usuario.component';
 import { CrearEditarRolComponent } from '../../modales/crear-editar-rol/crear-editar-rol.component';
 
 @Component({
@@ -96,16 +94,6 @@ export class RutaGestionRolesComponent implements OnInit {
     const seBuscoPorEstado = this.queryParams.where.habilitado === 1 || this.queryParams.where.habilitado === 0;
     const seBuscoPorNivel = this.queryParams.where.nivelJuego;
     const seBuscoPorTipoEstadoNivel = seBuscoPorTipo || seBuscoPorEstado || seBuscoPorNivel;
-  }
-
-  buscar(skip: number) {
-    const consulta = {
-      where: this.queryParams.where,
-      relations: ['tipo', 'nivelJuego'],
-      skip,
-      take: this.rows,
-      order: {id: 'DESC'}
-    };
   }
 
   abrirDialogo(rolSeleccionado?): void {

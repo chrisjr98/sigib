@@ -13,7 +13,7 @@ import { Rol } from 'src/app/clases/role';
   templateUrl: './formulario-rol.component.html',
   styleUrls: ['./formulario-rol.component.scss']
 })
-export class FormularioRolComponent implements OnInit {
+export class formularioRolComponent implements OnInit {
 
   @Output() rolValido: EventEmitter< RolInterface| boolean> = new EventEmitter();
   @Input() rol: Rol;
@@ -23,7 +23,7 @@ export class FormularioRolComponent implements OnInit {
   };
   formularioRol: FormGroup;
   subscribers = [];
-  mostrarFormularioRol = false;
+  mostrarformularioRol = false;
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _formBuilder: FormBuilder,
