@@ -3,13 +3,13 @@ export const OPCIONES_MENU_ADMINISTRADOR = [
     textoBoton: 'FACTURACIÓN',
     descripcionOpcion: 'Gestiona tus factura y comprobantes de venta',
     pathImagen: 'assets/imagenes/opciones-menu-administrador/factura.svg',
-    dirigirA: ['../juegos/listar-juegos']
+    dirigirA: ['../facturacion']
   },
   {
     textoBoton: 'ACADÉMICO',
     descripcionOpcion: 'Módulo académico para estudiantes y docentes',
     pathImagen: 'assets/imagenes/opciones-menu-administrador/academico.svg',
-    dirigirA: ['../configuraciones']
+    dirigirA: ['../academico']
   },
     {
     textoBoton: 'CONFIGURACIONES',
@@ -21,7 +21,7 @@ export const OPCIONES_MENU_ADMINISTRADOR = [
     textoBoton: 'INVENTARIO',
     descripcionOpcion: 'Revisa tu stock en productos',
     pathImagen: 'assets/imagenes/opciones-menu-administrador/maquillaje.svg',
-    dirigirA: ['../configuraciones']
+    dirigirA: ['../inventario']
   }
 ];
 

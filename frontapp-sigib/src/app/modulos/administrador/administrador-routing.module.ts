@@ -19,6 +19,18 @@ const routes: Routes = [
       {
         path: 'configuraciones',
         loadChildren: () => import('../configuraciones/configuraciones.module').then(mod => mod.ConfiguracionesModule),
+      },
+      {
+        path: 'inventario',
+        loadChildren: () => import('../inventario/inventario.module').then(mod => mod.InventarioModule),
+      },
+      {
+        path: 'academico',
+        loadChildren: () => import('../academico/academico.module').then(mod => mod.AcademicoModule),
+      },
+            {
+        path: 'facturacion',
+        loadChildren: () => import('../factura/factura.module').then(mod => mod.FacturaModule),
       }
     ]
   },
