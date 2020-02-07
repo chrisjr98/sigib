@@ -18,6 +18,11 @@ import { TableModule } from 'primeng/table';
 import { SelectGeneralModule } from 'src/app/compartido/select-general/select-general.module';
 import { PickListModule } from 'primeng/picklist';
 import { SeleccionarMateriasComponent } from './componentes/seleccionar-materias/seleccionar-materias.component';
+import { RutaVerComprobantesComponent } from './rutas/ruta-ver-comprobantes/ruta-ver-comprobantes.component';
+import { RutaVerHorariosComponent } from './rutas/ruta-ver-horarios/ruta-ver-horarios.component';
+import { RutaVerCurriculumComponent } from './rutas/ruta-ver-curriculum/ruta-ver-curriculum.component';
+import { RutaMatriculacionComponent } from './rutas/ruta-matriculacion/ruta-matriculacion.component';
+import { MenuOpcionesEstudianteModule } from 'src/app/componentes/menu-opciones-estudiante/menu-opciones-estudiante.module';
 
 
 @NgModule({
@@ -28,11 +33,16 @@ import { SeleccionarMateriasComponent } from './componentes/seleccionar-materias
     RutaGestionArchivoComponent,
     FormularioCarreraComponent,
     CrearEditarCarreraComponent,
-    SeleccionarMateriasComponent],
+    SeleccionarMateriasComponent,
+    RutaVerComprobantesComponent,
+    RutaVerHorariosComponent,
+    RutaVerCurriculumComponent,
+    RutaMatriculacionComponent],
   imports: [
     CommonModule,
     AcademicoRoutingModule,
     MenuOpcionesAcademicoModule,
+    MenuOpcionesEstudianteModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,

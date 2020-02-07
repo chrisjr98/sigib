@@ -6,6 +6,11 @@ import { RutaGestionCursosComponent } from './rutas/ruta-gestion-cursos/ruta-ges
 import { RutaGestionEstudiantesComponent } from './rutas/ruta-gestion-estudiantes/ruta-gestion-estudiantes.component';
 import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
 import { RutaGestionArchivoComponent } from './rutas/ruta-gestion-archivo/ruta-gestion-archivo.component';
+import { MenuOpcionesEstudianteComponent } from 'src/app/componentes/menu-opciones-estudiante/menu-opciones-estudiante/menu-opciones-estudiante.component';
+import { RutaVerComprobantesComponent } from './rutas/ruta-ver-comprobantes/ruta-ver-comprobantes.component';
+import { RutaVerHorariosComponent } from './rutas/ruta-ver-horarios/ruta-ver-horarios.component';
+import { RutaVerCurriculumComponent } from './rutas/ruta-ver-curriculum/ruta-ver-curriculum.component';
+import { RutaMatriculacionComponent } from './rutas/ruta-matriculacion/ruta-matriculacion.component';
 
 
 const routes: Routes = [
@@ -36,7 +41,29 @@ const routes: Routes = [
       },
       {
         path: 'estudiantes',
-        component: RutaGestionEstudiantesComponent
+        children: [
+          {
+            path: '',
+            component: MenuOpcionesEstudianteComponent
+          },
+          {
+            path: 'ver-comprobantes',
+            component: RutaVerComprobantesComponent
+          },
+          {
+            path: 'ver-horarios',
+            component: RutaVerHorariosComponent
+          },
+          {
+            path: 'ver-curriculum',
+            component: RutaVerCurriculumComponent
+          },
+          {
+            path: 'matriculacion',
+            component: RutaMatriculacionComponent
+          }
+
+        ]
       },
       {
         path: 'profesores',
