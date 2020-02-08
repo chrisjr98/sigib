@@ -49,9 +49,11 @@ export const VALIDACION_NOMBRE_ROL = [
   Validators.required,
   Validators.minLength(3),
   Validators.maxLength(60),
+  Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/g)
 ];
 export const MENSAJES_VALIDACION_NOMBRE_ROL = {
   required: 'El campo nombre es obligatorio',
   minlength: 'El campo nombre debe tener mínimo 3 caracteres',
   maxlength: 'El campo  nombre no debe tener mas de 5 caracteres ',
+  pattern: 'El campo solo puede tener letras'
 };
