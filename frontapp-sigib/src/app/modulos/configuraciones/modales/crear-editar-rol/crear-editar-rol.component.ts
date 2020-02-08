@@ -15,9 +15,9 @@ export class CrearEditarRolComponent implements OnInit {
   crearEditarRol: RolInterface;
   formularioValido;
   rol: RolInterface;
-
+  puedeEditar: boolean;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {rol: RolInterface},
+    @Inject(MAT_DIALOG_DATA) public data: { rol: RolInterface },
     public dialogo: MatDialogRef<RutaGestionRolesComponent>,
     // tslint:disable-next-line:variable-name
     private readonly _cargandoService: CargandoService,
@@ -28,10 +28,13 @@ export class CrearEditarRolComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.data.rol) {
+      this.puedeEditar = true
+    }
   }
-  validarFormulario(usuario) {
-    if (usuario) {
-      this.crearEditarRol = usuario;
+  validarFormulario(rol) {
+    if (rol) {
+      this.crearEditarRol = rol;
       this.formularioValido = true;
     } else {
       this.formularioValido = false;
@@ -39,7 +42,13 @@ export class CrearEditarRolComponent implements OnInit {
   }
 
   metodoCrearEditar() {
-
+    this._cargandoService.habilitarCargando();
+    if (this.data.rol) {
+      this._cargandoService.deshabilitarCargando();
+      this.dialogo.close(this.crearEditarRol);
+    } else {
+      this._cargandoService.deshabilitarCargando();
+      this.dialogo.close(this.crearEditarRol);
+    }
   }
-
 }

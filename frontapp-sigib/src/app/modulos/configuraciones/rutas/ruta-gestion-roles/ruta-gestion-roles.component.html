@@ -33,10 +33,11 @@
         <div class="col-sm-12">
           <div class="input-group mb-3">
             <input type="text" class="form-control" aria-describedby="busquedaEmpresaHelp"
-                   placeholder="Ingrese su búsqueda....." #busqueda>
+                   placeholder="Ingrese su búsqueda....."  #busqueda
+                   >
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="btn" id="button-addon2"
-                      (click)="buscarPorNombre(busqueda.value)"><i class="fas fa-search"></i> BUSCAR
+              (click)="buscarPorNombre(busqueda.value)"><i class="fas fa-search"></i> BUSCAR
               </button>
             </div>
           </div>
@@ -89,7 +90,7 @@
       <div class="col-sm-12">
         <p-table
           [columns]="columnas"
-          [value]="roles"
+          [value]="roles | filter:filterpost"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
           [paginator]="true"

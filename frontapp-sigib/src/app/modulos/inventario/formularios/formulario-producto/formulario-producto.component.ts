@@ -15,7 +15,7 @@ import { Producto } from 'src/app/clases/producto';
 })
 export class FormularioProductoComponent implements OnInit {
 
-  @Output() productoValido: EventEmitter< ProductoInterface| boolean> = new EventEmitter();
+  @Output() productoValido: EventEmitter<ProductoInterface | boolean> = new EventEmitter();
   @Input() producto: Producto;
   mensajesError = {
     codigo: [],
@@ -38,13 +38,13 @@ export class FormularioProductoComponent implements OnInit {
     this._verificarCamposFormulario();
     this._verificarFormulario();
   }
-nombre:string;
-identificador: string;
-tipo: string;
-marca: string;
-descontinuado: boolean;
-precioUnitario:number;
-stock?:number;
+  nombre: string;
+  identificador: string;
+  tipo: string;
+  marca: string;
+  descontinuado: boolean;
+  precioUnitario: number;
+  stock?: number;
   private _inicializarFormulario() {
     this.formularioRol = this._formBuilder.group({
       nombre: [this.producto ? this.producto.nombre : '', VALIDACION_TITULO_USUARIO],

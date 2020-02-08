@@ -15,6 +15,7 @@
       <app-formulario-rol
         (rolValido)="validarFormulario($event)"
         [rol]="data.rol"
+        [puedeEditarFormulario]= "puedeEditar"
       >
       </app-formulario-rol>
     </div>

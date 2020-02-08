@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UsuarioInterface } from 'src/app/interfaces/interfaces/usuario.interface';
 import { Usuario } from 'src/app/clases/usuario';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { VALIDACION_TITULO_USUARIO, VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_TITULO_USUARIO, MENSAJES_VALIDACION_DESCRIPCION_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
+import {VALIDACION_CODIGO_ROL, VALIDACION_NOMBRE_ROL, MENSAJES_VALIDACION_CODIGO_ROL, MENSAJES_VALIDACION_NOMBRE_ROL } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 import { RolInterface } from 'src/app/interfaces/interfaces/role.interfaces';
@@ -17,6 +17,7 @@ export class FormularioRolComponent implements OnInit {
 
   @Output() rolValido: EventEmitter< RolInterface| boolean> = new EventEmitter();
   @Input() rol: Rol;
+  @Input() puedeEditarFormulario: boolean = false;
   mensajesError = {
     codigo: [],
     nombre: [],
@@ -31,6 +32,7 @@ export class FormularioRolComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.iniciarFormulario();
   }
 
   iniciarFormulario() {
@@ -41,14 +43,19 @@ export class FormularioRolComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioRol = this._formBuilder.group({
-      codigo: [this.rol ? this.rol.codigo : '', VALIDACION_TITULO_USUARIO],
-      nombre: [this.rol ? this.rol.nombre : '', VALIDACION_DESCRIPCION_USUARIO],
+      codigo: [this.rol ? this.rol.codigo : '', VALIDACION_CODIGO_ROL],
+      nombre: [this.rol ? this.rol.nombre : '', VALIDACION_NOMBRE_ROL],
     });
+      if (this.puedeEditarFormulario) {
+      this.formularioRol.disable();
+      this.formularioRol.get('nombre').enable();
+    }
+
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
+    this.verificarCampoFormControl('codigo', MENSAJES_VALIDACION_CODIGO_ROL);
+    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_NOMBRE_ROL);
   }
 
   private _verificarFormulario() {
@@ -57,10 +64,8 @@ export class FormularioRolComponent implements OnInit {
       .valueChanges
       .subscribe(
         formulario => {
-          const UsuarioValidada = formularioFormGroup.valid;
-          if (UsuarioValidada) {
-            formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
-            formulario.tipo = this.setearValorSelect(formulario.tipo);
+          const rolValido = formularioFormGroup.valid;
+          if (rolValido) {
             this.rolValido.emit(formulario);
           } else {
             this.rolValido.emit(false);
@@ -70,10 +75,6 @@ export class FormularioRolComponent implements OnInit {
     this.subscribers.push(subscriber);
   }
 
-  setearValorSelect(campo) {
-    const esString = typeof campo === 'string';
-    return esString ? JSON.parse(campo) : campo;
-  }
   verificarCampoFormControl(campo, mensajeValidacion) {
     const campoFormControl = this.formularioRol.get(campo);
     const subscriber = campoFormControl

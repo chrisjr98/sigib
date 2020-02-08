@@ -20,6 +20,7 @@ import {JugadorGuard} from './servicios/guard/jugador.guard';
 import {AdministradorGuard} from './servicios/guard/administrador.guard';
 import { UsuarioRestService } from './servicios/rest/servicios/usuario-rest.service';
 import { RutaGestionInformacionComponent } from './modulos/informacion/rutas/ruta-gestion-informacion/ruta-gestion-informacion.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
