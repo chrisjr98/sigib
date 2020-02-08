@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UsuarioInterface } from 'src/app/interfaces/interfaces/usuario.interface';
 import { Usuario } from 'src/app/clases/usuario';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { VALIDACION_TITULO_USUARIO, VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_TITULO_USUARIO, MENSAJES_VALIDACION_DESCRIPCION_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 import { Comprobante } from 'src/app/clases/comprobante';
@@ -45,17 +44,17 @@ export class FormularioComprobanteComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioComprobante = this._formBuilder.group({
-      numero:   [this.comprobante ? this.comprobante.numero : '', VALIDACION_TITULO_USUARIO],
-      tipo:     [this.comprobante ? this.comprobante.tipo : '', VALIDACION_TITULO_USUARIO],
-      formapago: [this.comprobante ? this.comprobante.formapago : '', VALIDACION_TITULO_USUARIO],
-      fecha:    [this.comprobante ? this.comprobante.fecha : '', VALIDACION_TITULO_USUARIO],
-      cantidad: [this.comprobante ? this.comprobante.cantidad : '', VALIDACION_TITULO_USUARIO]
+      numero:   [this.comprobante ? this.comprobante.numero : ''],
+      tipo:     [this.comprobante ? this.comprobante.tipo : ''],
+      formapago: [this.comprobante ? this.comprobante.formapago : ''],
+      fecha:    [this.comprobante ? this.comprobante.fecha : ''],
+      cantidad: [this.comprobante ? this.comprobante.cantidad : '']
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
+    this.verificarCampoFormControl('nombre');
+    this.verificarCampoFormControl('cedula');
   }
 
   private _verificarFormulario() {
@@ -81,14 +80,14 @@ export class FormularioComprobanteComponent implements OnInit {
     const esString = typeof campo === 'string';
     return esString ? JSON.parse(campo) : campo;
   }
-  verificarCampoFormControl(campo, mensajeValidacion) {
+  verificarCampoFormControl(campo) {
     const campoFormControl = this.formularioComprobante.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))
       .subscribe(
         valor => {
-          this.mensajesError[campo] = generarMensajesError(campoFormControl, this.mensajesError[campo], mensajeValidacion);
+          return true;
         }
       );
     this.subscribers.push(subscriber);

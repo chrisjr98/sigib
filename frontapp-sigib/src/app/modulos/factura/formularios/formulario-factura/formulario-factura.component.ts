@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UsuarioInterface } from 'src/app/interfaces/interfaces/usuario.interface';
 import { Usuario } from 'src/app/clases/usuario';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { VALIDACION_TITULO_USUARIO, VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_TITULO_USUARIO, MENSAJES_VALIDACION_DESCRIPCION_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 import { Factura } from 'src/app/clases/factura';
@@ -46,18 +45,18 @@ export class FormularioFacturaComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioFactura = this._formBuilder.group({
-      numero:   [this.factura ? this.factura.numero : '', VALIDACION_TITULO_USUARIO],
-      concepto: [this.factura ? this.factura.concepto : '', VALIDACION_TITULO_USUARIO],
-      formapago: [this.factura ? this.factura.formapago : '', VALIDACION_TITULO_USUARIO],
-      fecha:    [this.factura ? this.factura.fecha : '', VALIDACION_TITULO_USUARIO],
-      tcliente: [this.factura ? this.factura.tcliente : '', VALIDACION_TITULO_USUARIO],
-      estado: [this.factura ? this.factura.estado : '', VALIDACION_TITULO_USUARIO]
+      numero:   [this.factura ? this.factura.numero : '', ],
+      concepto: [this.factura ? this.factura.concepto : '', ],
+      formapago: [this.factura ? this.factura.formapago : '', ],
+      fecha:    [this.factura ? this.factura.fecha : '', ],
+      tcliente: [this.factura ? this.factura.tcliente : '', ],
+      estado: [this.factura ? this.factura.estado : '',]
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
+    this.verificarCampoFormControl('nombre');
+    this.verificarCampoFormControl('cedula');
   }
 
   private _verificarFormulario() {
@@ -83,15 +82,15 @@ export class FormularioFacturaComponent implements OnInit {
     const esString = typeof campo === 'string';
     return esString ? JSON.parse(campo) : campo;
   }
-  verificarCampoFormControl(campo, mensajeValidacion) {
+  verificarCampoFormControl(campo) {
     const campoFormControl = this.formularioFactura.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))
       .subscribe(
         valor => {
-          this.mensajesError[campo] = generarMensajesError(campoFormControl, this.mensajesError[campo], mensajeValidacion);
-        }
+          return true;
+                }
       );
     this.subscribers.push(subscriber);
   }

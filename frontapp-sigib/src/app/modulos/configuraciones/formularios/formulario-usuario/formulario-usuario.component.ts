@@ -1,12 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UsuarioInterface} from '../../../../interfaces/interfaces/usuario.interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {
-  MENSAJES_VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_NIVEL_USUARIO,
-  MENSAJES_VALIDACION_TITULO_USUARIO,
-  VALIDACION_DESCRIPCION_USUARIO, VALIDACION_NIVEL_USUARIO, VALIDACION_TIPO_USUARIO,
-  VALIDACION_TITULO_USUARIO
-} from '../../../../constantes/validaciones-formulario/validacion-usuario';
 import {debounceTime, map, mergeMap} from 'rxjs/operators';
 import {generarMensajesError} from '../../../../funciones/generar-mensajes-error';
 import { Usuario } from "../../../../clases/usuario";
@@ -45,14 +39,14 @@ export class FormularioUsuarioComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioUsuario = this._formBuilder.group({
-      cedula: [this.usuario ? this.usuario.cedula : '', VALIDACION_TITULO_USUARIO],
-      nombre: [this.usuario ? this.usuario.nombre : '', VALIDACION_DESCRIPCION_USUARIO],
+      cedula: [this.usuario ? this.usuario.cedula : ''],
+      nombre: [this.usuario ? this.usuario.nombre : ''],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
+    this.verificarCampoFormControl('nombre');
+    this.verificarCampoFormControl('cedula');
   }
 
   private _verificarFormulario() {
@@ -78,15 +72,15 @@ export class FormularioUsuarioComponent implements OnInit {
     const esString = typeof campo === 'string';
     return esString ? JSON.parse(campo) : campo;
   }
-  verificarCampoFormControl(campo, mensajeValidacion) {
+  verificarCampoFormControl(campo) {
     const campoFormControl = this.formularioUsuario.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))
       .subscribe(
         valor => {
-          this.mensajesError[campo] = generarMensajesError(campoFormControl, this.mensajesError[campo], mensajeValidacion);
-        }
+          return true;
+                }
       );
     this.subscribers.push(subscriber);
   }

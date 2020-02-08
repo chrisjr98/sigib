@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UsuarioInterface } from 'src/app/interfaces/interfaces/usuario.interface';
 import { Usuario } from 'src/app/clases/usuario';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import {VALIDACION_CODIGO_ROL, VALIDACION_NOMBRE_ROL, MENSAJES_VALIDACION_CODIGO_ROL, MENSAJES_VALIDACION_NOMBRE_ROL } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
+import {VALIDACION_CODIGO_ROL, VALIDACION_NOMBRE_ROL, MENSAJES_VALIDACION_CODIGO_ROL, MENSAJES_VALIDACION_NOMBRE_ROL } from 'src/app/constantes/validaciones-formulario/validacion-rol';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 import { RolInterface } from 'src/app/interfaces/interfaces/role.interfaces';

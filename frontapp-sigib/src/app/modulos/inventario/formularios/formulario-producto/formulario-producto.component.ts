@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { RolInterface } from 'src/app/interfaces/interfaces/role.interfaces';
 import { Rol } from 'src/app/clases/role';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { VALIDACION_TITULO_USUARIO, VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_TITULO_USUARIO, MENSAJES_VALIDACION_DESCRIPCION_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 import { debounceTime } from 'rxjs/operators';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 import { ProductoInterface } from 'src/app/interfaces/interfaces/producto.interface';
@@ -47,18 +46,18 @@ export class FormularioProductoComponent implements OnInit {
   stock?: number;
   private _inicializarFormulario() {
     this.formularioRol = this._formBuilder.group({
-      nombre: [this.producto ? this.producto.nombre : '', VALIDACION_TITULO_USUARIO],
-      identificador: [this.producto ? this.producto.identificador : '', VALIDACION_DESCRIPCION_USUARIO],
-      tipo: [this.producto ? this.producto.tipo : '', VALIDACION_TITULO_USUARIO],
-      marca: [this.producto ? this.producto.marca : '', VALIDACION_DESCRIPCION_USUARIO],
-      descontinuado: [this.producto ? this.producto.descontinuado : '', VALIDACION_TITULO_USUARIO],
-      stock: [this.producto ? this.producto.stock : '', VALIDACION_DESCRIPCION_USUARIO],
+      nombre: [this.producto ? this.producto.nombre : ''],
+      identificador: [this.producto ? this.producto.identificador : ''],
+      tipo: [this.producto ? this.producto.tipo : ''],
+      marca: [this.producto ? this.producto.marca : ''],
+      descontinuado: [this.producto ? this.producto.descontinuado : ''],
+      stock: [this.producto ? this.producto.stock : ''],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
+    this.verificarCampoFormControl('nombre', );
+    this.verificarCampoFormControl('cedula', );
   }
 
   private _verificarFormulario() {
@@ -84,15 +83,15 @@ export class FormularioProductoComponent implements OnInit {
     const esString = typeof campo === 'string';
     return esString ? JSON.parse(campo) : campo;
   }
-  verificarCampoFormControl(campo, mensajeValidacion) {
+  verificarCampoFormControl(campo) {
     const campoFormControl = this.formularioRol.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))
       .subscribe(
         valor => {
-          this.mensajesError[campo] = generarMensajesError(campoFormControl, this.mensajesError[campo], mensajeValidacion);
-        }
+          return true;
+                }
       );
     this.subscribers.push(subscriber);
   }
