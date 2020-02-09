@@ -45,6 +45,7 @@ export class CrearEditarRolComponent implements OnInit {
     this._cargandoService.habilitarCargando();
     if (this.data.rol) {
       this._cargandoService.deshabilitarCargando();
+      this.crearEditarRol.codigo = this.data.rol.codigo,
       this.dialogo.close(this.crearEditarRol);
     } else {
       this._cargandoService.deshabilitarCargando();

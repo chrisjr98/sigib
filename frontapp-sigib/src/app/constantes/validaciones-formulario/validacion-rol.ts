@@ -1,4 +1,5 @@
 import {Validators} from '@angular/forms';
+import { SOLO_LETRAS_ESPACIOS } from '../patrones';
 export const VALIDACION_CODIGO_ROL = [
   Validators.required,
   Validators.minLength(1),
@@ -13,7 +14,7 @@ export const VALIDACION_NOMBRE_ROL = [
   Validators.required,
   Validators.minLength(3),
   Validators.maxLength(60),
-  Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/g)
+  Validators.pattern(SOLO_LETRAS_ESPACIOS)
 ];
 export const MENSAJES_VALIDACION_NOMBRE_ROL = {
   required: 'El campo nombre es obligatorio',

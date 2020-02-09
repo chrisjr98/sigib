@@ -93,7 +93,7 @@
           [value]="roles | filter:filterpost"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
-          [paginator]="true"
+          [paginator]="false"
           [rows]="rows"
           [totalRecords]="totalRecords"
           [first]="this.queryParams.skip"

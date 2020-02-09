@@ -123,10 +123,6 @@ export class RutaGestionRolesComponent implements OnInit {
         if (registroCreado) {
           if (rolSeleccionado) {
             const indiceRegistro = this.roles.indexOf(rolSeleccionado);
-              console.log('asdf', {
-              rolSeleccionado, registroCreado ,indiceRegistro,
-            })
-            console.log('adfasdf', this.roles);
             this.roles[indiceRegistro] = registroCreado;
           } else {
             this.roles.unshift(registroCreado);

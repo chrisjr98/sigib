@@ -1,6 +1,5 @@
 import {Component, EventEmitter, HostListener, OnInit} from '@angular/core';
 import {CargandoService} from './servicios/cargando-service/cargando-service';
-import {MostrarListaAuspiciantesService} from './servicios/mostrar-lista-auspiciantes/mostrar-lista-auspiciantes.service';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +14,11 @@ export class AppComponent implements OnInit {
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _cargandoService: CargandoService,
-    // tslint:disable-next-line:variable-name
-    private readonly _mostrarListaAuspiciantes: MostrarListaAuspiciantesService,
   ) {
   }
 
   ngOnInit(): void {
     this.escucharCambiosEnCargandoService();
-    this.escucharCambiosMostrarListaAuspiciantes();
   }
 
   escucharCambiosEnCargandoService() {
@@ -31,16 +27,6 @@ export class AppComponent implements OnInit {
       .subscribe(
         (cambio) => {
           this.bloqueado = cambio;
-        }
-      );
-  }
-
-  escucharCambiosMostrarListaAuspiciantes() {
-    this._mostrarListaAuspiciantes
-      .cambioMostrar
-      .subscribe(
-        (cambio) => {
-          this.mostrarListaAuspiciantes = cambio;
         }
       );
   }
