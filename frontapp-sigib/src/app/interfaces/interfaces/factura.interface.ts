@@ -1,5 +1,5 @@
 export interface FacturaInterface{
-numero: number;
+numero: string;
 concepto: string;
 formapago: string;
 fecha: string;

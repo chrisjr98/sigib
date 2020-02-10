@@ -19,6 +19,7 @@ import {MatButtonModule} from '@angular/material';
 import { FormularioRolComponent } from './formularios/formulario-rol/formulario-rol.component';
 import { CrearEditarRolComponent } from './modales/crear-editar-rol/crear-editar-rol.component';
 import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gestion-roles.component';
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gesti
     FormularioRolComponent,
     CrearEditarRolComponent,
     RutaGestionRolesComponent,
-  ],
+    FilterPipe,
+    ],
   imports: [
     CommonModule,
     FormsModule,
@@ -45,11 +47,12 @@ import { RutaGestionRolesComponent } from './rutas/ruta-gestion-roles/ruta-gesti
     MenuAjustesModule,
     PickListModule,
     MatButtonModule,
+
   ],
   entryComponents: [
     CrearEditarUsuarioComponent,
     CrearEditarRolComponent,
-  ]
+  ],
 })
 export class ConfiguracionesModule {
 }

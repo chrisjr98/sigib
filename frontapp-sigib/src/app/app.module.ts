@@ -15,11 +15,12 @@ import {MatDialogModule, MatInputModule} from '@angular/material';
 import {TextMaskModule} from 'angular2-text-mask';
 import {HttpClientModule} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
-import {ConfiguracionesModule} from './modulos/configuraciones/configuraciones.module';
 import {AdministradorModule} from './modulos/administrador/administrador.module';
 import {JugadorGuard} from './servicios/guard/jugador.guard';
 import {AdministradorGuard} from './servicios/guard/administrador.guard';
 import { UsuarioRestService } from './servicios/rest/servicios/usuario-rest.service';
+import { RutaGestionInformacionComponent } from './modulos/informacion/rutas/ruta-gestion-informacion/ruta-gestion-informacion.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UsuarioRestService } from './servicios/rest/servicios/usuario-rest.serv
     RutaNoEncontradaComponent,
     AppComponent,
     RutaNoEncontradaComponent,
+    RutaGestionInformacionComponent,
   ],
   imports: [
     HttpClientModule,
@@ -44,7 +46,6 @@ import { UsuarioRestService } from './servicios/rest/servicios/usuario-rest.serv
     ReactiveFormsModule,
     MatDialogModule,
     TextMaskModule,
-    ConfiguracionesModule,
     AdministradorModule,
   ],
   providers: [

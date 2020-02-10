@@ -1,0 +1,8 @@
+# exposed ports
+ports:
+- port: 4200
+  onOpen: open-browser
+# start up tasks
+tasks:
+- init: "cd /workspace/sigib/frontapp-sigib/"
+  command: "cd /workspace/sigib/frontapp-sigib/ && npm i && npm run start" 

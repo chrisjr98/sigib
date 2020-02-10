@@ -23,8 +23,6 @@ export class CrearEditarUsuarioComponent implements OnInit {
     // tslint:disable-next-line:variable-name
     private readonly _cargandoService: CargandoService,
     // tslint:disable-next-line:variable-name
-    private readonly _usuarioService: UsuarioRestService,
-    // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
 
   ) {
@@ -44,33 +42,12 @@ export class CrearEditarUsuarioComponent implements OnInit {
   metodoCrearEditar() {
     this._cargandoService.habilitarCargando();
     if (this.data.usuario) {
-      this._usuarioService
-        .updateOne(this.data.usuario.id, this.crearEditarUsuario)
-        .subscribe(
-          async r => {
-            this._cargandoService.deshabilitarCargando();
-            this.crearEditarUsuario.habilitado = this.data.usuario.habilitado;
-            this.dialogo.close(this.crearEditarUsuario);
-          },
-          err => {
-            this._cargandoService.deshabilitarCargando();
-            console.error(err);
-          },
-        );
+      this._cargandoService.deshabilitarCargando();
+      this.crearEditarUsuario.cedula = this.data.usuario.cedula,
+      this.dialogo.close(this.crearEditarUsuario);
     } else {
-      this._usuarioService
-        .create(this.usuario)
-        .subscribe(
-          r => {
-            r.habilitado = r.habilitado ? ESTADOS.Activo : ESTADOS.Inactivo;
-            this._cargandoService.deshabilitarCargando();
-            this.dialogo.close(r);
-          },
-          err => {
-            this._cargandoService.deshabilitarCargando();
-            console.error(err);
-          },
-        );
+      this._cargandoService.deshabilitarCargando();
+      this.dialogo.close(this.crearEditarUsuario);
     }
   }
 

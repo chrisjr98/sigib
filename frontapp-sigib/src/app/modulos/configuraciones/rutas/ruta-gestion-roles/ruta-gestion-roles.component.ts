@@ -16,25 +16,26 @@ import { CrearEditarRolComponent } from '../../modales/crear-editar-rol/crear-ed
 @Component({
   selector: 'app-ruta-gestion-roles',
   templateUrl: './ruta-gestion-roles.component.html',
-  styleUrls: ['./ruta-gestion-roles.component.scss']
+  styleUrls: ['./ruta-gestion-roles.component.scss'],
 })
 export class RutaGestionRolesComponent implements OnInit {
 
 
   roles: RolInterface[] = [
     {
-      codigo: '1704125883',
-      nombre: 'Cristhian',
+      codigo: '0001',
+      nombre: 'admin',
     },
         {
-      codigo: '1714125883',
-      nombre: 'Manuel',
+      codigo: '0002',
+      nombre: 'Estudiante',
     },
         {
-      codigo: '1704452883',
-      nombre: 'Esteban',
+      codigo: '0003',
+      nombre: 'Profesor',
     }
   ];
+  filterpost ='';
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
@@ -85,7 +86,8 @@ export class RutaGestionRolesComponent implements OnInit {
 
   buscarPorNombre(busqueda: string) {
     this.busqueda = busqueda.trim();
-    this.queryParams.where = this.busqueda === '' ? {} : {titulo: this.busqueda};
+    this.filterpost =this.busqueda;
+   // this.queryParams.where = this.busqueda === '' ? {} : {titulo: this.busqueda};
     //this.buscar(this.queryParams.skip);
   }
 

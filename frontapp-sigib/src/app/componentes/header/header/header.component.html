@@ -2,7 +2,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <a
     class="navbar-brand"
-    (click)="desactivarAuspiciantes()"
     [routerLink]="['inicio']"
   >
     <img
@@ -31,6 +30,14 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
+        <div class="col-sm-6 ui-toolbar-group-left btn-block">
+            <br>
+            <button pButton style="width: 10%;" type="button"  label="Inicio"[routerLink]="['inicio']"><i class="fas fa-home"></i></button>
+            <button pButton style="width: 10%;" type="button" label="Facturacién" class="ui-button-success" [routerLink]="['/administrador','menu','facturacion']"><i class="fas fa-dollar-sign"></i></button>
+            <button pButton style="width: 10%;" type="button" label="Académico" class="ui-button-warning" [routerLink]="['/administrador','menu','academico']"><i class="fas fa-book"></i></button>
+            <button pButton style="width: 10%;" type="button" label="Inventario" class="ui-button-danger" [routerLink]="['/administrador','menu','inventario']"><i class="fas fa-shopping-cart"></i></button>
+            <button pButton style="width: 10%;" type="button" label="Configuración" class="ui-button-danger" [routerLink]="['/administrador','menu','configuraciones']"><i class="fas fa-user"></i></button>
+        </div>
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" (click)="salir()"

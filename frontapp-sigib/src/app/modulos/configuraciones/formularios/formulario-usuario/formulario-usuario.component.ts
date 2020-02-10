@@ -1,16 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UsuarioInterface} from '../../../../interfaces/interfaces/usuario.interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {
-  MENSAJES_VALIDACION_DESCRIPCION_USUARIO, MENSAJES_VALIDACION_NIVEL_USUARIO,
-  MENSAJES_VALIDACION_TITULO_USUARIO,
-  VALIDACION_DESCRIPCION_USUARIO, VALIDACION_NIVEL_USUARIO, VALIDACION_TIPO_USUARIO,
-  VALIDACION_TITULO_USUARIO
-} from '../../../../constantes/validaciones-formulario/validacion-usuario';
 import {debounceTime, map, mergeMap} from 'rxjs/operators';
 import {generarMensajesError} from '../../../../funciones/generar-mensajes-error';
 import { Usuario } from "../../../../clases/usuario";
 import {pipe} from 'rxjs';
+import { VALIDACION_CEDULA_USUARIO, VALIDACION_NOMBRE_USUARIO, MENSAJES_VALIDACION_CEDULA_USUARIO, MENSAJES_VALIDACION_NOMBRE_USUARIO } from 'src/app/constantes/validaciones-formulario/validacion-usuario';
 
 @Component({
   selector: 'app-formulario-usuario',
@@ -35,6 +30,7 @@ export class FormularioUsuarioComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.iniciarFormulario();
   }
 
   iniciarFormulario() {
@@ -45,14 +41,14 @@ export class FormularioUsuarioComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioUsuario = this._formBuilder.group({
-      cedula: [this.usuario ? this.usuario.cedula : '', VALIDACION_TITULO_USUARIO],
-      nombre: [this.usuario ? this.usuario.nombre : '', VALIDACION_DESCRIPCION_USUARIO],
+      cedula: [this.usuario ? this.usuario.cedula : '', VALIDACION_CEDULA_USUARIO],
+      nombre: [this.usuario ? this.usuario.nombre : '', VALIDACION_NOMBRE_USUARIO],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_TITULO_USUARIO);
-    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_DESCRIPCION_USUARIO);
+    this.verificarCampoFormControl('cedula', MENSAJES_VALIDACION_CEDULA_USUARIO);
+    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_NOMBRE_USUARIO);
   }
 
   private _verificarFormulario() {
@@ -61,10 +57,8 @@ export class FormularioUsuarioComponent implements OnInit {
       .valueChanges
       .subscribe(
         formulario => {
-          const UsuarioValidada = formularioFormGroup.valid;
-          if (UsuarioValidada) {
-            formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
-            formulario.tipo = this.setearValorSelect(formulario.tipo);
+          const usuarioValida = formularioFormGroup.valid;
+          if (usuarioValida) {
             this.usuarioValida.emit(formulario);
           } else {
             this.usuarioValida.emit(false);
@@ -74,10 +68,6 @@ export class FormularioUsuarioComponent implements OnInit {
     this.subscribers.push(subscriber);
   }
 
-  setearValorSelect(campo) {
-    const esString = typeof campo === 'string';
-    return esString ? JSON.parse(campo) : campo;
-  }
   verificarCampoFormControl(campo, mensajeValidacion) {
     const campoFormControl = this.formularioUsuario.get(campo);
     const subscriber = campoFormControl
