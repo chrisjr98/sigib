@@ -8,6 +8,14 @@ import { RolEntity } from './rol/rol.entity';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import { RolService } from './rol/rol.service';
 import { crearDatos } from 'datos-prueba/crearDatos';
+import { EstudianteModule } from './estudiante/estudiante.module';
+import { ProfesorModule } from './profesor/profesor.module';
+import { CarreraModule } from './carrera/carrera.module';
+import { MateriaModule } from './materia/materia.module';
+import { CursoModule } from './curso/curso.module';
+import { RegistroNotaModule } from './registro-nota/registro-nota.module';
+import { MatriculaModule } from './matricula/matricula.module';
+import { RegistroAsistenciaModule } from './registro-asistencia/registro-asistencia.module';
 
 
 init();
@@ -37,6 +45,14 @@ init();
             timezone: CONFIG_ENVIRONMENT.dbConnections.mysql.timezone,
         }),
         RolModule,
+        EstudianteModule,
+        ProfesorModule,
+        CarreraModule,
+        MateriaModule,
+        CursoModule,
+        RegistroNotaModule,
+        MatriculaModule,
+        RegistroAsistenciaModule,
     ],
     controllers: [AppController],
     providers: [AppService],
