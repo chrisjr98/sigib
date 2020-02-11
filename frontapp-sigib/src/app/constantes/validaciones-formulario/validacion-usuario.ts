@@ -4,11 +4,13 @@ import { SOLO_LETRAS_ESPACIOS, SOLO_ENTEROS } from '../patrones';
 export const VALIDACION_CEDULA_USUARIO = [
   Validators.required,
   Validators.maxLength(10),
+  Validators.minLength(10),
   Validators.pattern(SOLO_ENTEROS)
 ];
 export const MENSAJES_VALIDACION_CEDULA_USUARIO = {
   required: 'El campo cédula es obligatorio',
   maxlength: 'El campo  cédula unicamente debe teer 10 caracteres ',
+  minlength: 'El campo  cédula unicamente debe teer 10 caracteres ',
   pattern: 'El campo solo puede tener números enteros'
 };
 

@@ -37,17 +37,13 @@ export class RutaLoginComponent implements OnInit {
   }
 
   irARutaMenu(registroValido) {
-    const url = ['/administrador', 'menu',];
+    const url = ['/administrador', 'menu'];
     this._router
       .navigate(
         url,
         {
-          queryParams: {
-            ronda: 0,
-            idRonda: 0,
-          }
-        }
-      );
+          queryParams:this.datosUsuario
+        });
   }
 
   verificarParticipanteIngreso() {
