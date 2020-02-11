@@ -16,6 +16,14 @@ import { CursoModule } from './curso/curso.module';
 import { RegistroNotaModule } from './registro-nota/registro-nota.module';
 import { MatriculaModule } from './matricula/matricula.module';
 import { RegistroAsistenciaModule } from './registro-asistencia/registro-asistencia.module';
+import {EstudianteEntity} from './estudiante/estudiante.entity';
+import {MateriaEntity} from './materia/materia.entity';
+import {CarreraEntity} from './carrera/carrera.entity';
+import {CursoEntity} from './curso/curso.entity';
+import {MatriculaEntity} from './matricula/matricula.entity';
+import {ProfesorEntity} from './profesor/profesor.entity';
+import {RegistroAsistenciaEntity} from './registro-asistencia/registro-asistencia.entity';
+import {RegistroNotaEntity} from './registro-nota/registro-nota.entity';
 
 
 init();
@@ -32,6 +40,14 @@ init();
             database: CONFIG_ENVIRONMENT.dbConnections.mysql.database,
             entities: [
                 RolEntity,
+                EstudianteEntity,
+                MateriaEntity,
+                CarreraEntity,
+                CursoEntity,
+                MatriculaEntity,
+                ProfesorEntity,
+                RegistroAsistenciaEntity,
+                RegistroNotaEntity,
             ],
             synchronize: CONFIG_ENVIRONMENT.dbConnections.mysql.synchronize,
             ssl: CONFIG_ENVIRONMENT.dbConnections.mysql.ssl,
