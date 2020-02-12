@@ -1,1 +1,1 @@
-export const NUMERO_FILAS_TABLAS = 10;
+export const NUMERO_FILAS_TABLAS = 100;

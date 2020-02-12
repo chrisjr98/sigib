@@ -10,6 +10,7 @@ import {ToasterService} from 'angular2-toaster';
 })
 export class RutaLoginComponent implements OnInit {
 
+  datosUsuario;
 
 
   constructor(
@@ -30,8 +31,19 @@ export class RutaLoginComponent implements OnInit {
   unirseARoom(participante) {
 
   }
+  formularioValido(evento) {
+    this.datosUsuario = evento;
+    console.log('usuario', this.datosUsuario);
+  }
 
-  irARutaDeEspera() {
+  irARutaMenu(registroValido) {
+    const url = ['/administrador', 'menu'];
+    this._router
+      .navigate(
+        url,
+        {
+          queryParams:this.datosUsuario
+        });
   }
 
   verificarParticipanteIngreso() {

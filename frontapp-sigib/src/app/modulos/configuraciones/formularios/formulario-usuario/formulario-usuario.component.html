@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <form class="form-horizontal"
-          [formGroup]="formularioNoticia"
+          [formGroup]="formularioUsuario"
           novalidate autocomplete="off">
       <fieldset>
       <div class="row">
@@ -9,8 +9,8 @@
           <mat-form-field>
             <mat-label>Cédula</mat-label>
             <input matInput placeholder="Ej: 1704125883 " formControlName="cedula" required>
-            <mat-error *ngIf="mensajesError.nombre.length > 0">
-              <div *ngFor="let mensaje of mensajesError.nombre">{{mensaje}}</div>
+            <mat-error *ngIf="mensajesError.cedula.length > 0">
+              <div *ngFor="let mensaje of mensajesError.cedula">{{mensaje}}</div>
             </mat-error>
           </mat-form-field>
         </div>

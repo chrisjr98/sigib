@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {MostrarListaAuspiciantesService} from '../../../servicios/mostrar-lista-auspiciantes/mostrar-lista-auspiciantes.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment.prod';
 
@@ -18,17 +17,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     // tslint:disable-next-line:variable-name
-    private readonly _mostrarListaAuspiciantes: MostrarListaAuspiciantesService,
     public readonly router: Router,
   ) {
     this.estaLogeado = false;
   }
 
   ngOnInit() {
-  }
-
-  desactivarAuspiciantes() {
-    this._mostrarListaAuspiciantes.ocultar();
   }
 
   salir() {

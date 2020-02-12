@@ -16,6 +16,7 @@ export class AdministradorGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log('asdfasdfsadfsdf',route,state);
     const existenDatos = (user_id !== '');
     if (existenDatos) {
       return true;
