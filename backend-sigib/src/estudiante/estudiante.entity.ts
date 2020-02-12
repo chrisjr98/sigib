@@ -31,6 +31,7 @@ export class EstudianteEntity {
         type: 'varchar',
         name: 'cedula',
         length: 10,
+        unique: true,
     })
     cedula: string = null;
 

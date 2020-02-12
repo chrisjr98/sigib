@@ -121,11 +121,23 @@ export class RutaGestionEstudiantesComponent implements OnInit {
           if (estudianteSeleccionado) {
             const indiceRegistro = this.estudiantes.indexOf(estudianteSeleccionado);
             this.estudiantes[indiceRegistro] = registroCreado;
+            this._toasterService.pop('success', 'Exito', 'Estudiante actualizado');
           } else {
+            this._toasterService.pop('success', 'Exito', 'Estudiante registrado exitosamente');
             this.estudiantes.unshift(registroCreado);
           }
         }
-      });
+      },
+        error => {
+          if (estudianteSeleccionado) {
+            this._cargandoService.deshabilitarCargando();
+            this._toasterService.pop('error', 'Error', 'No se actualizo el esutdiante');
+          } else {
+            this._cargandoService.deshabilitarCargando();
+            this._toasterService.pop('error', 'Error', 'Se produjo un error al guardar el estudiante');
+          }
+        }
+      );
 
   }
 }

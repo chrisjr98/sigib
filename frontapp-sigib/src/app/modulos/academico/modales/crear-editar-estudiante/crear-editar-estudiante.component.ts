@@ -5,6 +5,7 @@ import { RutaGestionEstudiantesComponent } from '../../rutas/ruta-gestion-estudi
 import { CargandoService } from 'src/app/servicios/cargando-service/cargando-service';
 import { EstudianteRestService } from 'src/app/servicios/rest/servicios/estudiante-rest.service';
 import { ToasterService } from 'angular2-toaster';
+import {validarCedula} from '../../../../funciones/validar-cedula';
 
 @Component({
   selector: 'app-crear-editar-estudiante',
@@ -35,7 +36,21 @@ export class CrearEditarEstudianteComponent implements OnInit {
   validarFormulario(estudiante) {
     if (estudiante) {
       this.crearEditarEstudiante = estudiante;
-      this.formularioValido = true;
+      if (this.crearEditarEstudiante.cedula) {
+        try {
+          const cedula = this.crearEditarEstudiante.cedula;
+          const respuestaValidarCedula = validarCedula(cedula);
+          if (respuestaValidarCedula) {
+            this._toasterService.pop('success', 'Exito', 'Cédula Válida');
+            this.formularioValido = true;
+          } else {
+            this._toasterService.pop('error', 'Error', 'Cédula no válida');
+            this.formularioValido = false;
+          }
+        } catch (e) {
+          this.formularioValido = false;
+        }
+      }
     } else {
       this.formularioValido = false;
     }
@@ -70,6 +85,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
             this.dialogo.close(r);
           },
           err => {
+            this._toasterService.pop('error', 'Error', 'Estudiante ya registrado');
             this._cargandoService.deshabilitarCargando();
             console.error(err);
           },
