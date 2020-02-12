@@ -1,5 +1,5 @@
 export interface UsuarioSistemaInterface {
-  idUsuario: number;
-  nombreUsuario: string;
+  idUsuario?: number;
+  cedulaUsuario: string;
   rol: string;
 }

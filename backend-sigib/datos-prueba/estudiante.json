@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "carrera": 1,
+      "codigo": "1A",
+      "cedula": "1103756134",
+      "nombre": "Maura",
+      "apellido": "Odom",
+      "telefono": "0955432167",
+      "correo": "maura223@gmail.com"
+    },
+    {
+      "id": 2,
+      "carrera": 2,
+      "codigo": "2A",
+      "cedula": "0601646623",
+      "nombre": "María",
+      "apellido": "Delgado",
+      "telefono": "0975662410",
+      "correo": "madelga55@gmail.com"
+    },
+    {
+      "id": 3,
+      "carrera": 3,
+      "codigo": "3A",
+      "cedula": "1103201461",
+      "nombre": "Julia",
+      "apellido": "Yacelga",
+      "telefono": "0934522000",
+      "correo": "yac_4@gmail.com"
+    },
+    {
+      "id'": 4,
+      "carrera": 3,
+      "codigo": "4A",
+      "cedula": "0102051349",
+      "nombre": "Patricia",
+      "apellido": "Mccarthy",
+      "telefono": "0974532666",
+      "correo": "78patgh@gmail.com"
+    }
+  ]

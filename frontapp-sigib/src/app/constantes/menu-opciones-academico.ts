@@ -15,13 +15,13 @@ export const OPCIONES_MENU_ACADEMICO = [
     textoBoton: 'ESTUDIANTES',
     descripcionOpcion: 'Gestiona los estudiantes del instituto',
     pathImagen: 'assets/imagenes/opciones-menu-academico/opcion-estudiantes.png',
-    dirigirA: ['../estudiantes']
+    dirigirA: ['../gestion-estudiantes']
   },
   {
     textoBoton: 'PROFESORES',
     descripcionOpcion: 'Gestiona los estudiantes del instituto',
     pathImagen: 'assets/imagenes/opciones-menu-academico/opcion-profesores.png',
-    dirigirA: ['../profesores']
+    dirigirA: ['../gestion-profesores']
   },
   {
     textoBoton: 'ARCHIVO',

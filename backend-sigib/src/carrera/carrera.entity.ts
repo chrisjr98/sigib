@@ -23,7 +23,7 @@ export class CarreraEntity {
         name: 'codigo_carrera',
         length: 2,
     })
-    codigoCarrera: string = null;
+    codigo: string = null;
 
     @Column({
         type: 'varchar',
@@ -36,7 +36,7 @@ export class CarreraEntity {
         type: 'int',
         name: 'duracion-carrera',
     })
-    duracionCarrera: number = null;
+    duracionAnios: number = null;
 
     @OneToMany(
         type => EstudianteEntity,

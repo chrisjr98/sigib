@@ -26,6 +26,9 @@ import { RutaNotasEstudianteComponent } from './rutas/ruta-notas-estudiante/ruta
 import { RutaCursoProfesorComponent } from './rutas/ruta-curso-profesor/ruta-curso-profesor.component';
 import { RutaAsistenciaComponent } from './rutas/ruta-asistencia/ruta-asistencia.component';
 import { MenuProfesorModule } from 'src/app/componentes/menu-profesor/menu-profesor.module';
+import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
+import { FormularioEstudianteComponent } from './formularios/formulario-estudiante/formulario-estudiante.component';
+import { CrearEditarEstudianteComponent } from './modales/crear-editar-estudiante/crear-editar-estudiante.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { MenuProfesorModule } from 'src/app/componentes/menu-profesor/menu-profe
     RutaMatriculacionComponent,
     RutaNotasEstudianteComponent,
     RutaCursoProfesorComponent,
-    RutaAsistenciaComponent],
+    RutaAsistenciaComponent,
+    RutaGestionProfesoresComponent,
+    FormularioEstudianteComponent,
+    CrearEditarEstudianteComponent],
   imports: [
     CommonModule,
     AcademicoRoutingModule,
@@ -64,7 +70,8 @@ import { MenuProfesorModule } from 'src/app/componentes/menu-profesor/menu-profe
 
   ],
 entryComponents: [
-CrearEditarCarreraComponent
+CrearEditarCarreraComponent,
+CrearEditarEstudianteComponent
 ]
 })
 export class AcademicoModule { }
