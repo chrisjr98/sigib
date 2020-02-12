@@ -1,5 +1,4 @@
-import { Validators } from '@angular/forms';
-import { SOLO_ENTEROS, SOLO_LETRAS_ESPACIOS, EXPRESION_CORREO, EXPRESION_TELEFONO } from '../patrones';
+import {Validators} from '@angular/forms';import { SOLO_ENTEROS, SOLO_LETRAS_ESPACIOS, EXPRESION_CORREO, EXPRESION_TELEFONO } from '../patrones';
 
 export const VALIDACION_CEDULA_ESTUDIANTE = [
   Validators.required,
@@ -42,13 +41,13 @@ export const MENSAJES_VALIDACION_APELLIDO_ESTUDIANTE = {
 export const VALIDACION_CORREO_ESTUDIANTE =[
   Validators.required,
   Validators.maxLength(50),
-  Validators.pattern(EXPRESION_CORREO)
+  Validators.email,
 ]
 
 export const MENSAJES_VALIDACION_CORREO_ESTUDIANTE = {
   required: 'Por favor ingrese el correo del estudiante',
   maxlength: 'Correo no válido',
-  pattern: 'Correo no válido',
+  email: 'Correo no válido',
 };
 
 export const VALIDACION_CARRERA_ESTUDIANTE = [
