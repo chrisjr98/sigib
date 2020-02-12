@@ -12,6 +12,7 @@ import {ConfiguracionesModule} from '../configuraciones/configuraciones.module';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
 import { RegistroFormularioComponent } from './formularios/registro-formulario/registro-formulario.component';
+import { LocalStorageService } from 'src/app/servicios/rest/servicios/local-storage';
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { RegistroFormularioComponent } from './formularios/registro-formulario/r
     AutoCompleteModule
     ],
   entryComponents: [
-  ]
+  ],
+  providers: [LocalStorageService]
+
 })
 export class AdministradorModule {
 }

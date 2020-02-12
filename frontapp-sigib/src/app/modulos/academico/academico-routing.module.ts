@@ -14,6 +14,7 @@ import { MenuProfesorComponent } from 'src/app/componentes/menu-profesor/menu-pr
 import { RutaNotasEstudianteComponent } from './rutas/ruta-notas-estudiante/ruta-notas-estudiante.component';
 import { RutaCursoProfesorComponent } from './rutas/ruta-curso-profesor/ruta-curso-profesor.component';
 import { RutaAsistenciaComponent } from './rutas/ruta-asistencia/ruta-asistencia.component';
+import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
 
 
 const routes: Routes = [
@@ -91,6 +92,14 @@ const routes: Routes = [
       {
         path: 'archivo',
         component: RutaGestionArchivoComponent
+      },
+      {
+        path: 'gestion-profesores',
+        component:RutaGestionProfesoresComponent
+      },
+      {
+        path: 'gestion-estudiantes',
+        component: RutaGestionEstudiantesComponent
       }
     ]
   },

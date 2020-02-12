@@ -45,7 +45,7 @@ export class EstudianteEntity {
         name: 'apellido',
         length: 100,
     })
-    apellidoEstudiante: string = null;
+    apellido: string = null;
 
     @Column({
         type: 'varchar',

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToasterService} from 'angular2-toaster';
+import { LocalStorageService } from 'src/app/servicios/rest/servicios/local-storage';
 
 @Component({
   selector: 'app-ingresar-juego',
@@ -22,6 +23,8 @@ export class RutaLoginComponent implements OnInit {
     private readonly _activatedRoute: ActivatedRoute,
     // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
+    private readonly _localStorageService: LocalStorageService,
+
   ) {
   }
 
@@ -37,13 +40,28 @@ export class RutaLoginComponent implements OnInit {
   }
 
   irARutaMenu(registroValido) {
-    const url = ['/administrador', 'menu'];
-    this._router
+    if(this.datosUsuario){
+      const datosLocalStorage = {
+        cedulaUsuario: this.datosUsuario.cedula,
+        rol: this.datosUsuario.rol
+      };
+      this._localStorageService
+        .guardarEnLocalStorage(
+          datosLocalStorage,
+          this.datosUsuario.cedula,
+        );
+      const url = ['/administrador', 'menu'];
+      this._router
       .navigate(
         url,
         {
-          queryParams:this.datosUsuario
+          queryParams:{
+            cedula: this.datosUsuario.cedula,
+            rol: this.datosUsuario.rol
+          }
         });
+      }
+
   }
 
   verificarParticipanteIngreso() {
