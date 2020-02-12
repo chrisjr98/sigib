@@ -92,16 +92,16 @@
                   {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='nombre'">
-                  {{rowData.field}}
+                  {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='apellido'">
-                  {{rowData.field}}
+                  {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='telefono'">
-                  {{rowData.field}}
+                  {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='correo'">
-                  {{rowData.field}}
+                  {{rowData[col.field]}}
                 </div>
                 <div *ngIf="col.field==='acciones'">
                   <button pButton type="button" class="btn btn-primary" (click)="abrirDialogo(rowData)"

@@ -21,10 +21,11 @@ export class EstudianteEntity {
     updatedAt?: Date;
 
     @Column({
-        type: 'int',
+        type: 'varchar',
         name: 'codigo',
+        length: 5,
     })
-    codigo: number = null;
+    codigo: string = null;
 
     @Column({
         type: 'varchar',
@@ -37,8 +38,9 @@ export class EstudianteEntity {
         type: 'varchar',
         name: 'nombre',
         length: 100,
+        nullable: true,
     })
-    nombre: string = null;
+    nombre?: string = null;
 
     @Column({
         type: 'varchar',

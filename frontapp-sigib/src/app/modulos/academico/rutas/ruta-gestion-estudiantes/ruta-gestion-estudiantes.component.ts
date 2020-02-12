@@ -19,12 +19,12 @@ export class RutaGestionEstudiantesComponent implements OnInit {
 
   estudiantes: EstudianteInterface[];
   columnas = [
-    {field: 'codigo', header: 'Código', width: '20%'},
-    {field: 'cedula', header: 'Cédula', width: '40%'},
-    {field: 'nombre', header: 'Nombre', width: '10%'},
-    {field: 'apellido', header: 'Apellido', width: '10%'},
-    {field: 'telefono', header: 'Telefono', width: '10%'},
-    {field: 'correo', header: 'Correo', width: '10%'},
+    {field: 'codigo', header: 'Código', width: '10%'},
+    {field: 'cedula', header: 'Cédula', width: '20%'},
+    {field: 'nombre', header: 'Nombre', width: '20%'},
+    {field: 'apellido', header: 'Apellido', width: '20%'},
+    {field: 'telefono', header: 'Telefono', width: '20%'},
+    {field: 'correo', header: 'Correo', width: '20%'},
     {field: 'acciones', header: 'Acciones', width: '10%'},
   ];
   rows = NUMERO_FILAS_TABLAS;
@@ -91,6 +91,7 @@ export class RutaGestionEstudiantesComponent implements OnInit {
         (respuesta: [EstudianteInterface[], number]) => {
           this.estudiantes = respuesta[0];
           this.totalRecords = respuesta[1];
+          console.log('records', this.estudiantes);
           this.loading = false;
           this._router.navigate(this.ruta, {
             queryParams: {

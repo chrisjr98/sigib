@@ -35,7 +35,6 @@ export class CrearEditarEstudianteComponent implements OnInit {
   validarFormulario(estudiante) {
     if (estudiante) {
       this.crearEditarEstudiante = estudiante;
-      console.log('respuesta estudiante', this.crearEditarEstudiante);
       this.formularioValido = true;
     } else {
       this.formularioValido = false;
@@ -45,6 +44,9 @@ export class CrearEditarEstudianteComponent implements OnInit {
   metodoCrearEditar() {
     this._cargandoService.habilitarCargando();
     if (this.data.estudiante) {
+      this.crearEditarEstudiante.carrera = 1;
+      this.crearEditarEstudiante.codigo = this.data.estudiante.codigo;
+      console.log('valores a actualizar', this.crearEditarEstudiante);
       this._estudianteService
         .updateOne(this.data.estudiante.id, this.crearEditarEstudiante)
         .subscribe(
@@ -58,8 +60,10 @@ export class CrearEditarEstudianteComponent implements OnInit {
           },
         );
     } else {
+      this.crearEditarEstudiante.carrera = 1;
+      this.crearEditarEstudiante.codigo = '000';
       this._estudianteService
-        .create(this.estudiante)
+        .create(this.crearEditarEstudiante)
         .subscribe(
           r => {
             this._cargandoService.deshabilitarCargando();

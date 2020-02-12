@@ -1,0 +1,27 @@
+[
+    {
+      "estudiante": 1,
+      "curso": 2,
+      "horasAsistidas": 80
+    },
+    {
+      "estudiante": 2,
+      "curso": 3,
+      "horasAsistidas": 70
+    },
+    {
+      "estudiante": 3,
+      "curso": 2,
+      "horasAsistidas": 78
+    },
+    {
+        "estudiante": 4,
+        "curso": 1,
+        "horasAsistidas": 68
+    },
+    {
+        "estudiante": 4,
+        "curso": 4,
+        "horasAsistidas": 62
+    }
+  ]

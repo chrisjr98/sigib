@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "cedula": "1706172648",
+      "nombre": "Joyce",
+      "apellido": "Gilmore",
+      "tipoContrato": "Ocasional",
+      "fechaContratación": "Mon Jul 29 1985",
+      "telefono": "0954353307",
+      "correo": "lelia_Franecki8@hotmail.com"
+    },
+    {
+      "id": 2,
+      "cedula": "1714818299",
+      "nombre": "Constance",
+      "apellido": "Lopez",
+      "tipoContrato": "Fijo",
+      "fechaContratación": "Mon Dec 05 2015",
+      "telefono": "0934563296",
+      "correo": "lopez85456@hotmail.com"
+    },
+    {
+      "id": 3,
+      "cedula": "1103037048",
+      "nombre": "Sofia",
+      "apellido": "Larson",
+      "tipoContrato": "Ocasional",
+      "fechaContratación": "Sat May 26 2012",
+      "telefono": "0915273083",
+      "correo": "lsofia778@hotmail.com"
+    },
+    {
+      "id": 4,
+      "cedula": "1704997012",
+      "nombre": "Allison",
+      "apellido": "Rodriguez",
+      "tipoContrato": "Fijo",
+      "fechaContratación": "Tue Apr 11 1995 17:09:01",
+      "telefono": "0955493701",
+      "correo": "8allisrod@gmail.com"
+    }
+  ]

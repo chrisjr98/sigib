@@ -24,6 +24,8 @@ import {MatriculaEntity} from './matricula/matricula.entity';
 import {ProfesorEntity} from './profesor/profesor.entity';
 import {RegistroAsistenciaEntity} from './registro-asistencia/registro-asistencia.entity';
 import {RegistroNotaEntity} from './registro-nota/registro-nota.entity';
+import {EstudianteService} from './estudiante/estudiante.service';
+import {CarreraService} from './carrera/carrera.service';
 
 
 init();
@@ -77,6 +79,8 @@ export class AppModule {
     constructor(
         private readonly _appService: AppService,
         private readonly _rolService: RolService,
+        private readonly _estudianteService: EstudianteService,
+        private readonly _carreraService: CarreraService,
     ) {
         if (CONFIG_ENVIRONMENT.dbConnections.crearDatosPrueba) {
             this.crearDatosDePrueba()
@@ -91,12 +95,21 @@ export class AppModule {
 
     async crearDatosDePrueba() {
          try {
-             console.log('asfsdfsdfsdf');
             const respuestaRol = await crearDatos(
                 this._rolService,
                 '/datos-rol.json',
             );
             console.log('respuesta rol', respuestaRol);
+             const respuestaCarrera = await crearDatos(
+                 this._carreraService,
+                 '/carrera.json',
+             );
+             console.log('respuesta carrera', respuestaCarrera);
+            const respuestaEstudiante = await crearDatos(
+                 this._estudianteService,
+                 '/estudiante.json',
+             );
+             console.log('respuesta estudiante', respuestaEstudiante);
         } catch (e) {
             console.error('Error creando datos de prueba', e);
             return false;
