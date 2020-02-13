@@ -62,7 +62,7 @@
       <div class="col-sm-12">
         <p-table
           [columns]="columnas"
-          [value]="estudiantes"
+          [value]="estudiantes  | filter:filterpost"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
           [paginator]="false"

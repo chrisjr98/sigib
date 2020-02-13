@@ -36,6 +36,7 @@ export class RutaGestionEstudiantesComponent implements OnInit {
   nivel;
   estado;
   ruta = [];
+  filterpost ='';
 
   constructor(
     // tslint:disable-next-line:variable-name
@@ -69,8 +70,9 @@ export class RutaGestionEstudiantesComponent implements OnInit {
 
   buscarPorNombre(busqueda: string) {
     this.busqueda = busqueda.trim();
-    this.queryParams.where = this.busqueda === '' ? {} : {titulo: this.busqueda};
-    this.buscar(this.queryParams.skip);
+    this.filterpost = this.busqueda;
+    // this.queryParams.where = this.busqueda === '' ? {} : {titulo: this.busqueda};
+    //this.buscar(this.queryParams.skip);
   }
 
   cargarDatosLazy(event) {

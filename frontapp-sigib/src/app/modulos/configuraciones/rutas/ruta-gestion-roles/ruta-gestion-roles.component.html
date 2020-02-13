@@ -90,7 +90,7 @@
       <div class="col-sm-12">
         <p-table
           [columns]="columnas"
-          [value]="roles | filter:filterpost"
+          [value]="roles"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
           [paginator]="false"

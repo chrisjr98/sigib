@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { VALIDACION_CEDULA_ESTUDIANTE, VALIDACION_NOMBRE_ESTUDIANTE, VALIDACION_APELLIDO_ESTUDIANTE, VALIDACION_TELEFONO_ESTUDIANTE, VALIDACION_CORREO_ESTUDIANTE, VALIDACION_CARRERA_ESTUDIANTE, MENSAJES_VALIDACION_CEDULA_ESTUDIANTE, MENSAJES_VALIDACION_NOMBRE_ESTUDIANTE, MENSAJES_VALIDACION_APELLIDO_ESTUDIANTE, MENSAJES_VALIDACION_TELEFONO_ESTUDIANTE, MENSAJES_VALIDACION_CORREO_ESTUDIANTE } from 'src/app/constantes/validaciones-formulario/validacion-estudiante';
 import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 import { debounceTime } from 'rxjs/operators';
+import {validarCedula} from '../../../../funciones/validar-cedula';
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
   selector: 'app-formulario-estudiante',
@@ -29,6 +31,8 @@ export class FormularioEstudianteComponent implements OnInit {
   constructor(
     // tslint:disable-next-line:variable-name
     private readonly _formBuilder: FormBuilder,
+    private readonly _toasterService: ToasterService,
+
   ) {
   }
 
@@ -42,7 +46,7 @@ export class FormularioEstudianteComponent implements OnInit {
     this._verificarFormulario();
   }
 
-    reiniciarFormulario() {
+  reiniciarFormulario() {
     this.formularioEstudiante = undefined;
     this.subscribers.forEach(s => s.unsubscribe());
     this.subscribers = [];
@@ -101,5 +105,17 @@ export class FormularioEstudianteComponent implements OnInit {
         }
       );
     this.subscribers.push(subscriber);
+  }
+  validarCedular(evento) {
+    console.log('valor', evento);
+      if(evento.length === 10){
+        const cedula = evento;
+        const respuestaValidarCedula = validarCedula(cedula);
+        if (respuestaValidarCedula) {
+          this._toasterService.pop('success', 'Exito', 'Cédula Válida');
+        } else {
+          this._toasterService.pop('error', 'Error', 'Cédula no válida');
+        }
+      }
   }
 }

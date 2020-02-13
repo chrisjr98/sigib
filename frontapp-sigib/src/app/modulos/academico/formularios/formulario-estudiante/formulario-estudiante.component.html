@@ -8,7 +8,7 @@
           <div class="col-sm-6">
             <mat-form-field>
               <mat-label>Cédula</mat-label>
-              <input matInput placeholder="Ej. 1104125883" formControlName="cedula" required>
+              <input matInput placeholder="Ej. 1104125883" formControlName="cedula" required (ngModelChange)="validarCedular($event)">
               <mat-error *ngIf="mensajesError.cedula.length > 0">
                 <div *ngFor="let mensaje of mensajesError.cedula">{{mensaje}}</div>
               </mat-error>
@@ -54,7 +54,7 @@
             <mat-form-field>
               <mat-label>Carrera</mat-label>
               <select matNativeControl required placeholder="Escoja un Carrera" formControlName="carrera">
-                <option value="cosmetologia">Cosmetología</option>
+                <option value="belleza">Belleza</option>
                 <option value="cosmiatria">Cosmiatria</option>
                 <option value="micropigmentacion">Micropigmentacion</option>
               </select>
