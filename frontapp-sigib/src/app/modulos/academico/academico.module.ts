@@ -29,6 +29,7 @@ import { MenuProfesorModule } from 'src/app/componentes/menu-profesor/menu-profe
 import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
 import { FormularioEstudianteComponent } from './formularios/formulario-estudiante/formulario-estudiante.component';
 import { CrearEditarEstudianteComponent } from './modales/crear-editar-estudiante/crear-editar-estudiante.component';
+import {FilterPipe} from '../../pipes/filter.pipe';
 
 
 @NgModule({
@@ -48,7 +49,9 @@ import { CrearEditarEstudianteComponent } from './modales/crear-editar-estudiant
     RutaAsistenciaComponent,
     RutaGestionProfesoresComponent,
     FormularioEstudianteComponent,
-    CrearEditarEstudianteComponent],
+    CrearEditarEstudianteComponent,
+    FilterPipe,
+  ],
   imports: [
     CommonModule,
     AcademicoRoutingModule,

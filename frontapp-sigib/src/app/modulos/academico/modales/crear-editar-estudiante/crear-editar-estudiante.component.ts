@@ -41,10 +41,8 @@ export class CrearEditarEstudianteComponent implements OnInit {
           const cedula = this.crearEditarEstudiante.cedula;
           const respuestaValidarCedula = validarCedula(cedula);
           if (respuestaValidarCedula) {
-            this._toasterService.pop('success', 'Exito', 'Cédula Válida');
             this.formularioValido = true;
           } else {
-            this._toasterService.pop('error', 'Error', 'Cédula no válida');
             this.formularioValido = false;
           }
         } catch (e) {

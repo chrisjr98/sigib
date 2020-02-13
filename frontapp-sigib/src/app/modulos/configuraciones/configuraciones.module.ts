@@ -29,7 +29,6 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
     FormularioRolComponent,
     CrearEditarRolComponent,
     RutaGestionRolesComponent,
-    FilterPipe,
     ],
   imports: [
     CommonModule,
