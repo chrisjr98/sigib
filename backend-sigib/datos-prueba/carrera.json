@@ -3,18 +3,18 @@
       "id": 1,
       "codigo": "C1",
       "nombre": "Cosmetología",
-      "duracionAnios": 2
+      "duracion": 2
     },
     {
         "id": 2,
         "codigo": "B1",
         "nombre": "Belleza",
-        "duracionAnios": 2
+        "duracion": 2
     },
     {
       "id": 3,
       "codigo": "C2",
       "nombre": "Cosmetría",
-      "duracionAnios": 2
+      "duracion": 2
     }
   ]
