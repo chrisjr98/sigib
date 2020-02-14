@@ -22,12 +22,6 @@ export class CursoEntity {
     updatedAt?: Date;
 
     @Column({
-        type: 'int',
-        name: 'codigo',
-    })
-    codigo: number = null;
-
-    @Column({
         type: 'varchar',
         name: 'horario',
         length: 10,

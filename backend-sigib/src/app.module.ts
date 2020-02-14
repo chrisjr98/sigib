@@ -27,7 +27,14 @@ import {RegistroNotaEntity} from './registro-nota/registro-nota.entity';
 import {EstudianteService} from './estudiante/estudiante.service';
 import {CarreraService} from './carrera/carrera.service';
 import {MateriaService} from './materia/materia.service';
-
+import {ProfesorService} from './profesor/profesor.service';
+import {CursoService} from './curso/curso.service';
+import {MatriculaService} from './matricula/matricula.service';
+import {RegistroAsistenciaService} from './registro-asistencia/registro-asistencia.service';
+import {RegistroNotaService} from './registro-nota/registro-nota.service';
+import { UsuarioModule } from './usuario/usuario.module';
+import {UsuarioEntity} from './usuario/usuario.entity';
+import {UsuarioService} from './usuario/usuario.service';
 
 init();
 
@@ -51,6 +58,7 @@ init();
                 ProfesorEntity,
                 RegistroAsistenciaEntity,
                 RegistroNotaEntity,
+                UsuarioEntity,
             ],
             synchronize: CONFIG_ENVIRONMENT.dbConnections.mysql.synchronize,
             ssl: CONFIG_ENVIRONMENT.dbConnections.mysql.ssl,
@@ -72,6 +80,7 @@ init();
         RegistroNotaModule,
         MatriculaModule,
         RegistroAsistenciaModule,
+        UsuarioModule,
     ],
     controllers: [AppController],
     providers: [AppService],
@@ -83,6 +92,12 @@ export class AppModule {
         private readonly _estudianteService: EstudianteService,
         private readonly _carreraService: CarreraService,
         private readonly _materiaService: MateriaService,
+        private readonly _profesorService: ProfesorService,
+        private readonly _cursoSevice: CursoService,
+        private readonly _matriculaService: MatriculaService,
+        private readonly _registroAsistenciaService: RegistroAsistenciaService,
+        private readonly _registroNotasService: RegistroNotaService,
+        private readonly _usuarioService: UsuarioService,
     ) {
         if (CONFIG_ENVIRONMENT.dbConnections.crearDatosPrueba) {
             this.crearDatosDePrueba()
@@ -96,27 +111,57 @@ export class AppModule {
     }
 
     async crearDatosDePrueba() {
-         try {
+        try {
             const respuestaRol = await crearDatos(
                 this._rolService,
                 '/datos-rol.json',
             );
             console.log('respuesta rol', respuestaRol);
-             const respuestaCarrera = await crearDatos(
-                 this._carreraService,
-                 '/carrera.json',
-             );
-             console.log('respuesta carrera', respuestaCarrera);
+            const respuestaCarrera = await crearDatos(
+                this._carreraService,
+                '/carrera.json',
+            );
+            console.log('respuesta carrera', respuestaCarrera);
             const respuestaEstudiante = await crearDatos(
-                 this._estudianteService,
-                 '/estudiante.json',
-             );
-             console.log('respuesta estudiante', respuestaEstudiante);
-             const respuestaMaterias = await crearDatos(
-                 this._materiaService,
-                 '/materias.json',
-             );
-             console.log('respuesta materias', respuestaMaterias);
+                this._estudianteService,
+                '/estudiante.json',
+            );
+            console.log('respuesta estudiante', respuestaEstudiante);
+            const respuestaMaterias = await crearDatos(
+                this._materiaService,
+                '/materias.json',
+            );
+            console.log('respuesta materias', respuestaMaterias);
+            const respuestaProfesor = await crearDatos(
+                this._profesorService,
+                '/profesor.json',
+            );
+            console.log('respuesta profesor', respuestaProfesor);
+            const respuestaCursos = await crearDatos(
+                this._cursoSevice,
+                '/cursos.json',
+            );
+            console.log('respuesta cursos', respuestaCursos);
+            const respuestaMatricula = await crearDatos(
+                this._matriculaService,
+                '/matricula.json',
+            );
+            console.log('respuesta matricula', respuestaMatricula);
+            const respuestaRegistroAsistencia = await crearDatos(
+                this._registroAsistenciaService,
+                '/registroasistencia.json',
+            );
+            console.log('respuesta registro asistencia', respuestaRegistroAsistencia);
+            const respuestaRegistroNotas = await crearDatos(
+                this._registroNotasService,
+                '/registronotas.json',
+            );
+            console.log('respuesta registro notas', respuestaRegistroNotas);
+            const respuestaUsuarios = await crearDatos(
+                this._usuarioService,
+                '/datos-usuario.json',
+            );
+            console.log('respuesta usuarios', respuestaUsuarios);
         } catch (e) {
             console.error('Error creando datos de prueba', e);
             return false;

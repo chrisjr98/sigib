@@ -5,7 +5,7 @@
       "materia": 1,
       "horario": "Matutino",
       "aula": 216,
-      "numeroMaxAlumnos": 31
+      "numeroMaximoAlumnos": 31
     },
     {
       "id": 2,
@@ -13,7 +13,7 @@
       "materia": 1,
       "horario": "Intensivo",
       "aula": 405,
-      "numeroMaxAlumnos": 25
+      "numeroMaximoAlumnos": 25
     },
     {
       "id": 3,
@@ -21,7 +21,7 @@
       "materia": 3,
       "horario": "Matutino",
       "aula": 123,
-      "numeroMaxAlumnos": 18
+      "numeroMaximoAlumnos": 18
     },
     {
       "id": 4,
@@ -29,6 +29,6 @@
       "materia": 4,
       "horario": "Vespertino",
       "aula": 215,
-      "numeroMaxAlumnos": 22
+      "numeroMaximoAlumnos": 22
     }
   ]

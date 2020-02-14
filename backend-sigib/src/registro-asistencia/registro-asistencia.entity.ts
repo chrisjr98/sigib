@@ -1,4 +1,5 @@
 import {
+    Column,
     CreateDateColumn, Entity, ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -16,6 +17,12 @@ export class RegistroAsistenciaEntity {
 
     @UpdateDateColumn()
     updatedAt?: Date;
+
+    @Column({
+        type: 'int',
+        name: 'horas_asistidas',
+    })
+    horasAsistidas: number = null;
 
     @ManyToOne(
         type => EstudianteEntity,

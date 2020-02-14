@@ -1,6 +1,6 @@
 import {
     Column,
-    CreateDateColumn, Entity, ManyToOne, OneToMany,
+    CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
@@ -8,6 +8,7 @@ import {CarreraEntity} from '../carrera/carrera.entity';
 import {RegistroAsistenciaEntity} from '../registro-asistencia/registro-asistencia.entity';
 import {RegistroNotaEntity} from '../registro-nota/registro-nota.entity';
 import {MatriculaEntity} from '../matricula/matricula.entity';
+import {UsuarioEntity} from '../usuario/usuario.entity';
 
 @Entity('estudiante')
 export class EstudianteEntity {
@@ -87,4 +88,10 @@ export class EstudianteEntity {
         carrera => carrera.estudiante,
     )
     carrera: CarreraEntity | string | number;
+
+    @OneToOne(
+        type => UsuarioEntity,
+        usuario => usuario.estudiante,
+    )
+    usuario: UsuarioEntity;
 }

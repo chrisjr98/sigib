@@ -13,9 +13,9 @@ import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 })
 export class FormularioMateriasCarreraComponent implements OnInit {
 
-@Output() materiaCarreraValida: EventEmitter<MateriaInterface | boolean> = new EventEmitter();
-@Input() materiaCarrera: MateriaInterface;
-@Input() carreraNombre: MateriaInterface;
+  @Output() materiaCarreraValida: EventEmitter<MateriaInterface | boolean> = new EventEmitter();
+  @Input() materiaCarrera: MateriaInterface;
+  @Input() carreraNombre: MateriaInterface;
 
   mensajesError = {
     nombre: [],
@@ -34,6 +34,7 @@ export class FormularioMateriasCarreraComponent implements OnInit {
 
   ngOnInit() {
     this.iniciarFormulario();
+    console.log('nombre de la carrera', this.carreraNombre);
   }
 
   iniciarFormulario() {
@@ -47,9 +48,9 @@ export class FormularioMateriasCarreraComponent implements OnInit {
       nombre: [this.materiaCarrera ? this.materiaCarrera.nombre : '', VALIDACION_NOMBRE_MATERIA],
       anio: [this.materiaCarrera ? this.materiaCarrera.anio : '', VALIDACION_ANIO_MATERIA],
       tipo: [this.materiaCarrera ? this.materiaCarrera.tipoMateria : '', VALIDACION_TIPO_MATERIA],
-      carrera: [this.materiaCarrera ? this.materiaCarrera.carrera : this.carreraNombre,],
+      carrera: [this.carreraNombre],
     });
-      this.formularioMateria.get('carrera').disable();
+    this.formularioMateria.get('carrera').disable();
   }
 
   private _verificarCamposFormulario() {

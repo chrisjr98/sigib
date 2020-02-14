@@ -1,10 +1,12 @@
 import {
     Column,
-    CreateDateColumn, Entity, OneToMany,
+    CreateDateColumn, Entity, OneToMany, OneToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
 import {CursoEntity} from '../curso/curso.entity';
+import {Usuario} from '../../../frontapp-sigib/src/app/clases/usuario';
+import {UsuarioEntity} from '../usuario/usuario.entity';
 
 @Entity('profesor')
 export class ProfesorEntity {
@@ -16,12 +18,6 @@ export class ProfesorEntity {
 
     @UpdateDateColumn()
     updatedAt?: Date;
-
-    @Column({
-        type: 'int',
-        name: 'codigo',
-    })
-    codigo: number = null;
 
     @Column({
         type: 'varchar',
@@ -42,7 +38,7 @@ export class ProfesorEntity {
         name: 'apellido',
         length: 100,
     })
-    apellidoEstudiante: string = null;
+    apellido: string = null;
 
     @Column({
         type: 'varchar',
@@ -76,4 +72,11 @@ export class ProfesorEntity {
         curso => curso.profesor,
     )
     curso: CursoEntity[];
+
+    @OneToOne(
+        type => UsuarioEntity,
+        usuario => usuario.profesor,
+    )
+    usuario: UsuarioEntity;
+
 }
