@@ -123,9 +123,9 @@ export class RutaGestionEstudiantesComponent implements OnInit {
           if (estudianteSeleccionado) {
             const indiceRegistro = this.estudiantes.indexOf(estudianteSeleccionado);
             this.estudiantes[indiceRegistro] = registroCreado;
-            this._toasterService.pop('success', 'Exito', 'Estudiante actualizado');
+            this._toasterService.pop('success', '', 'Estudiante actualizado');
           } else {
-            this._toasterService.pop('success', 'Exito', 'Estudiante registrado exitosamente');
+            this._toasterService.pop('success', '', 'Estudiante registrado exitosamente');
             this.estudiantes.unshift(registroCreado);
           }
         }

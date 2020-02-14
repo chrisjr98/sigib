@@ -10,9 +10,14 @@
         Menú Academico
       </a>
     </li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/administrador','menu','academico','menu-academico','carreras']">
+      Gestión Carreras
+      </a>
+    </li>
     <li class="breadcrumb-item active"
         aria-current="page">
-      Carreras
+      Materias
     </li>
   </ol>
 </nav>
@@ -21,9 +26,9 @@
   <div class="row separacion-top-1 separacion-fondo-1">
     <div class="col-sm-12 ">
       <h3>
-        Gestión de Carreras
+        Materias de {{nombreCarrera}}
       </h3>
-      <p>Gestione los Carreras del instituto</p>
+      <p>Gestione las materias de la carrera {{nombreCarrera}}</p>
     </div>
   </div>
 
@@ -40,7 +45,7 @@
               </button>
             </div>
           </div>
-          <small id="busquedaRolHelp" class="form-text text-muted ayuda-span"> Busque una carrera por código o nombre.
+          <small id="busquedaRolHelp" class="form-text text-muted ayuda-span"> Busque una materia por su código.
           </small>
         </div>
       </form>
@@ -53,48 +58,22 @@
       </button>
     </div>
   </div>
-  <div class="col-sm-12 separacion-top-2 ">
-    <div class="row justify-content-center">
-      <div class="col-lg-1"></div>
-      <div class="col-lg-3 justify-content-center">
-        <app-select-general *ngIf="tiposNoticias"
-                            [registros]="tiposNoticias"
-                            [opcionEtiqueta]="'nombre'"
-                            [placeholder]="'Filtre por tipo de nombre'"
-                            (opcionSeleccionada)="buscarPorTipoNoticia($event)"
-        ></app-select-general>
-      </div>
-      <div class="col-lg-3">
-        <app-select-general *ngIf="nivelesJuego"
-                            [registros]="nivelesJuego"
-                            [opcionEtiqueta]="'nombre'"
-                            [placeholder]="'Filtre por cedula'"
-                            (opcionSeleccionada)="buscarPorNivel($event)"
-        ></app-select-general>
-      </div>
-      <div class="col-lg-3">
-        <app-select-general *ngIf="opcionesHabilitado"
-                            [registros]="opcionesHabilitado"
-                            [opcionEtiqueta]="'etiqueta'"
-                            [placeholder]="'Filtre por estado'"
-                            (opcionSeleccionada)="buscarPorEstado($event)"
-        ></app-select-general>
-      </div>
-      <div class="col-lg-1"></div>
-    </div>
-  </div>
   <br>
+ <br>
+  <br>
+
   <div class="row separacion-top-2 separacion-fondo-1">
     <div class="col-sm-12">
       <div class="col-sm-12">
         <p-table
           [columns]="columnas"
-          [value]="carreras"
+          [value]="materias"
           [lazy]="true"
           (onLazyLoad)="cargarDatosLazy($event)"
-          [paginator]="true"
+          [paginator]="false"
           [rows]="rows"
           [totalRecords]="totalRecords"
+          [loading]="loading"
           [first]="this.queryParams.skip"
           [resizableColumns]="true"
           [responsive]="true"
@@ -117,25 +96,19 @@
                 <div *ngIf="col.field==='nombre'">
                   {{rowData[col.field]}}
                 </div>
-                <div *ngIf="col.field==='duracion'">
+                <div *ngIf="col.field==='anio'">
                   {{rowData[col.field]}}
                 </div>
+                <div *ngIf="col.field==='tipoMateria'">
+                  {{rowData[col.field]}}
+                </div>
+                <div *ngIf="col.field==='carrera'">
+                  {{nombreCarrera}}
+                </div>
                 <div *ngIf="col.field==='acciones'">
-                    <div style="padding-top: 0.2rem; padding-bottom: 0.2rem">
-                      <button type="button"
-                              class="btn btn-info btn-sm"
-                              (click)="abrirDialogo(rowData)"
-                      >
-                        Editar
-                      </button>
-                    </div>
-                    <div style="padding-top: 0.2rem; padding-bottom: 0.2rem">
-                      <button class="btn btn-block btn-warning btn-sm"
-                              (click)="irMenuMaterias(rowData.id)">
-                        Materias
-                      </button>
-                    </div>
-
+                  <button pButton type="button" class="btn btn-primary" (click)="abrirDialogo(rowData)"
+                  >Editar
+                  </button>
                 </div>
 
               </td>

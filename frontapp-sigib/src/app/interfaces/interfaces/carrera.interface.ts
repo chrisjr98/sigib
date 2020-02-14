@@ -1,5 +1,6 @@
 export interface CarreraInterface {
-codigo: string;
+id?: number;
+codigo?: string;
 nombre: string;
-duracion: string;
+duracion: number;
 }

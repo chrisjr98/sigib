@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CargandoService } from 'src/app/servicios/cargando-service/cargando-service';
 import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
+import { CarreraRestService } from 'src/app/servicios/rest/servicios/carrrera-rest.service';
 
 @Component({
   selector: 'app-ruta-gestion-carreras',
@@ -19,13 +20,7 @@ export class RutaGestionCarrerasComponent implements OnInit {
 
 
 
-  carreras: CarreraInterface[] = [
-    {
-      codigo: 'COS01',
-      nombre: 'Cosmetología',
-      duracion:'4 semestres'
-    }
-  ];
+  carreras: CarreraInterface[];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
@@ -39,7 +34,6 @@ export class RutaGestionCarrerasComponent implements OnInit {
   loading: boolean;
   queryParams: QueryParamsInterface = {};
   busqueda = '';
-  estado;
   ruta = [];
 
   constructor(
@@ -49,6 +43,7 @@ export class RutaGestionCarrerasComponent implements OnInit {
     private readonly  _router: Router,
     // tslint:disable-next-line:variable-name
     private readonly _cargandoService: CargandoService,
+    private readonly _carreraService: CarreraRestService,
     // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
     public dialogo: MatDialog,
@@ -70,57 +65,71 @@ export class RutaGestionCarrerasComponent implements OnInit {
         });
   }
 
-  actualizarEstado(registro) {
-  }
-
   buscarPorNombre(busqueda: string) {
     this.busqueda = busqueda.trim();
-    this.queryParams.where = this.busqueda === '' ? {} : {titulo: this.busqueda};
-    //this.buscar(this.queryParams.skip);
   }
 
   cargarDatosLazy(event) {
     this.loading = true;
     this.queryParams.skip = event.first;
-    const seBuscoPorTipo = this.queryParams.where.tipo;
-    const seBuscoPorEstado = this.queryParams.where.habilitado === 1 || this.queryParams.where.habilitado === 0;
-    const seBuscoPorNivel = this.queryParams.where.nivelJuego;
-    const seBuscoPorTipoEstadoNivel = seBuscoPorTipo || seBuscoPorEstado || seBuscoPorNivel;
+    this.buscar(this.queryParams.skip);
   }
 
   buscar(skip: number) {
     const consulta = {
       where: this.queryParams.where,
-      relations: ['tipo', 'nivelJuego'],
       skip,
       take: this.rows,
       order: {id: 'DESC'}
     };
+    this._carreraService.findAll()
+      .subscribe(
+        (respuesta: [CarreraInterface[], number]) => {
+          this.carreras = respuesta[0];
+          this.totalRecords = respuesta[1];
+          console.log('registros de la base', this.carreras);
+          this.loading = false;
+          this._router.navigate(this.ruta, {
+            queryParams: {
+              skip: this.queryParams.skip,
+              where: JSON.stringify(this.queryParams.where),
+            }
+          });
+        }, error => {
+          this.loading = false;
+          console.error('Error en el servidor', error);
+          this._toasterService.pop('error', 'Error', 'Error al cargar las carreras');
+        }
+      );
   }
 
-  abrirDialogo(rolSeleccionado?): void {
+  abrirDialogo(carreraSeleccionada?): void {
     const dialogRef = this.dialogo.open(
       CrearEditarCarreraComponent,
       {
-        data: {rol: rolSeleccionado},
+        data: {carrera: carreraSeleccionada},
       }
     );
     const resultadoModal$ = dialogRef.afterClosed();
     resultadoModal$
       .subscribe((registroCreado: CarreraInterface) => {
         if (registroCreado) {
-          if (rolSeleccionado) {
-            const indiceRegistro = this.carreras.indexOf(rolSeleccionado);
+          if (carreraSeleccionada) {
+            const indiceRegistro = this.carreras.indexOf(carreraSeleccionada);
+            this.carreras[indiceRegistro] = registroCreado;
+            this._toasterService.pop('success', '', 'Carrera actualizada exitosamente');
             this.carreras[indiceRegistro] = registroCreado;
           } else {
+            this._toasterService.pop('success', '', 'Carrera registrada exitosamente');
             this.carreras.unshift(registroCreado);
           }
         }
       });
 
   }
-    irNoticiasEmisor(idCarrera: number) {
-    this._router.navigate(['administrador', 'menu', 'academico', 'menu-academico', 'carreras', idCarrera, 'materias']);
+    irMenuMaterias(idCarrera:number) {
+      const url = ['administrador', 'menu', 'academico', 'menu-academico', 'carreras', idCarrera, 'materias']
+    this._router.navigate(url);
   }
 
 }

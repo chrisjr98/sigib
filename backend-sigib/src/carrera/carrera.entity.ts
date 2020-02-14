@@ -34,9 +34,9 @@ export class CarreraEntity {
 
     @Column({
         type: 'int',
-        name: 'duracion-carrera',
+        name: 'duracion',
     })
-    duracionAnios: number = null;
+    duracion: number = null;
 
     @OneToMany(
         type => EstudianteEntity,
