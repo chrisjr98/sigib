@@ -33,6 +33,8 @@ import { RouterModule } from '@angular/router';
 import { FormularioMateriasCarreraComponent } from './formularios/formulario-materias-carrera/formulario-materias-carrera.component';
 import { CrearEditarMateriasCarreraComponent } from './modales/crear-editar-materias-carrera/crear-editar-materias-carrera.component';
 import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
+import { FormularioCursoComponent } from './formularios/formulario-curso/formulario-curso.component';
+import { CrearEditarCursoComponent } from './modales/crear-editar-curso/crear-editar-curso.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materi
     FormularioMateriasCarreraComponent,
     CrearEditarMateriasCarreraComponent,
     RutaGestionMateriasCarreraComponent,
+    FormularioCursoComponent,
+    CrearEditarCursoComponent,
   ],
   imports: [
     CommonModule,
