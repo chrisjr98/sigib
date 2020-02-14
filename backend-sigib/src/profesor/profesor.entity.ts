@@ -18,12 +18,6 @@ export class ProfesorEntity {
     updatedAt?: Date;
 
     @Column({
-        type: 'int',
-        name: 'codigo',
-    })
-    codigo: number = null;
-
-    @Column({
         type: 'varchar',
         name: 'cedula',
         length: 10,
@@ -42,7 +36,7 @@ export class ProfesorEntity {
         name: 'apellido',
         length: 100,
     })
-    apellidoEstudiante: string = null;
+    apellido: string = null;
 
     @Column({
         type: 'varchar',
