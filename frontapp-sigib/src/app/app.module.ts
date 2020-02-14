@@ -21,6 +21,8 @@ import {AdministradorGuard} from './servicios/guard/administrador.guard';
 import { UsuarioRestService } from './servicios/rest/servicios/usuario-rest.service';
 import { RutaGestionInformacionComponent } from './modulos/informacion/rutas/ruta-gestion-informacion/ruta-gestion-informacion.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { FilterPipe } from './pipes/filter.pipe';
   imports: [
     HttpClientModule,
     BrowserModule,
+    CommonModule,
+    RouterModule,
     AppRoutingModule,
     BlockUIModule,
     ToasterModule.forRoot(),

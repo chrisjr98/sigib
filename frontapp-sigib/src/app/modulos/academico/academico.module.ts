@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AcademicoRoutingModule } from './academico-routing.module';
 import { RutaGestionCarrerasComponent } from './rutas/ruta-gestion-carreras/ruta-gestion-carreras.component';
 import { RutaGestionCursosComponent } from './rutas/ruta-gestion-cursos/ruta-gestion-cursos.component';
@@ -8,7 +7,6 @@ import { RutaGestionEstudiantesComponent } from './rutas/ruta-gestion-estudiante
 import { RutaGestionArchivoComponent } from './rutas/ruta-gestion-archivo/ruta-gestion-archivo.component';
 import { MenuOpcionesAcademicoModule } from 'src/app/componentes/menu-opciones-academico/menu-opciones-academico.module';
 import { FormularioCarreraComponent } from './formularios/formulario-carrera/formulario-carrera.component';
-import { CrearEditarCarreraComponent } from './modales/crear-editar-carrera/crear-editar-carrera.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatDialogModule, MatSelectModule, MatOptionModule, MatButtonModule } from '@angular/material';
 import { TextMaskModule } from 'angular2-text-mask';
@@ -30,6 +28,11 @@ import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/
 import { FormularioEstudianteComponent } from './formularios/formulario-estudiante/formulario-estudiante.component';
 import { CrearEditarEstudianteComponent } from './modales/crear-editar-estudiante/crear-editar-estudiante.component';
 import {FilterPipe} from '../../pipes/filter.pipe';
+import { CrearEditarCarreraComponent } from './modales/crear-editar-carrera/crear-editar-carrera.component';
+import { RouterModule } from '@angular/router';
+import { FormularioMateriasCarreraComponent } from './formularios/formulario-materias-carrera/formulario-materias-carrera.component';
+import { CrearEditarMateriasCarreraComponent } from './modales/crear-editar-materias-carrera/crear-editar-materias-carrera.component';
+import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
 
 
 @NgModule({
@@ -51,6 +54,9 @@ import {FilterPipe} from '../../pipes/filter.pipe';
     FormularioEstudianteComponent,
     CrearEditarEstudianteComponent,
     FilterPipe,
+    FormularioMateriasCarreraComponent,
+    CrearEditarMateriasCarreraComponent,
+    RutaGestionMateriasCarreraComponent,
   ],
   imports: [
     CommonModule,
@@ -70,11 +76,13 @@ import {FilterPipe} from '../../pipes/filter.pipe';
     MatOptionModule,
     PickListModule,
     MatButtonModule,
+    RouterModule,
 
   ],
 entryComponents: [
 CrearEditarCarreraComponent,
-CrearEditarEstudianteComponent
+CrearEditarEstudianteComponent,
+CrearEditarMateriasCarreraComponent,
 ]
 })
 export class AcademicoModule { }

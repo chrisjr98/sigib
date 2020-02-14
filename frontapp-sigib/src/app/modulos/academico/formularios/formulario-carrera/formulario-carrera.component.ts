@@ -3,6 +3,8 @@ import { Carrera } from 'src/app/clases/carrera';
 import { CarreraInterface } from 'src/app/interfaces/interfaces/carrera.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { VALIDACION_NOMBRE_CARRERA, VALIDACION_DURACION_CARRERA, MENSAJES_VALIDACION_NOMBRE_CARRERA, MENSAJES_VALIDACION_DURACION_CARRERA } from 'src/app/constantes/validaciones-formulario/validacion-carrera';
+import { generarMensajesError } from 'src/app/funciones/generar-mensajes-error';
 
 @Component({
   selector: 'app-formulario-carrera',
@@ -14,7 +16,7 @@ export class FormularioCarreraComponent implements OnInit {
  @Output() carreraValida: EventEmitter< CarreraInterface| boolean> = new EventEmitter();
   @Input() carrera: Carrera;
   mensajesError = {
-    codigo: [],
+    duracion: [],
     nombre: [],
   };
   formularioCarrera: FormGroup;
@@ -27,6 +29,7 @@ export class FormularioCarreraComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.iniciarFormulario()
   }
 
   iniciarFormulario() {
@@ -37,15 +40,14 @@ export class FormularioCarreraComponent implements OnInit {
 
   private _inicializarFormulario() {
     this.formularioCarrera = this._formBuilder.group({
-      codigo: [this.carrera ? this.carrera.codigo : ''],
-      nombre: [this.carrera ? this.carrera.nombre : ''],
-      duracion: [this.carrera ? this.carrera.duracion : ''],
+      nombre: [this.carrera ? this.carrera.nombre : '',VALIDACION_NOMBRE_CARRERA],
+      duracion: [this.carrera ? this.carrera.duracion : '',VALIDACION_DURACION_CARRERA],
     });
   }
 
   private _verificarCamposFormulario() {
-    this.verificarCampoFormControl('nombre');
-    this.verificarCampoFormControl('cedula');
+    this.verificarCampoFormControl('nombre', MENSAJES_VALIDACION_NOMBRE_CARRERA);
+    this.verificarCampoFormControl('duracion', MENSAJES_VALIDACION_DURACION_CARRERA);
   }
 
   private _verificarFormulario() {
@@ -56,8 +58,6 @@ export class FormularioCarreraComponent implements OnInit {
         formulario => {
           const UsuarioValidada = formularioFormGroup.valid;
           if (UsuarioValidada) {
-            formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
-            formulario.tipo = this.setearValorSelect(formulario.tipo);
             this.carreraValida.emit(formulario);
           } else {
             this.carreraValida.emit(false);
@@ -71,14 +71,14 @@ export class FormularioCarreraComponent implements OnInit {
     const esString = typeof campo === 'string';
     return esString ? JSON.parse(campo) : campo;
   }
-  verificarCampoFormControl(campo) {
+  verificarCampoFormControl(campo, mensajeValidacion) {
     const campoFormControl = this.formularioCarrera.get(campo);
     const subscriber = campoFormControl
       .valueChanges
       .pipe(debounceTime(500))
       .subscribe(
         valor => {
-        return true;
+          this.mensajesError[campo] = generarMensajesError(campoFormControl, this.mensajesError[campo], mensajeValidacion);
         }
       );
     this.subscribers.push(subscriber);
