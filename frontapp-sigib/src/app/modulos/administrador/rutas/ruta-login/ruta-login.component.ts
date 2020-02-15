@@ -47,20 +47,22 @@ export class RutaLoginComponent implements OnInit {
       };
       this._localStorageService
         .guardarEnLocalStorage(
-          datosLocalStorage,
-          this.datosUsuario.cedula,
+          'usuario',
+          datosLocalStorage
         );
+      const usuariadsfasdf = JSON.parse(this._localStorageService.obtenerDatosLocalStorage('usuario'));
+      console.log('datos del local storage', usuariadsfasdf);
       const url = ['/administrador', 'menu'];
       this._router
-      .navigate(
-        url,
-        {
-          queryParams:{
-            cedula: this.datosUsuario.cedula,
-            rol: this.datosUsuario.rol
-          }
-        });
-      }
+        .navigate(
+          url,
+          {
+            queryParams:{
+              cedula: this.datosUsuario.cedula,
+              rol: this.datosUsuario.rol
+            }
+          });
+    }
 
   }
 
@@ -69,5 +71,5 @@ export class RutaLoginComponent implements OnInit {
   }
 
   buscarRondaPorJuego(nombreSala: string) {
-}
+  }
 }

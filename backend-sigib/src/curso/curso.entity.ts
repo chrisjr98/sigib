@@ -22,10 +22,11 @@ export class CursoEntity {
     updatedAt?: Date;
 
     @Column({
-        type: 'int',
-        name: 'codigo',
+        type: 'varchar',
+        name: 'grupo',
+        length: 3,
     })
-    codigo: number = null;
+    grupo: string = null;
 
     @Column({
         type: 'varchar',
@@ -46,6 +47,12 @@ export class CursoEntity {
         name: 'numero_max_alumnos',
     })
     numeroMaximoAlumnos: number = null;
+
+    @Column({
+        type: 'int',
+        name: 'id_carrera',
+    })
+    idCarrera: number = null;
 
     @OneToMany(
         type => RegistroNotaEntity,
