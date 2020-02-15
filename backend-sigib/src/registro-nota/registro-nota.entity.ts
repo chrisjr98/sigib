@@ -1,4 +1,5 @@
 import {
+    Column,
     CreateDateColumn, Entity, ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
@@ -16,6 +17,22 @@ export class RegistroNotaEntity {
 
     @UpdateDateColumn()
     updatedAt?: Date;
+
+    @Column({
+        type: 'decimal',
+        name: 'nota_primer_quimestre',
+        precision: 10,
+        scale: 2,
+    })
+    notaPrimerQuimestre: number = null;
+
+    @Column({
+        type: 'decimal',
+        name: 'nota_segundo_quimestre',
+        precision: 10,
+        scale: 2,
+    })
+    notaSegundoQuimestre: number = null;
 
     @ManyToOne(
         type => EstudianteEntity,

@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import {UsuarioEntity} from '../usuario/usuario.entity';
 
 @Entity('rol')
 export class RolEntity {
@@ -30,4 +31,10 @@ export class RolEntity {
     name: 'nombre',
   })
   nombre: string = null;
+
+  @OneToMany(
+      type => UsuarioEntity,
+      usuario => usuario.rol,
+  )
+  usuario: UsuarioEntity[];
 }

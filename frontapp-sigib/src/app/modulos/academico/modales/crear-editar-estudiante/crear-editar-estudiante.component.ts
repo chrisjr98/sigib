@@ -6,6 +6,7 @@ import { CargandoService } from 'src/app/servicios/cargando-service/cargando-ser
 import { EstudianteRestService } from 'src/app/servicios/rest/servicios/estudiante-rest.service';
 import { ToasterService } from 'angular2-toaster';
 import {validarCedula} from '../../../../funciones/validar-cedula';
+import {UsuarioRestService} from '../../../../servicios/rest/servicios/usuario-rest.service';
 
 @Component({
   selector: 'app-crear-editar-estudiante',
@@ -27,7 +28,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
     private readonly _estudianteService: EstudianteRestService,
     // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
-
+    private readonly _usuarioService: UsuarioRestService
   ) {
   }
 
@@ -59,7 +60,6 @@ export class CrearEditarEstudianteComponent implements OnInit {
     if (this.data.estudiante) {
       this.crearEditarEstudiante.carrera = 1;
       this.crearEditarEstudiante.codigo = this.data.estudiante.codigo;
-      console.log('valores a actualizar', this.crearEditarEstudiante);
       this._estudianteService
         .updateOne(this.data.estudiante.id, this.crearEditarEstudiante)
         .subscribe(
@@ -74,20 +74,35 @@ export class CrearEditarEstudianteComponent implements OnInit {
         );
     } else {
       this.crearEditarEstudiante.carrera = 1;
-      this.crearEditarEstudiante.codigo = '000';
-      this._estudianteService
-        .create(this.crearEditarEstudiante)
-        .subscribe(
-          r => {
-            this._cargandoService.deshabilitarCargando();
-            this.dialogo.close(r);
-          },
-          err => {
-            this._toasterService.pop('error', 'Error', 'Estudiante ya registrado');
-            this._cargandoService.deshabilitarCargando();
-            console.error(err);
-          },
-        );
+      this.crearEditarEstudiante.codigo = '0001';
+      this._usuarioService
+        .create({
+          cedula: this.crearEditarEstudiante.cedula,
+          contrasenia: 'A' + this.crearEditarEstudiante.cedula + 'a-',
+          rol: 2
+        }).subscribe(
+        r => {
+          this.crearEditarEstudiante.usuario = r.id;
+          this._estudianteService.create(
+            this.crearEditarEstudiante
+          ).subscribe(
+            respuesta => {
+              this._cargandoService.deshabilitarCargando();
+              this.dialogo.close(respuesta);
+            },
+            err => {
+              this._toasterService.pop('error', 'Error', 'Estudiante ya registrado');
+              this._cargandoService.deshabilitarCargando();
+              console.error(err);
+            },
+          );
+        },
+        err => {
+          this._toasterService.pop('error', 'Error', 'Estudiante ya registrado');
+          this._cargandoService.deshabilitarCargando();
+          console.error(err);
+        },
+      );
     }
   }
 
