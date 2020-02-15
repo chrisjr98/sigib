@@ -2,7 +2,7 @@
     {
       "id": 1,
       "codigo": "CP1",
-      "carrera": 3,
+      "carrera": 1,
       "nombre": "Teoria de la Especialización",
       "anio": "primero",
       "tipoMateria": "Especialidad"
@@ -10,7 +10,7 @@
     {
         "id": 2,
         "codigo": "BS1",
-        "carrera": 2,
+        "carrera": 1,
         "nombre": "Inglés Teórico",
         "anio": "segundo",
         "tipoMateria": "Complementaria"

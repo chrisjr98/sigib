@@ -2,41 +2,56 @@
     {
       "id": 1,
       "cedula": "1706172648",
-      "nombre": "Joyce",
-      "apellido": "Gilmore",
+      "nombre": "Bella",
+      "apellido": "Abata",
       "tipoContrato": "Ocasional",
-      "fechaContratación": "Mon Jul 29 1985",
+      "fechaContratacion": "02/12/2000",
       "telefono": "0954353307",
-      "correo": "lelia_Franecki8@hotmail.com"
+      "correo": "lelia_Franecki8@hotmail.com",
+      "usuario": 4
     },
     {
       "id": 2,
       "cedula": "1714818299",
-      "nombre": "Constance",
-      "apellido": "Lopez",
+      "nombre": "David",
+      "apellido": "Acosta",
       "tipoContrato": "Fijo",
-      "fechaContratación": "Mon Dec 05 2015",
+      "fechaContratacion": "02/12/2005",
       "telefono": "0934563296",
-      "correo": "lopez85456@hotmail.com"
+      "correo": "lopez85456@hotmail.com",
+      "usuario": 5
     },
     {
       "id": 3,
       "cedula": "1103037048",
       "nombre": "Sofia",
-      "apellido": "Larson",
-      "tipoContrato": "Ocasional",
-      "fechaContratación": "Sat May 26 2012",
+      "apellido": "Narcisa",
+      "tipoContrato": "Acaro",
+      "fechaContratacion": "02/12/2007",
       "telefono": "0915273083",
-      "correo": "lsofia778@hotmail.com"
+      "correo": "lsofia778@hotmail.com",
+      "usuario": 6
     },
     {
       "id": 4,
       "cedula": "1704997012",
-      "nombre": "Allison",
-      "apellido": "Rodriguez",
+      "nombre": "Sonia",
+      "apellido": "Acevedo",
       "tipoContrato": "Fijo",
-      "fechaContratación": "Tue Apr 11 1995 17:09:01",
+      "fechaContratacion": "02/12/2012",
       "telefono": "0955493701",
-      "correo": "8allisrod@gmail.com"
-    }
+      "correo": "8allisrod@gmail.com",
+      "usuario": 7
+    },
+  {
+    "id": 5,
+    "cedula": "1104125883",
+    "nombre": "Cristhian",
+    "apellido": "Jumbo",
+    "tipoContrato": "Fijo",
+    "fechaContratacion": "02/12/2012",
+    "telefono": "0987192388",
+    "correo": "crisjc @gmail.com",
+    "usuario": 3
+  }
   ]

@@ -18,23 +18,7 @@ import { UsuarioRestService } from 'src/app/servicios/rest/servicios/usuario-res
 })
 export class RutaGestionUsuariosComponent implements OnInit {
 
-  usuarios: UsuarioInterface[] = [
-    {
-      cedula: '1704125883',
-      nombre: 'Cristhian',
-      password: '1234'
-    },
-        {
-      cedula: '1714125883',
-      nombre: 'Manuel',
-      password: '1234'
-    },
-        {
-      cedula: '1704452883',
-      nombre: 'Esteban',
-      password: '1234'
-    }
-  ];
+  usuarios: UsuarioInterface[];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
@@ -91,9 +75,6 @@ export class RutaGestionUsuariosComponent implements OnInit {
     const indiceusuario = this.usuarios.indexOf(usuarioEnArreglo);
     this._usuarioService.updateOne(registro.id, {habilitado}).subscribe(
       () => {
-        this.usuarios[indiceusuario].habilitado = habilitado
-          ? ESTADOS.Activo
-          : ESTADOS.Inactivo;
         this._toasterService.pop('success', 'Éxito', 'La usuario se ha editado correctamente');
         this._cargandoService.deshabilitarCargando();
       },
