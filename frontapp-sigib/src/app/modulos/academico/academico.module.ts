@@ -83,10 +83,11 @@ import { CrearEditarCursoComponent } from './modales/crear-editar-curso/crear-ed
     RouterModule,
 
   ],
-entryComponents: [
-CrearEditarCarreraComponent,
-CrearEditarEstudianteComponent,
-CrearEditarMateriasCarreraComponent,
-]
+  entryComponents: [
+    CrearEditarCarreraComponent,
+    CrearEditarEstudianteComponent,
+    CrearEditarMateriasCarreraComponent,
+    CrearEditarCursoComponent,
+  ]
 })
 export class AcademicoModule { }

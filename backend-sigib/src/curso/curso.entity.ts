@@ -23,6 +23,13 @@ export class CursoEntity {
 
     @Column({
         type: 'varchar',
+        name: 'grupo',
+        length: 3,
+    })
+    grupo: string = null;
+
+    @Column({
+        type: 'varchar',
         name: 'horario',
         length: 10,
     })

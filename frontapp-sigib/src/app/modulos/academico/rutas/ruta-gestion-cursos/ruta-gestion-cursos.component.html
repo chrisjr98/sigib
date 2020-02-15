@@ -102,10 +102,13 @@
           >
             <tr>
               <td class="text-center" *ngFor="let col of columns">
-                <div *ngIf="col.field === 'codigo'">
+                <div *ngIf="col.field === 'id'">
                   {{ rowData[col.field] }}
                 </div>
                 <div *ngIf="col.field === 'horario'">
+                  {{ rowData[col.field] }}
+                </div>
+                <div *ngIf="col.field === 'grupo'">
                   {{ rowData[col.field] }}
                 </div>
                 <div *ngIf="col.field === 'aula'">
@@ -115,10 +118,11 @@
                   {{ rowData[col.field] }}
                 </div>
                 <div *ngIf="col.field === 'profesor'">
-                  {{ nombreProfesor }}
+                  {{ rowData.profesor.nombre   }}
+                  {{ rowData.profesor.apellido   }}
                 </div>
                 <div *ngIf="col.field === 'materia'">
-                  {{ nombreMateria }}
+                  {{ rowData.materia.nombre }}
                 </div>
                 <div *ngIf="col.field === 'acciones'">
                   <button

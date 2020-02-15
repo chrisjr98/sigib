@@ -44,13 +44,13 @@ export class UsuarioEntity {
         profesor => profesor.usuario,
     )
     @JoinColumn()
-    profesor: ProfesorEntity;
+    profesor?: ProfesorEntity;
 
     @OneToOne(
         type => EstudianteEntity,
         estudiante => estudiante.usuario,
     )
     @JoinColumn()
-    estudiante: EstudianteEntity;
+    estudiante?: EstudianteEntity;
 
 }

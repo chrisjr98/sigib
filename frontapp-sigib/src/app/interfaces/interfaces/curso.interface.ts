@@ -3,7 +3,7 @@ import { MateriaInterface } from './materia.interface';
 
 export interface CursoInterface{
         id?: number;
-        codigo: number;
+        grupo: string;
         horario: string;
         aula: string;
         numeroMaximoAlumnos: number;

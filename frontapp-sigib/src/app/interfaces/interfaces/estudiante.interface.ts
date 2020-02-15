@@ -1,3 +1,5 @@
+import {UsuarioInterface} from './usuario.interface';
+
 export interface EstudianteInterface {
   id?: number;
   codigo: string;
@@ -7,5 +9,5 @@ export interface EstudianteInterface {
   telefono: string;
   correo: string;
   carrera: any;
-
+  usuario?: number | UsuarioInterface;
 }

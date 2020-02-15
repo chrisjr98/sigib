@@ -8,6 +8,8 @@ import { ToasterService } from "angular2-toaster";
 import { MatDialog } from "@angular/material";
 import { CursoRestService } from "src/app/servicios/rest/servicios/curso-rest.service";
 import { CrearEditarCursoComponent } from '../../modales/crear-editar-curso/crear-editar-curso.component';
+import {MateriaInterface} from '../../../../interfaces/interfaces/materia.interface';
+import {ProfesorInterface} from '../../../../interfaces/interfaces/profesor.interface';
 
 @Component({
   selector: "app-ruta-gestion-cursos",
@@ -16,9 +18,11 @@ import { CrearEditarCursoComponent } from '../../modales/crear-editar-curso/crea
 })
 export class RutaGestionCursosComponent implements OnInit {
   cursos: CursoInterface[];
-
+  materias: MateriaInterface[];
+  profesores: ProfesorInterface[];
   columnas = [
-    { field: "codigo", header: "Codigo", width: "10%" },
+    { field: "id", header: "Codigo", width: "10%" },
+    { field: "grupo", header: "Grupo", width: "20%" },
     { field: "horario", header: "Horario", width: "20%" },
     { field: "aula", header: "Aula", width: "10%" },
     { field: "numeroMaximoAlumnos", header: "Alumnos", width: "10%" },
@@ -56,14 +60,16 @@ export class RutaGestionCursosComponent implements OnInit {
 
   buscar(skip: number) {
     const consulta = {
+      relations: ['profesor', 'materia'],
       skip,
       take: this.rows,
-      order: { id: "DESC" }
+      order: { id: 'DESC' }
     };
     this._cursoService.findAll(JSON.stringify(consulta)).subscribe(
       (respuesta: [CursoInterface[], number]) => {
         this.cursos = respuesta[0];
         this.totalRecords = respuesta[1];
+        console.log('datos de la base', this.cursos);
         this.loading = false;
         this._router.navigate(this.ruta, {
           queryParams: {

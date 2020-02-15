@@ -30,7 +30,7 @@ export class CrearEditarCursoComponent implements OnInit {
   validarFormulario(curso) {
     if (curso) {
       this.crearEditarCurso = {
-        codigo: curso.codigo,
+        grupo: curso.grupo,
         horario: curso.horario,
         aula: curso.aula,
         numeroMaximoAlumnos: curso.numeroMaximoAlumnos,
@@ -49,9 +49,10 @@ export class CrearEditarCursoComponent implements OnInit {
       this._cursoService
         .updateOne(this.data.curso.id, this.crearEditarCurso)
         .subscribe(
-          r => {
+          async r => {
             this._cargandoService.deshabilitarCargando();
             const consulta = {
+              relations: ['profesor', 'materia'],
               where: {
                 id: this.data.curso.id
               }
@@ -70,9 +71,7 @@ export class CrearEditarCursoComponent implements OnInit {
           }
         );
     } else {
-      this.crearEditarCurso.profesor = 1;
-      this.crearEditarCurso.materia = 1;
-      this.crearEditarCurso.codigo = 1;
+      console.log(this.crearEditarCurso);
       this._cursoService.create(this.crearEditarCurso).subscribe(
         r => {
           this._cargandoService.deshabilitarCargando();
