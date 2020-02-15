@@ -18,12 +18,11 @@ export class CrearEditarComprobanteComponent implements OnInit {
   comprobante: ComprobanteInterface;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {cliente: ComprobanteInterface},
+    @Inject(MAT_DIALOG_DATA) public data: {comprobante: ComprobanteInterface},
     public dialogo: MatDialogRef<RutaGestionComprobanteComponent>,
     // tslint:disable-next-line:variable-name
     private readonly _cargandoService: CargandoService,
     // tslint:disable-next-line:variable-name
-    private readonly _usuarioService: UsuarioRestService,
     // tslint:disable-next-line:variable-name
     private readonly _toasterService: ToasterService,
 
@@ -42,8 +41,20 @@ export class CrearEditarComprobanteComponent implements OnInit {
   }
 
   metodoCrearEditar() {
+    this._cargandoService.habilitarCargando();
+    if (this.data.comprobante) {
+      this._cargandoService.deshabilitarCargando();
+      this.crearEditarComprobante.numero = this.data.comprobante.numero,
+      this.dialogo.close(this.crearEditarComprobante);
+    } else {
+      this._cargandoService.deshabilitarCargando();
+      this.dialogo.close(this.crearEditarComprobante);
+    }
+
 
   }
+
+
 
 
 }
