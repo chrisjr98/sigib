@@ -42,5 +42,16 @@
       "telefono": "0955493701",
       "correo": "8allisrod@gmail.com",
       "usuario": 7
-    }
+    },
+  {
+    "id": 5,
+    "cedula": "1104125883",
+    "nombre": "Cristhian",
+    "apellido": "Jumbo",
+    "tipoContrato": "Fijo",
+    "fechaContratacion": "02/12/2012",
+    "telefono": "0987192388",
+    "correo": "crisjc @gmail.com",
+    "usuario": 3
+  }
   ]

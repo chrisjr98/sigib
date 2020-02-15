@@ -2,19 +2,19 @@
     {
       "id": 1,
       "codigo": "C1",
-      "nombre": "Cosmetología",
+      "nombre": "Belleza",
       "duracion": 2
     },
     {
         "id": 2,
         "codigo": "B1",
-        "nombre": "Belleza",
+        "nombre": "Cosmetría",
         "duracion": 2
     },
     {
       "id": 3,
       "codigo": "C2",
-      "nombre": "Cosmetría",
+      "nombre": "Micropigmentacion",
       "duracion": 2
     }
   ]

@@ -42,5 +42,16 @@
     "telefono": "0974532666",
     "correo": "78patgh@gmail.com",
     "usuario": 11
+  },
+  {
+    "id": 5,
+    "carrera": 1,
+    "codigo": "1A",
+    "cedula": "1104125883",
+    "nombre": "Cristhian",
+    "apellido": "Jumbo",
+    "telefono": "0987192388",
+    "correo": "crisjc@gmail.com",
+    "usuario": 2
   }
 ]
