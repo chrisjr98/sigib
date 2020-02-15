@@ -38,7 +38,7 @@ export class PrincipalRestService<Entidad> {
   }
 
   public findAll(criterioBusqueda = '', cabeceras?: { headers: HttpHeaders }): Observable<[Entidad[], number]> {
-    const url = this.url + ':' + this.port + '/' + this.segmento + `?criterioBusqueda=${criterioBusqueda}`;
+    const url = this.url + this.port + '/' + this.segmento + `?criterioBusqueda=${criterioBusqueda}`;
     let cabecerasDePeticion;
     if (cabeceras) {
       cabecerasDePeticion = JSON.parse(JSON.stringify(this.cabecerasGenerales));
@@ -74,7 +74,7 @@ export class PrincipalRestService<Entidad> {
   }
 
   public findWhereOr(criterioBusqueda, cabeceras?: { headers: HttpHeaders }): Observable<[Entidad[], number]> {
-    const url = this.url + ':' + this.port  + '/' + this.segmento + '/findWhereOr' + '?' + JSON.stringify(criterioBusqueda);
+    const url = this.url+ this.port  + '/' + this.segmento + '/findWhereOr' + '?' + JSON.stringify(criterioBusqueda);
     let cabecerasDePeticion;
     if (cabeceras) {
       cabecerasDePeticion = JSON.parse(JSON.stringify(this.cabecerasGenerales));
@@ -92,7 +92,7 @@ export class PrincipalRestService<Entidad> {
   }
 
   public count(criterioBusqueda = '', cabeceras?: { headers: HttpHeaders }): Observable<{ registros: number }> {
-    const url = this.url + ':' + this.port  + '/' + this.segmento + '/count';
+    const url = this.url+ this.port  + '/' + this.segmento + '/count';
     // const url = this.url + '/' + this.segmento + '/count' + '?' + JSON.stringify(criterioBusqueda);
     let cabecerasDePeticion;
     if (cabeceras) {
@@ -111,7 +111,7 @@ export class PrincipalRestService<Entidad> {
   }
 
   public create(registro: any, cabeceras?: { headers: HttpHeaders }): Observable<Entidad> {
-    const url = this.url + ':' + this.port  + '/' + this.segmento + '';
+    const url = this.url + this.port  + '/' + this.segmento + '';
     let cabecerasDePeticion;
     if (cabeceras) {
       cabecerasDePeticion = JSON.parse(JSON.stringify(this.cabecerasGenerales));
@@ -129,7 +129,7 @@ export class PrincipalRestService<Entidad> {
   }
 
   public updateOne(id: number | string, actualizacion: any, cabeceras?: { headers: HttpHeaders }): Observable<Entidad> {
-    const url = this.url + ':' + this.port + '/' + this.segmento + `/${id}`;
+    const url = this.url + this.port + '/' + this.segmento + `/${id}`;
     let cabecerasDePeticion;
     if (cabeceras) {
       cabecerasDePeticion = JSON.parse(JSON.stringify(this.cabecerasGenerales));
@@ -147,7 +147,7 @@ export class PrincipalRestService<Entidad> {
   }
 
   public deleteOne(id: number | string, cabeceras?: { headers: HttpHeaders }): Observable<{ mensaje: string }> {
-    const url = this.url + ':' + this.port + '/' + this.segmento + `/${id}`;
+    const url = this.url+ this.port + '/' + this.segmento + `/${id}`;
     let cabecerasDePeticion;
     if (cabeceras) {
       cabecerasDePeticion = JSON.parse(JSON.stringify(this.cabecerasGenerales));

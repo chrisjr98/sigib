@@ -7,9 +7,9 @@ export const CONFIG_ENVIRONMENT: any = {
       type: 'mysql',
       host: 'remotemysql.com',
       port: 3306,
-      username: 'NQ654QjeGp',
-      password: '2DRoIELTFY',
-      database: 'NQ654QjeGp',
+      username: '3Gr9XN19SV',
+      password: 'v2Nf2tCusS',
+      database: '3Gr9XN19SV',
       synchronize: true,
       retryDelay: 40000,
       retryAttempts: 3,
@@ -23,9 +23,9 @@ export const CONFIG_ENVIRONMENT: any = {
   },
   puertoLevanta: 8080,
   urls: {
-    protocolo: 'http',
-    ip: 'localhost',
-    puertoEscucha: 8080,
+    protocolo: 'https',
+    ip: '8080-e0af08e8-1a29-400e-87e5-085b6384bc5e.ws-us02.gitpod.io',
+    puertoEscucha:'',
     segmento: '/',
     url() {
       return `${this.protocolo}://${this.ip}:${this.puertoEscucha}${
