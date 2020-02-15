@@ -9,4 +9,5 @@ export interface CursoInterface{
         numeroMaximoAlumnos: number;
         profesor?: number | ProfesorInterface;
         materia?: number | MateriaInterface;
+        idCarrera: number;
 }

@@ -1,4 +1,5 @@
 import {UsuarioInterface} from './usuario.interface';
+import {CarreraInterface} from './carrera.interface';
 
 export interface EstudianteInterface {
   id?: number;
@@ -8,6 +9,6 @@ export interface EstudianteInterface {
   apellido: string;
   telefono: string;
   correo: string;
-  carrera: any;
+  carrera: number | CarreraInterface;
   usuario?: number | UsuarioInterface;
 }

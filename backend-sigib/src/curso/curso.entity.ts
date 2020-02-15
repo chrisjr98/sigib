@@ -48,6 +48,12 @@ export class CursoEntity {
     })
     numeroMaximoAlumnos: number = null;
 
+    @Column({
+        type: 'int',
+        name: 'id_carrera',
+    })
+    idCarrera: number = null;
+
     @OneToMany(
         type => RegistroNotaEntity,
         registroNota => registroNota.curso,

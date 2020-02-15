@@ -10,14 +10,12 @@ export class LocalStorageService {
     private readonly _localStorage: StorageService
   ) {}
 
-  public guardarEnLocalStorage(usuario: UsuarioSistemaInterface,cedula:number): void {
-    const usuariosGuardados = this._localStorage.get(`${cedula}`) || [];
-    usuariosGuardados.unshift(usuario);
-    this._localStorage.set(`${cedula}`, usuariosGuardados);
-    return this._localStorage.get(`${cedula}`);
+  public guardarEnLocalStorage(key: string, usuario: UsuarioSistemaInterface): void {
+    this._localStorage.set(key, JSON.stringify(usuario));
   }
 
-  public obtenerDatosLocalStorage(key?: string): void {
+  public obtenerDatosLocalStorage(key?: string) {
+    console.log(this._localStorage.get(`${key}`));
     return this._localStorage.get(`${key}`);
   }
 }

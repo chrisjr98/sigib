@@ -27,14 +27,14 @@ export class MenuOpcionesAdministradorComponent implements OnInit {
       .queryParams
       .subscribe(
         params => {
-          if(params.rol === 'estudiante'){
+          if(params.rol === 'Estudiante'){
             const url = ['/administrador','menu','academico','menu-academico','estudiantes'];
             return this._router.navigate(url);
           }else {
-            if(params.rol === 'administrador'){
+            if(params.rol === 'Administrador'){
             this.esAdmin = true;
             }else{
-              if(params.rol === 'profesor'){
+              if(params.rol === 'Profesor'){
             const url = ['/administrador','menu','academico','menu-academico','profesores'];
             return this._router.navigate(url);
             }

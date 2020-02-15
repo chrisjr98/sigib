@@ -6,7 +6,8 @@
       "materia": 1,
       "horario": "Matutino",
       "aula": 216,
-      "numeroMaximoAlumnos": 31
+      "numeroMaximoAlumnos": 31,
+      "idCarrera": 1
     },
     {
       "id": 2,
@@ -15,7 +16,8 @@
       "materia": 1,
       "horario": "Intensivo",
       "aula": 405,
-      "numeroMaximoAlumnos": 25
+      "numeroMaximoAlumnos": 25,
+      "idCarrera": 1
     },
     {
       "id": 3,
@@ -24,7 +26,8 @@
       "materia": 3,
       "horario": "Matutino",
       "aula": 123,
-      "numeroMaximoAlumnos": 18
+      "numeroMaximoAlumnos": 18,
+      "idCarrera": 1
     },
     {
       "id": 4,
@@ -33,6 +36,8 @@
       "materia": 4,
       "horario": "Vespertino",
       "aula": 215,
-      "numeroMaximoAlumnos": 22
+      "numeroMaximoAlumnos": 22,
+      "idCarrera": 2
+
     }
   ]
