@@ -23,17 +23,18 @@ import {CarreraInterface} from '../../../../interfaces/interfaces/carrera.interf
 })
 export class RutaMatriculacionComponent implements OnInit {
   cursos: CursoInterface[];
+  cursosIncritos: CursoInterface[] = [];
   materias: MateriaInterface[];
   profesores: ProfesorInterface[];
   columnas = [
     { field: "id", header: "Codigo", width: "10%" },
-    { field: "grupo", header: "Grupo", width: "20%" },
-    { field: "horario", header: "Horario", width: "20%" },
+    { field: "grupo", header: "Grupo", width: "10%" },
+    { field: "horario", header: "Horario", width: "15%" },
     { field: "aula", header: "Aula", width: "10%" },
     { field: "numeroMaximoAlumnos", header: "Alumnos", width: "10%" },
     { field: "profesor", header: "Profesor", width: "20%" },
     { field: "materia", header: "Materia", width: "20%" },
-    { field: "acciones", header: "Acciones", width: "10%" }
+    { field: "acciones", header: "Acciones", width: "20%" }
   ];
 
   rows = NUMERO_FILAS_TABLAS;
@@ -84,12 +85,11 @@ export class RutaMatriculacionComponent implements OnInit {
           const estudiante = estudiantes[0][0] as EstudianteInterface;
           if (estudiante) {
             const carreraId =  +(estudiante.carrera as CarreraInterface ).id;
+            console.log('carrera id', carreraId);
             const consulta = {
               relations: ['profesor', 'materia'],
               where: {
-                materia: {
-                  idCarrera: carreraId,
-                }
+                idCarrera: carreraId
               },
               skip,
               take: this.rows,
@@ -138,32 +138,27 @@ export class RutaMatriculacionComponent implements OnInit {
       );
   }
 
-  abrirDialogo(cursoSeleccionado?): void {
-    const dialogRef = this.dialogo.open(CrearEditarCursoComponent, {
-      data: { curso: cursoSeleccionado }
-    });
-    const resultadoModal$ = dialogRef.afterClosed();
-    resultadoModal$.subscribe((registroCreado: CursoInterface) => {
-      if (registroCreado) {
-        if (cursoSeleccionado) {
-          const indiceRegistro = this.cursos.indexOf(cursoSeleccionado);
-          this.cursos[indiceRegistro] = registroCreado;
-          this._toasterService.pop(
-            "success",
-            "",
-            "Curso actualizado exitosamente"
-          );
-          this.cursos[indiceRegistro] = registroCreado;
-        } else {
-          this._toasterService.pop({
-            type: "success",
-            body: "Curso registrado exitosamente",
-            timeout: 1000
-          });
-          this.cursos.unshift(registroCreado);
-        }
-      }
-    });
+  abrirDialogo(cursoSeleccionado): void {
+    if (cursoSeleccionado) {
+      this._toasterService.pop({
+        type: "success",
+        body: "Curso registrado exitosamente",
+        timeout: 10000
+      });
+      this.cursosIncritos.unshift(cursoSeleccionado);
+    } else {
+    }
   }
 
+  eliminarItemDeArray(item ) {
+    const i = this.cursosIncritos.indexOf( item );
+    if ( i !== -1 ) {
+      this.cursosIncritos.splice( i, 1 );
+      this._toasterService.pop({
+        type: "warning",
+        body: "Curso eliminado",
+        timeout: 10000,
+      });
+    }
+  }
 }
