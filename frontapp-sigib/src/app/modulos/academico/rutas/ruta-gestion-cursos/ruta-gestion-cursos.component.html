@@ -117,6 +117,9 @@
                 <div *ngIf="col.field === 'numeroMaximoAlumnos'">
                   {{ rowData[col.field] }}
                 </div>
+                <div *ngIf="col.field === 'periodoAcademico'">
+                  {{ rowData[col.field] }}
+                </div>
                 <div *ngIf="col.field === 'profesor'">
                   {{ rowData.profesor.nombre   }}
                   {{ rowData.profesor.apellido   }}

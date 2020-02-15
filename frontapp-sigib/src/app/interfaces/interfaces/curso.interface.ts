@@ -7,6 +7,7 @@ export interface CursoInterface{
         horario: string;
         aula: string;
         numeroMaximoAlumnos: number;
+        periodoAcademico: string;
         profesor?: number | ProfesorInterface;
         materia?: number | MateriaInterface;
         idCarrera: number;

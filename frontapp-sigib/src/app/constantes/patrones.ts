@@ -13,3 +13,5 @@ export const EXPRESION_CORREO = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+
 export const EXPRESION_TELEFONO = /^(?:09(?:[0-9]{7})(?:[1-9]))$/;
 
 export const RANGO_NUMEROS_10_20 = /^(1[0-9]|20)$/;
+
+export const RANGO_NUMEROS_PERIODO = /^2[0-9]{3}$/;
