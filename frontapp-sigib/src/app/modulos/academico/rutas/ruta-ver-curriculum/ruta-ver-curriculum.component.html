@@ -1,1 +1,19 @@
-<p>ruta-ver-curriculum works!</p>
+<nav aria-label="breadcrumb" class="margen-top-migas">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/inicio']">
+        Menú Principal
+      </a>
+    </li>
+    <li class="breadcrumb-item">
+      <a
+        [routerLink]="['/administrador', 'menu', 'academico', 'menu-academico', 'estudiantes']"
+      >
+        Menú Estudiante
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Curriculum
+    </li>
+  </ol>
+</nav>
