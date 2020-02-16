@@ -26,7 +26,8 @@ export class HeaderComponent implements OnInit {
   }
 
   salir() {
-    window.location.href = this.urlSalir;
+    const url = ['/inicio'];
+    this.router.navigate(url);
   }
 
 }

@@ -12,16 +12,31 @@
     {
       "id": 3,
       "estudiante": 3,
-      "curso": 2
+      "curso": 5
     },
     {
       "id": 4,
-      "estudiante": 4,
-      "curso": 1
+      "estudiante": 2,
+      "curso": 5
       },
     {
       "id": 5,
-      "estudiante": 4,
-      "curso": 4
-    }  
-  ]
+      "estudiante": 1,
+      "curso": 5
+    },
+  {
+    "id": 6,
+    "estudiante": 1,
+    "curso": 6
+  },
+  {
+    "id": 7,
+    "estudiante": 2,
+    "curso": 6
+  },
+  {
+    "id": 8,
+    "estudiante": 3,
+    "curso": 6
+  }
+]

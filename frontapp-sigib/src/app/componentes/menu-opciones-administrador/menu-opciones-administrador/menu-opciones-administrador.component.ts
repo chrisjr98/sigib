@@ -32,7 +32,10 @@ export class MenuOpcionesAdministradorComponent implements OnInit {
             return this._router.navigate(url);
           }else {
             if(params.rol === 'Administrador'){
-            this.esAdmin = true;
+              const rol = JSON.parse(this._localStorageService.obtenerDatosLocalStorage('usuario')).rol;
+              if(rol === 'Administrador'){
+                this.esAdmin = true;
+              }
             }else{
               if(params.rol === 'Profesor'){
             const url = ['/administrador','menu','academico','menu-academico','profesores'];
