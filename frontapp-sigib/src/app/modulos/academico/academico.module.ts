@@ -43,7 +43,8 @@ import { FormularioCursoComponent } from "./formularios/formulario-curso/formula
 import { CrearEditarCursoComponent } from "./modales/crear-editar-curso/crear-editar-curso.component";
 import { FormularioProfesorComponent } from "./formularios/formulario-profesor/formulario-profesor.component";
 import { CrearEditarProfesorComponent } from "./modales/crear-editar-profesor/crear-editar-profesor.component";
-import { RutaArchivoComponent } from './rutas/ruta-archivo/ruta-archivo.component';
+import { FormularioGradoComponent } from './formularios/formulario-grado/formulario-grado.component';
+import { CrearEditarGradoComponent } from './modales/crear-editar-grado/crear-editar-grado.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { RutaArchivoComponent } from './rutas/ruta-archivo/ruta-archivo.componen
     CrearEditarCursoComponent,
     FormularioProfesorComponent,
     CrearEditarProfesorComponent,
-    RutaArchivoComponent
+    FormularioGradoComponent,
+    CrearEditarGradoComponent,
   ],
   imports: [
     CommonModule,
