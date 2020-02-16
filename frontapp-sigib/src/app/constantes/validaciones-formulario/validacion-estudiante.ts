@@ -57,15 +57,13 @@ export const MENSAJES_VALIDACION_CARRERA_ESTUDIANTE = {
   required: 'Por favor seleccione una carrera',
 };
 
-export const VALIDACION_TELEFONO_ESTUDIANTE =[
+export const VALIDACION_TELEFONO_ESTUDIANTE = [
   Validators.required,
   Validators.maxLength(10),
   Validators.minLength(10),
-  Validators.pattern(EXPRESION_TELEFONO)
-]
+];
 
 export const MENSAJES_VALIDACION_TELEFONO_ESTUDIANTE = {
   required: 'Por favor ingrese el número de telefono del estudiante',
   maxlength: 'Número de telefono no válido',
-  pattern: 'Número de telefono no válido',
 };
