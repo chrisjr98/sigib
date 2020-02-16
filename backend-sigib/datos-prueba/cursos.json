@@ -43,5 +43,29 @@
       "periodoAcademico": 2020,
       "idCarrera": 2
 
-    }
-  ]
+    },
+  {
+    "id": 5,
+    "grupo": "GR1",
+    "profesor": 5,
+    "materia": 1,
+    "horario": "Vespertino",
+    "aula": 215,
+    "numeroMaximoAlumnos": 22,
+    "periodoAcademico": 2020,
+    "idCarrera": 1
+
+  },
+  {
+    "id": 6,
+    "grupo": "GR1",
+    "profesor": 5,
+    "materia": 4,
+    "horario": "Vespertino",
+    "aula": 215,
+    "numeroMaximoAlumnos": 22,
+    "periodoAcademico": 2020,
+    "idCarrera": 2
+
+  }
+]

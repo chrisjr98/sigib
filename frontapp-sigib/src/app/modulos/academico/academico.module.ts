@@ -71,6 +71,7 @@ import { CrearEditarGradoComponent } from './modales/crear-editar-grado/crear-ed
     RutaGestionMateriasCarreraComponent,
     FormularioCursoComponent,
     CrearEditarCursoComponent,
+    RutaIngresoNotasComponent,
     FormularioProfesorComponent,
     CrearEditarProfesorComponent,
     FormularioGradoComponent,

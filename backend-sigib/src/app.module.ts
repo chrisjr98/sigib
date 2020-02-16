@@ -38,6 +38,9 @@ import { UsuarioService } from "./usuario/usuario.service";
 import { GradoEntity } from "./grado/grado.entity";
 import { GradoModule } from "./grado/grado.module";
 import { GradoService } from "./grado/grado.service";
+import { ComprobanteModule } from './comprobante/comprobante.module';
+import {ComprobanteEntity} from './comprobante/comprobante.entity';
+import {ComprobanteService} from './comprobante/comprobante.service';
 
 init();
 
@@ -62,6 +65,7 @@ init();
                 RegistroAsistenciaEntity,
                 RegistroNotaEntity,
                 UsuarioEntity,
+                ComprobanteEntity,
                 GradoEntity
             ],
             synchronize: CONFIG_ENVIRONMENT.dbConnections.mysql.synchronize,
@@ -86,6 +90,7 @@ init();
         MatriculaModule,
         RegistroAsistenciaModule,
         UsuarioModule,
+        ComprobanteModule,
         GradoModule
     ],
     controllers: [AppController],
@@ -104,6 +109,7 @@ export class AppModule {
         private readonly _registroAsistenciaService: RegistroAsistenciaService,
         private readonly _registroNotasService: RegistroNotaService,
         private readonly _usuarioService: UsuarioService,
+        private readonly _comprobanteService: ComprobanteService,
         private readonly _gradoService: GradoService
     ) {
         if (CONFIG_ENVIRONMENT.dbConnections.crearDatosPrueba) {
@@ -171,6 +177,12 @@ export class AppModule {
                 this._usuarioService,
                 "/datos-usuario.json"
             );
+            console.log('respuesta usuarios', respuestaUsuarios);
+            const respuestaComprobantes = await crearDatos(
+                this._comprobanteService,
+                '/comprobantes.json',
+            );
+            console.log('respuesta comprobantes', respuestaComprobantes);
             console.log("respuesta usuarios", respuestaUsuarios);
             const respuestaGrado = await crearDatos(
                 this._gradoService,

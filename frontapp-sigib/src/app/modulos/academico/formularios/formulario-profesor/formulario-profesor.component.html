@@ -118,8 +118,9 @@
               <mat-label>Fecha de contratación</mat-label>
               <input
                 matInput
-                placeholder="Ej. usuario@gmail.com"
+                placeholder="Ej. 10/12/2020"
                 formControlName="fechaContratacion"
+                type="date"
                 required
               />
               <mat-error *ngIf="mensajesError.fechaContratacion.length > 0">

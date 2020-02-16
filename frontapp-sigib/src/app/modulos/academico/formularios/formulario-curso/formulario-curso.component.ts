@@ -62,7 +62,6 @@ export class FormularioCursoComponent implements OnInit {
 
   ngOnInit() {
     this.cargaMateriaProfesor();
-    this.iniciarFormulario();
   }
 
   iniciarFormulario() {
@@ -185,7 +184,7 @@ export class FormularioCursoComponent implements OnInit {
           this.iniciarFormulario();
         },
         error => {
-          console.log("este es el errro", error);
+          console.log("este es el errror", error);
         }
       );
   }
