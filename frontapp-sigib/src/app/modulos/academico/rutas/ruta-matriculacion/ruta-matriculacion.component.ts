@@ -9,12 +9,12 @@ import {CargandoService} from '../../../../servicios/cargando-service/cargando-s
 import {ToasterService} from 'angular2-toaster';
 import {MatDialog} from '@angular/material';
 import {CursoRestService} from '../../../../servicios/rest/servicios/curso-rest.service';
-import {CrearEditarCursoComponent} from '../../modales/crear-editar-curso/crear-editar-curso.component';
 import {LocalStorageService} from '../../../../servicios/rest/servicios/local-storage';
 import {UsuarioSistemaInterface} from '../../../../interfaces/interfaces/usuario-sistema';
 import {EstudianteRestService} from '../../../../servicios/rest/servicios/estudiante-rest.service';
 import {EstudianteInterface} from '../../../../interfaces/interfaces/estudiante.interface';
 import {CarreraInterface} from '../../../../interfaces/interfaces/carrera.interface';
+import {MatriculaRestService} from '../../../../servicios/rest/servicios/matricula-rest.service';
 
 @Component({
   selector: 'app-ruta-matriculacion',
@@ -26,6 +26,7 @@ export class RutaMatriculacionComponent implements OnInit {
   cursosIncritos: CursoInterface[] = [];
   materias: MateriaInterface[];
   profesores: ProfesorInterface[];
+  estudiante: EstudianteInterface;
   columnas = [
     { field: "id", header: "Codigo", width: "10%" },
     { field: "grupo", header: "Grupo", width: "10%" },
@@ -56,6 +57,7 @@ export class RutaMatriculacionComponent implements OnInit {
     private readonly _localStorage: LocalStorageService,
     private readonly _estudianteService: EstudianteRestService,
     private readonly _cursoService: CursoRestService,
+    private readonly _matriculaService: MatriculaRestService,
   ) {}
 
   ngOnInit() {}
@@ -82,9 +84,9 @@ export class RutaMatriculacionComponent implements OnInit {
       .subscribe(
         (estudiantes: [EstudianteInterface[], number]) => {
           console.log('estudiantes de estudiante con esa carrera', estudiantes[0][0]);
-          const estudiante = estudiantes[0][0] as EstudianteInterface;
-          if (estudiante) {
-            const carreraId =  +(estudiante.carrera as CarreraInterface ).id;
+          this.estudiante = estudiantes[0][0] as EstudianteInterface;
+          if (this.estudiante) {
+            const carreraId =  +(this.estudiante.carrera as CarreraInterface ).id;
             console.log('carrera id', carreraId);
             const consulta = {
               relations: ['profesor', 'materia'],
@@ -101,12 +103,6 @@ export class RutaMatriculacionComponent implements OnInit {
                 this.totalRecords = respuesta[1];
                 console.log('datos de la base', this.cursos);
                 this.loading = false;
-                this._router.navigate(this.ruta, {
-                  queryParams: {
-                    skip: this.queryParams.skip,
-                    where: JSON.stringify(this.queryParams.where)
-                  }
-                });
               },
               error => {
                 this.loading = false;
@@ -146,6 +142,10 @@ export class RutaMatriculacionComponent implements OnInit {
         timeout: 10000
       });
       this.cursosIncritos.unshift(cursoSeleccionado);
+      const i = this.cursos.indexOf(cursoSeleccionado);
+      if ( i !== -1 ) {
+        this.cursos.splice( i, 1 );
+      }
     } else {
     }
   }
@@ -159,6 +159,42 @@ export class RutaMatriculacionComponent implements OnInit {
         body: "Curso eliminado",
         timeout: 10000,
       });
+    }
+    this.cursos.unshift(item);
+  }
+
+  finalizarMatricula() {
+    if (this.cursosIncritos.length > 0) {
+      for (const curso of this.cursosIncritos) {
+        this._matriculaService.create({
+          estudiante: this.estudiante.id,
+          curso: curso.id
+        }).subscribe(
+          r => {
+            console.log('registro creado', r);
+            this._toasterService.pop({
+              type: "success",
+              body: "Matrícula registrada exitosamente",
+              timeout: 10000
+            });
+          },
+          error => {
+            this._toasterService.pop({
+              type: "error",
+              body: "Matricula ya registrada",
+              timeout: 10000,
+            });
+          }
+        );
+      }
+        } else {
+      this._cargandoService.deshabilitarCargando();
+      this._toasterService.pop({
+        type: "error",
+        body: "No se ha seleccionado ningun elemento",
+        timeout: 10000,
+      });
+
     }
   }
 }

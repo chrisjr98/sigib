@@ -1,19 +1,19 @@
 <nav aria-label="breadcrumb" class="margen-top-migas">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a [routerLink]="['/administrador', 'menu']">
+      <a [routerLink]="['/inicio']">
         Menú Principal
       </a>
     </li>
     <li class="breadcrumb-item">
       <a
-        [routerLink]="['/administrador', 'menu', 'academico', 'menu-academico']"
+        [routerLink]="['/administrador', 'menu', 'academico', 'menu-academico', 'estudiantes']"
       >
-        Menú Academico
+        Menú Estudiante
       </a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
-      Cursos
+      Matrícula
     </li>
   </ol>
 </nav>
@@ -58,7 +58,7 @@
   </div>
   <div class="row separacion-top-2 separacion-fondo-1">
     <div class="col-sm-12 ">
-      <p>Lista de las grupos de las materias:</p>
+      <p>Lista de lOS grupos de las materias:</p>
     </div>
     <div class="col-sm-12">
       <div class="col-sm-12">
@@ -227,7 +227,9 @@
     </div>
   </div>
   <div class="col-sm-6 text-center" >
-    <button class="btn btn-block btn-outline-info">
+    <button class="btn btn-block btn-outline-info"
+            (click)="finalizarMatricula()"
+    >
       <i class="fas fa-check"></i>
       finalizar Matrícula
     </button>
