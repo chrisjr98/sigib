@@ -31,12 +31,17 @@
   },
   {
     "id": 7,
-    "estudiante": 2,
+    "estudiante": 5,
     "curso": 6
   },
   {
     "id": 8,
-    "estudiante": 3,
-    "curso": 6
+    "estudiante": 5,
+    "curso": 3
+  },
+  {
+    "id": 9,
+    "estudiante": 5,
+    "curso": 2
   }
 ]

@@ -1,48 +1,53 @@
 [
-    {
-      "numero": 1,
-      "fecha": "01/01/2019",
-      "ci": "1103756134",
-      "nombre": "Victor",
-      "tipo": "Matricula",
-      "formapago": "Efectivo",
-      "realizadop": "Administrador",
-      "comprobantep": "Efectivo",
-      "beneficiario": "Instituto Internacional"
+  {
+    "numero": 1,
+    "fecha": "01/01/2019",
+    "ci": "1104125883",
+    "nombre": "paul",
+    "tipo": "Matricula",
+    "formaPago": "Efectivo",
+    "realizadop": "Administrador",
+    "comprobantep": "Efectivo",
+    "beneficiario": "Instituto Internacional",
+    "estudiante": 5
+  },
+  {
+    "numero": 2,
+    "fecha": "01/01/2019",
+    "ci": "1104125883",
+    "nombre": "paul",
+    "tipo": "Mensualidad",
+    "formaPago": "Efectivo",
+    "realizadop": "Administrador",
+    "comprobantep": "Efectivo",
+    "beneficiario": "Instituto Internacional",
+    "estudiante": 5
 
-    },
-    {
-      "numero": 2,
-      "fecha": "01/01/2019",
-      "ci": "1103756134",
-      "nombre": "Victor",
-      "tipo": "Mensualidad",
-      "formapago": "Efectivo",
-      "realizadop": "Administrador",
-      "comprobantep": "Efectivo",
-      "beneficiario": "Instituto Internacional"
-    },
-    {
-      "numero": 3,
-      "fecha": "02/01/2019",
-      "ci": "1103756134",
-      "nombre": "Victor",
-      "tipo": "Mensualidad",
-      "formapago": "Efectivo",
-      "realizadop": "Administrador",
-      "comprobantep": "Efectivo",
-      "beneficiario": "Instituto Internacional"
-    },
-    {
-      "numero": 4,
-      "fecha": "03/01/2019",
-      "ci": "1103756134",
-      "nombre": "Victor",
-      "tipo": "Mensualidad",
-      "formapago": "Efectivo",
-      "realizadop": "Administrador",
-      "comprobantep": "Efectivo",
-      "beneficiario": "Instituto Internacional"
+  },
+  {
+    "numero": 3,
+    "fecha": "02/01/2019",
+    "ci": "1103756134",
+    "nombre": "Victor",
+    "tipo": "Mensualidad",
+    "formaPago": "Efectivo",
+    "realizadop": "Administrador",
+    "comprobantep": "Efectivo",
+    "beneficiario": "Instituto Internacional",
+    "estudiante": 5
 
-    }
-  ]
+  },
+  {
+    "numero": 4,
+    "fecha": "03/01/2019",
+    "ci": "1104125883",
+    "nombre": "paul",
+    "tipo": "Mensualidad",
+    "formaPago": "Efectivo",
+    "realizadop": "Administrador",
+    "comprobantep": "Efectivo",
+    "beneficiario": "Instituto Internacional",
+    "estudiante": 5
+
+  }
+]

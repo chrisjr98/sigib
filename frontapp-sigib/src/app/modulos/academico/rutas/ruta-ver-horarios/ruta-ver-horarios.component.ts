@@ -18,8 +18,8 @@ import { UsuarioSistemaInterface } from 'src/app/interfaces/interfaces/usuario-s
   templateUrl: './ruta-ver-horarios.component.html',
   styleUrls: ['./ruta-ver-horarios.component.scss']
 })
-export class RutaVerHorariosComponent implements OnInit { 
-  
+export class RutaVerHorariosComponent implements OnInit {
+
   cursos: CursoInterface[];
   matriculas: MatriculaInterface[];
   estudiante: EstudianteInterface;
@@ -57,7 +57,6 @@ export class RutaVerHorariosComponent implements OnInit {
     this.queryParams.skip = event.first;
     this.buscar(this.queryParams.skip);
   }
-//1103756134
   buscar(skip: number) {
     const cedulaEstudiante: UsuarioSistemaInterface =  JSON.parse(this._localStorage.obtenerDatosLocalStorage('usuario'));
     const profesorConsulta = {
@@ -72,12 +71,10 @@ export class RutaVerHorariosComponent implements OnInit {
           console.log('matriculas de estudiante con esa carrera', estudiantes[0][0]);
           this.estudiante = estudiantes[0][0] as EstudianteInterface;
           if (this.estudiante) {
-            let estudianteId =  +(this.estudiante).id;
-            /**Aqui le estpy quemando un dato */
-            estudianteId = 1;
+            const estudianteId = this.estudiante.id;
             console.log('estudiante id', estudianteId);
             const consulta = {
-              relations: ['estudiante', 'curso','curso.profesor','curso.materia'],
+              relations: ['estudiante', 'curso', 'curso.profesor', 'curso.materia'],
               where: {
                 estudiante: {
                   id: estudianteId

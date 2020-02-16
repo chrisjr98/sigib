@@ -35,6 +35,9 @@ import {RegistroNotaService} from './registro-nota/registro-nota.service';
 import { UsuarioModule } from './usuario/usuario.module';
 import {UsuarioEntity} from './usuario/usuario.entity';
 import {UsuarioService} from './usuario/usuario.service';
+import { ComprobanteModule } from './comprobante/comprobante.module';
+import {ComprobanteEntity} from './comprobante/comprobante.entity';
+import {ComprobanteService} from './comprobante/comprobante.service';
 
 init();
 
@@ -59,6 +62,7 @@ init();
                 RegistroAsistenciaEntity,
                 RegistroNotaEntity,
                 UsuarioEntity,
+                ComprobanteEntity,
             ],
             synchronize: CONFIG_ENVIRONMENT.dbConnections.mysql.synchronize,
             ssl: CONFIG_ENVIRONMENT.dbConnections.mysql.ssl,
@@ -81,6 +85,7 @@ init();
         MatriculaModule,
         RegistroAsistenciaModule,
         UsuarioModule,
+        ComprobanteModule,
     ],
     controllers: [AppController],
     providers: [AppService],
@@ -98,7 +103,7 @@ export class AppModule {
         private readonly _registroAsistenciaService: RegistroAsistenciaService,
         private readonly _registroNotasService: RegistroNotaService,
         private readonly _usuarioService: UsuarioService,
-        //private readonly _comprobanteService: ComprobanteService,
+        private readonly _comprobanteService: ComprobanteService,
     ) {
         if (CONFIG_ENVIRONMENT.dbConnections.crearDatosPrueba) {
             this.crearDatosDePrueba()
@@ -162,12 +167,12 @@ export class AppModule {
                 this._usuarioService,
                 '/datos-usuario.json',
             );
-          /*  console.log('respuesta comprobantes', respuestaUsuarios);
+            console.log('respuesta usuarios', respuestaUsuarios);
             const respuestaComprobantes = await crearDatos(
-                this._usuarioService,
+                this._comprobanteService,
                 '/comprobantes.json',
             );
-            console.log('respuesta comprobantes', respuestaComprobantes);*/
+            console.log('respuesta comprobantes', respuestaComprobantes);
         } catch (e) {
             console.error('Error creando datos de prueba', e);
             return false;
