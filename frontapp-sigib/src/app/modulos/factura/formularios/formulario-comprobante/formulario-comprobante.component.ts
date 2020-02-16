@@ -19,10 +19,14 @@ export class FormularioComprobanteComponent implements OnInit {
   @Input() comprobante: Comprobante;
   mensajesError = {
     numero:[],
-    tipo: [],
+    fecha:[],
+    ci: [],
+    nombre:[],
+    tipo:[],
     formapago: [],
-    fecha: [],
-    cantidad: []
+    realizadop: [],
+    comprobantep: [],
+    beneficiario: [],
   };
   formularioComprobante: FormGroup;
   subscribers = [];
@@ -34,6 +38,7 @@ export class FormularioComprobanteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.iniciarFormulario();
   }
 
   iniciarFormulario() {
@@ -45,16 +50,24 @@ export class FormularioComprobanteComponent implements OnInit {
   private _inicializarFormulario() {
     this.formularioComprobante = this._formBuilder.group({
       numero:   [this.comprobante ? this.comprobante.numero : ''],
+      fecha:    [this.comprobante ? this.comprobante.fecha : ''],
+      ci: [this.comprobante ? this.comprobante.ci : '' ],
+      nombre:[this.comprobante ? this.comprobante.nombre : ''],
       tipo:     [this.comprobante ? this.comprobante.tipo : ''],
       formapago: [this.comprobante ? this.comprobante.formapago : ''],
-      fecha:    [this.comprobante ? this.comprobante.fecha : ''],
-      cantidad: [this.comprobante ? this.comprobante.cantidad : '']
     });
   }
 
   private _verificarCamposFormulario() {
+    this.verificarCampoFormControl('numero');
+    this.verificarCampoFormControl('fecha');
+    this.verificarCampoFormControl('ci');
     this.verificarCampoFormControl('nombre');
-    this.verificarCampoFormControl('cedula');
+    this.verificarCampoFormControl('tipo');
+    this.verificarCampoFormControl('formapago');
+    this.verificarCampoFormControl('realizadop');
+    this.verificarCampoFormControl('comprobantep');
+    this.verificarCampoFormControl('beneficiario');
   }
 
   private _verificarFormulario() {
@@ -63,10 +76,8 @@ export class FormularioComprobanteComponent implements OnInit {
       .valueChanges
       .subscribe(
         formulario => {
-          const UsuarioValidada = formularioFormGroup.valid;
-          if (UsuarioValidada) {
-            formulario.nivelJuego = this.setearValorSelect(formulario.nivelJuego);
-            formulario.tipo = this.setearValorSelect(formulario.tipo);
+          const comprobanteValido = formularioFormGroup.valid;
+          if (comprobanteValido) {
             this.comprobanteValido.emit(formulario);
           } else {
             this.comprobanteValido.emit(false);

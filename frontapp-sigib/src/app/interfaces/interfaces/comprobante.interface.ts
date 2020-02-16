@@ -1,7 +1,11 @@
 export interface ComprobanteInterface{
-numero: string;
-tipo: string;
-formapago: string;
-fecha: string;
-cantidad: string;
+    numero: number;
+    fecha: string;
+    ci: string;
+    nombre: string;
+    tipo: string;
+    formapago: string;
+    realizadop: string;
+    comprobantep: string;
+    beneficiario: string;
 }
