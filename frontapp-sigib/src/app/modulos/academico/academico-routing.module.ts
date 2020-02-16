@@ -16,6 +16,7 @@ import { RutaCursoProfesorComponent } from './rutas/ruta-curso-profesor/ruta-cur
 import { RutaAsistenciaComponent } from './rutas/ruta-asistencia/ruta-asistencia.component';
 import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
 import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
+import {RutaIngresoNotasComponent} from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
 
 
 const routes: Routes = [
@@ -78,7 +79,16 @@ const routes: Routes = [
           },
           {
             path: 'notas-estudiante',
-            component: RutaNotasEstudianteComponent
+            children: [
+              {
+                path: '',
+                component: RutaNotasEstudianteComponent
+              },
+              {
+                path: ':id/notas',
+                component: RutaIngresoNotasComponent
+              }
+            ]
           },
           {
             path: 'cursos-profesor',
@@ -96,7 +106,7 @@ const routes: Routes = [
       },
       {
         path: 'gestion-profesores',
-        component:RutaGestionProfesoresComponent
+        component: RutaGestionProfesoresComponent
       },
       {
         path: 'gestion-estudiantes',

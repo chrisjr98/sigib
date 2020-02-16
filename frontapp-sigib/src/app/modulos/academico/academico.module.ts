@@ -35,6 +35,7 @@ import { CrearEditarMateriasCarreraComponent } from './modales/crear-editar-mate
 import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
 import { FormularioCursoComponent } from './formularios/formulario-curso/formulario-curso.component';
 import { CrearEditarCursoComponent } from './modales/crear-editar-curso/crear-editar-curso.component';
+import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { CrearEditarCursoComponent } from './modales/crear-editar-curso/crear-ed
     RutaGestionMateriasCarreraComponent,
     FormularioCursoComponent,
     CrearEditarCursoComponent,
+    RutaIngresoNotasComponent,
   ],
   imports: [
     CommonModule,

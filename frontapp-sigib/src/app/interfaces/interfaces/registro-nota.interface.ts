@@ -4,7 +4,7 @@ import {CursoInterface} from './curso.interface';
 export interface RegistroNotaInterface {
   id?: number;
   notaPrimerQuimestre: number;
-  notaSegundoQuimestre: number
+  notaSegundoQuimestre: number;
   estudiante: number  | EstudianteInterface;
-  cursos: number  | CursoInterface;
+  curso: number  | CursoInterface;
 }
