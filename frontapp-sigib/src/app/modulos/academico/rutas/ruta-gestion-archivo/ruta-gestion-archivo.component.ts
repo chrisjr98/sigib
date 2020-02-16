@@ -27,7 +27,8 @@ export class RutaGestionArchivoComponent implements OnInit {
     { field: "apellido", header: "Apellido", width: "20%" },
     { field: "notaCurriculum", header: "Nota Promedio Carrera", width: "15%" },
     { field: "notaProyecto", header: "Nota Proyecto Final", width: "15%" },
-    { field: "notaGrado", header: "Nota de Grado", width: "15%" }
+    { field: "notaGrado", header: "Nota de Grado", width: "15%" },
+    { field: "acciones", header: "Acciones", width: "20%" }
   ];
 
   rows = NUMERO_FILAS_TABLAS;
@@ -54,31 +55,7 @@ export class RutaGestionArchivoComponent implements OnInit {
     public dialogo: MatDialog
   ) {}
 
-  ngOnInit() {
-    this._activatedRoute.queryParams.subscribe(
-      queryParams => {
-        this.queryParams.skip = queryParams.skip ? +queryParams.skip : 0;
-        this.queryParams.where = queryParams.where
-          ? JSON.parse(queryParams.where)
-          : {};
-        this.queryParams.where.tipo = this.queryParams.where.tipo
-          ? this.queryParams.where.tipo
-          : undefined;
-        // tslint:disable-next-line:max-line-length
-        this.queryParams.where.habilitado =
-          this.queryParams.where.habilitado === 0 ||
-          this.queryParams.where.habilitado === 1
-            ? this.queryParams.where.habilitado
-            : undefined;
-        this.queryParams.where.nivelJuego = this.queryParams.where.nivelJuego
-          ? this.queryParams.where.nivelJuego
-          : undefined;
-      },
-      error => {
-        console.error("Error en acceder a la ruta");
-      }
-    );
-  }
+  ngOnInit() {}
 
   cargarDatosLazy(event) {
     this.loading = true;

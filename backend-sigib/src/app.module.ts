@@ -38,9 +38,9 @@ import { UsuarioService } from "./usuario/usuario.service";
 import { GradoEntity } from "./grado/grado.entity";
 import { GradoModule } from "./grado/grado.module";
 import { GradoService } from "./grado/grado.service";
-import { ComprobanteModule } from './comprobante/comprobante.module';
-import {ComprobanteEntity} from './comprobante/comprobante.entity';
-import {ComprobanteService} from './comprobante/comprobante.service';
+import { ComprobanteModule } from "./comprobante/comprobante.module";
+import { ComprobanteEntity } from "./comprobante/comprobante.entity";
+import { ComprobanteService } from "./comprobante/comprobante.service";
 
 init();
 
@@ -177,12 +177,12 @@ export class AppModule {
                 this._usuarioService,
                 "/datos-usuario.json"
             );
-            console.log('respuesta usuarios', respuestaUsuarios);
+            console.log("respuesta usuarios", respuestaUsuarios);
             const respuestaComprobantes = await crearDatos(
                 this._comprobanteService,
-                '/comprobantes.json',
+                "/comprobantes.json"
             );
-            console.log('respuesta comprobantes', respuestaComprobantes);
+            console.log("respuesta comprobantes", respuestaComprobantes);
             console.log("respuesta usuarios", respuestaUsuarios);
             const respuestaGrado = await crearDatos(
                 this._gradoService,

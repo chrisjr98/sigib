@@ -45,6 +45,7 @@ import { FormularioProfesorComponent } from "./formularios/formulario-profesor/f
 import { CrearEditarProfesorComponent } from "./modales/crear-editar-profesor/crear-editar-profesor.component";
 import { FormularioGradoComponent } from './formularios/formulario-grado/formulario-grado.component';
 import { CrearEditarGradoComponent } from './modales/crear-editar-grado/crear-editar-grado.component';
+import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
 
 @NgModule({
   declarations: [
