@@ -1,5 +1,5 @@
-export class Usuario{
-nombre: string;
-cedula: string;
-password: string;
+export class Usuario {
+  nombre: string;
+  cedula: string;
+  password: string;
 }

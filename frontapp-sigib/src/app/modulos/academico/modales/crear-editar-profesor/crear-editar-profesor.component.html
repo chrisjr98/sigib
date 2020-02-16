@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <h3 mat-dialog-title>
       <span class="bold"
-        >{{ data.estudiante ? "Editar" : "Crear" }} estudiante</span
+        >{{ data.profesor ? "Editar" : "Crear" }} profesor</span
       >
     </h3>
   </div>
@@ -12,16 +12,16 @@
   <div class="row contenido-modal">
     <div class="col-md-12">
       <p class="descripcion-modal">
-        Ingrese los campos para {{ data.estudiante ? "editar" : "crear" }} un
-        estudiante:
+        Ingrese los campos para {{ data.profesor ? "editar" : "crear" }} un
+        profesor:
       </p>
     </div>
     <div class="col-sm-12">
-      <app-formulario-estudiante
-        (estudianteValido)="validarFormulario($event)"
-        [estudiante]="data.estudiante"
+      <app-formulario-profesor
+        (profesorValido)="validarFormulario($event)"
+        [profesor]="data.profesor"
       >
-      </app-formulario-estudiante>
+      </app-formulario-profesor>
     </div>
   </div>
 </div>

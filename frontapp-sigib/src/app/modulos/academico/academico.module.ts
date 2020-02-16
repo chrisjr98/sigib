@@ -36,10 +36,13 @@ import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materi
 import { FormularioCursoComponent } from './formularios/formulario-curso/formulario-curso.component';
 import { CrearEditarCursoComponent } from './modales/crear-editar-curso/crear-editar-curso.component';
 import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
-
+import { FormularioProfesorComponent } from "./formularios/formulario-profesor/formulario-profesor.component";
+import { RutaArchivoComponent } from './rutas/ruta-archivo/ruta-archivo.component';
+import { CrearEditarProfesorComponent } from "./modales/crear-editar-profesor/crear-editar-profesor.component";
 
 @NgModule({
-  declarations: [RutaGestionCarrerasComponent,
+  declarations: [
+    RutaGestionCarrerasComponent,
     RutaGestionCursosComponent,
     RutaGestionEstudiantesComponent,
     RutaGestionArchivoComponent,
@@ -63,6 +66,9 @@ import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingre
     FormularioCursoComponent,
     CrearEditarCursoComponent,
     RutaIngresoNotasComponent,
+    FormularioProfesorComponent,
+    CrearEditarProfesorComponent,
+    RutaArchivoComponent
   ],
   imports: [
     CommonModule,
@@ -82,14 +88,14 @@ import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingre
     MatOptionModule,
     PickListModule,
     MatButtonModule,
-    RouterModule,
-
+    RouterModule
   ],
   entryComponents: [
     CrearEditarCarreraComponent,
     CrearEditarEstudianteComponent,
     CrearEditarMateriasCarreraComponent,
     CrearEditarCursoComponent,
+    CrearEditarProfesorComponent
   ]
 })
-export class AcademicoModule { }
+export class AcademicoModule {}

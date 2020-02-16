@@ -18,63 +18,61 @@ import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/
 import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
 import {RutaIngresoNotasComponent} from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
 
-
 const routes: Routes = [
   {
-    path: 'menu-academico',
+    path: "menu-academico",
     children: [
       {
-        path: '',
-        component: MenuOpcionesAcademicoComponent,
+        path: "",
+        component: MenuOpcionesAcademicoComponent
       },
       {
-        path: 'carreras',
+        path: "carreras",
         children: [
           {
-            path: '',
+            path: "",
             component: RutaGestionCarrerasComponent
           },
           {
-            path: ':id/materias',
+            path: ":id/materias",
             component: RutaGestionMateriasCarreraComponent
           }
         ]
-
       },
       {
-        path: 'cursos',
+        path: "cursos",
         component: RutaGestionCursosComponent
       },
       {
-        path: 'estudiantes',
+        path: "estudiantes",
         children: [
           {
-            path: '',
+            path: "",
             component: MenuOpcionesEstudianteComponent
           },
           {
-            path: 'ver-comprobantes',
+            path: "ver-comprobantes",
             component: RutaVerComprobantesComponent
           },
           {
-            path: 'ver-horarios',
+            path: "ver-horarios",
             component: RutaVerHorariosComponent
           },
           {
-            path: 'ver-curriculum',
+            path: "ver-curriculum",
             component: RutaVerCurriculumComponent
           },
           {
-            path: 'matriculacion',
+            path: "matriculacion",
             component: RutaMatriculacionComponent
           }
         ]
       },
       {
-        path: 'profesores',
-                children: [
+        path: "profesores",
+        children: [
           {
-            path: '',
+            path: "",
             component: MenuProfesorComponent
           },
           {
@@ -91,17 +89,17 @@ const routes: Routes = [
             ]
           },
           {
-            path: 'cursos-profesor',
+            path: "cursos-profesor",
             component: RutaCursoProfesorComponent
           },
           {
-            path: 'asistencia',
+            path: "asistencia",
             component: RutaAsistenciaComponent
           }
         ]
       },
       {
-        path: 'archivo',
+        path: "archivo",
         component: RutaGestionArchivoComponent
       },
       {
@@ -109,21 +107,20 @@ const routes: Routes = [
         component: RutaGestionProfesoresComponent
       },
       {
-        path: 'gestion-estudiantes',
+        path: "gestion-estudiantes",
         component: RutaGestionEstudiantesComponent
       }
     ]
   },
   {
-    path: '',
-    redirectTo: 'menu-academico',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "menu-academico",
+    pathMatch: "full"
   }
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AcademicoRoutingModule { }
+export class AcademicoRoutingModule {}
