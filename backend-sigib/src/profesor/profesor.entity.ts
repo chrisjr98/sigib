@@ -23,6 +23,7 @@ export class ProfesorEntity {
         type: 'varchar',
         name: 'cedula',
         length: 10,
+        unique: true,
     })
     cedula: string = null;
 

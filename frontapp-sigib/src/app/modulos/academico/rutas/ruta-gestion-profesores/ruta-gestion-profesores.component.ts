@@ -29,6 +29,11 @@ export class RutaGestionProfesoresComponent implements OnInit {
       field: "fechaContratacion",
       header: "Fecha de Contratacion",
       width: "20%"
+    },
+    {
+      field: "acciones",
+      header: "Acciones",
+      width: "20%"
     }
   ];
 
