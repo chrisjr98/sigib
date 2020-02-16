@@ -98,6 +98,7 @@ export class AppModule {
         private readonly _registroAsistenciaService: RegistroAsistenciaService,
         private readonly _registroNotasService: RegistroNotaService,
         private readonly _usuarioService: UsuarioService,
+        //private readonly _comprobanteService: ComprobanteService,
     ) {
         if (CONFIG_ENVIRONMENT.dbConnections.crearDatosPrueba) {
             this.crearDatosDePrueba()
@@ -161,7 +162,12 @@ export class AppModule {
                 this._usuarioService,
                 '/datos-usuario.json',
             );
-            console.log('respuesta usuarios', respuestaUsuarios);
+          /*  console.log('respuesta comprobantes', respuestaUsuarios);
+            const respuestaComprobantes = await crearDatos(
+                this._usuarioService,
+                '/comprobantes.json',
+            );
+            console.log('respuesta comprobantes', respuestaComprobantes);*/
         } catch (e) {
             console.error('Error creando datos de prueba', e);
             return false;
