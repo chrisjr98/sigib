@@ -6,6 +6,12 @@ import { ToasterService } from 'angular2-toaster';
 import { MatDialog } from '@angular/material';
 import { MatriculaRestService } from 'src/app/servicios/rest/servicios/matricula-rest.service';
 import { MatriculaInterface } from 'src/app/interfaces/interfaces/matricula.interface';
+import { CursoInterface } from 'src/app/interfaces/interfaces/curso.interface';
+import { EstudianteInterface } from 'src/app/interfaces/interfaces/estudiante.interface';
+import { LocalStorageService } from 'src/app/servicios/rest/servicios/local-storage';
+import { EstudianteRestService } from 'src/app/servicios/rest/servicios/estudiante-rest.service';
+import { CursoRestService } from 'src/app/servicios/rest/servicios/curso-rest.service';
+import { UsuarioSistemaInterface } from 'src/app/interfaces/interfaces/usuario-sistema';
 
 @Component({
   selector: 'app-ruta-ver-horarios',
@@ -14,7 +20,9 @@ import { MatriculaInterface } from 'src/app/interfaces/interfaces/matricula.inte
 })
 export class RutaVerHorariosComponent implements OnInit { 
   
+  cursos: CursoInterface[];
   matriculas: MatriculaInterface[];
+  estudiante: EstudianteInterface;
   columnas = [
     { field: "horario", header: "Horario", width: "20%" },
     { field: "grupo", header: "Grupo", width: "20%" },
@@ -37,6 +45,9 @@ export class RutaVerHorariosComponent implements OnInit {
     private readonly _toasterService: ToasterService,
     public dialogo: MatDialog,
     private readonly _matriculaService: MatriculaRestService,
+    private readonly _localStorage: LocalStorageService,
+    private readonly _estudianteService: EstudianteRestService,
+    private readonly _cursoService: CursoRestService,
   ) {}
 
   ngOnInit() {}
@@ -46,43 +57,71 @@ export class RutaVerHorariosComponent implements OnInit {
     this.queryParams.skip = event.first;
     this.buscar(this.queryParams.skip);
   }
-/*public findWhereOr(criterioBusqueda, cabeceras?: { headers: HttpHeaders }): Observable<[Entidad[], number]> {
-    const url = this.url + ':' + this.port  + '/' + this.segmento + '/findWhereOr' + '?' + JSON.stringify(criterioBusqueda);
-    let cabecerasDePeticion;
-    if (cabeceras) {
-      cabecerasDePeticion = JSON.parse(JSON.stringify(this.cabecerasGenerales));
-      cabecerasDePeticion.headers = {...cabecerasDePeticion.headers, ...cabeceras.headers};
-    } */
+//1103756134
   buscar(skip: number) {
-    const consulta = {
-      relations: ['estudiante', 'curso','curso.profesor','curso.materia'],
+    const cedulaEstudiante: UsuarioSistemaInterface =  JSON.parse(this._localStorage.obtenerDatosLocalStorage('usuario'));
+    const profesorConsulta = {
+      cedula: cedulaEstudiante.cedulaUsuario,
       skip,
       take: this.rows,
       order: { id: 'DESC' }
     };
-    this._matriculaService.findAll(JSON.stringify(consulta), ).subscribe(
-      (respuesta: [MatriculaInterface[], number]) => {
-        this.matriculas = respuesta[0];
-        this.totalRecords = respuesta[1];
-        console.log('datos de la base', this.matriculas);
-        this.loading = false;
-        this._router.navigate(this.ruta, {
-          queryParams: {
-            skip: this.queryParams.skip,
-            where: JSON.stringify(this.queryParams.where)
+    this._estudianteService.findAll(JSON.stringify(profesorConsulta))
+      .subscribe(
+        (estudiantes: [EstudianteInterface[], number]) => {
+          console.log('matriculas de estudiante con esa carrera', estudiantes[0][0]);
+          this.estudiante = estudiantes[0][0] as EstudianteInterface;
+          if (this.estudiante) {
+            let estudianteId =  +(this.estudiante).id;
+            /**Aqui le estpy quemando un dato */
+            //estudianteId = 1;
+            console.log('estudiante id', estudianteId);
+            const consulta = {
+              relations: ['estudiante', 'curso','curso.profesor','curso.materia'],
+              where: {
+                estudiante: {
+                  id: estudianteId
+                }
+              },
+              skip,
+              take: this.rows,
+              order: { id: 'DESC' }
+            };
+            this._matriculaService.findAll(JSON.stringify(consulta)).subscribe(
+              (respuesta: [MatriculaInterface[], number]) => {
+                this.matriculas  = respuesta[0];
+                this.totalRecords = respuesta[1];
+                console.log('datos de la base', this.matriculas);
+                this.loading = false;
+              },
+              error => {
+                this.loading = false;
+                console.error("Error en el servidor", error);
+                this._toasterService.pop(
+                  "error",
+                  "Error",
+                  "Error al cargar materias de la carrera"
+                );
+              }
+            );
+          } else {
+            this.loading = false;
+            this._toasterService.pop(
+              "warning",
+              "",
+              "No existen cursos creado para la carrera"
+            );
           }
-        });
-      },
-      error => {
-        this.loading = false;
-        console.error("Error en el servidor", error);
-        this._toasterService.pop(
-          "error",
-          "Error",
-          "Error al cargar materias de la carrera"
-        );
-      }
-    );
+        }, error => {
+          this.loading = false;
+          console.error("Error en el servidor", error);
+          this._toasterService.pop(
+            "warning",
+            "",
+            "No existen cursos creado para la carrera"
+          );
+        }
+      );
   }
 
 }
