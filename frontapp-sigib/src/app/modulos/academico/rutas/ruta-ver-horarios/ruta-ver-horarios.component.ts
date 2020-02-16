@@ -74,7 +74,7 @@ export class RutaVerHorariosComponent implements OnInit {
           if (this.estudiante) {
             let estudianteId =  +(this.estudiante).id;
             /**Aqui le estpy quemando un dato */
-            //estudianteId = 1;
+            estudianteId = 1;
             console.log('estudiante id', estudianteId);
             const consulta = {
               relations: ['estudiante', 'curso','curso.profesor','curso.materia'],
