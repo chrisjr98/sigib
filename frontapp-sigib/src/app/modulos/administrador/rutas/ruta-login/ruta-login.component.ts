@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ToasterService} from 'angular2-toaster';
 import { LocalStorageService } from 'src/app/servicios/rest/servicios/local-storage';
 import {UsuarioRestService} from '../../../../servicios/rest/servicios/usuario-rest.service';
+import {CargandoService} from '../../../../servicios/cargando-service/cargando-service';
 
 @Component({
   selector: 'app-ingresar-juego',
@@ -26,6 +27,7 @@ export class RutaLoginComponent implements OnInit {
     private readonly _toasterService: ToasterService,
     private readonly _localStorageService: LocalStorageService,
     private readonly _usuarioService: UsuarioRestService,
+    private readonly _cargandoService: CargandoService,
 
   ) {
   }
@@ -43,6 +45,7 @@ export class RutaLoginComponent implements OnInit {
 
   irARutaMenu() {
     if (this.datosUsuario) {
+      this._cargandoService.habilitarCargando();
       const consulta = {
         where: {
           cedula: this.datosUsuario.cedula,
@@ -61,8 +64,6 @@ export class RutaLoginComponent implements OnInit {
                 'usuario',
                 datosLocalStorage
               );
-            const usuariadsfasdf = JSON.parse(this._localStorageService.obtenerDatosLocalStorage('usuario'));
-            console.log('datos del local storage', usuariadsfasdf);
             const url = ['/administrador', 'menu'];
             this._router
               .navigate(
@@ -73,10 +74,13 @@ export class RutaLoginComponent implements OnInit {
                     rol: this.datosUsuario.rol
                   }
                 });
+            this._cargandoService.deshabilitarCargando();
           } else {
+            this._cargandoService.deshabilitarCargando();
             this._toasterService.pop('error', 'Error', 'Usuario no registrado', );
           }
         }, error => {
+          this._cargandoService.deshabilitarCargando();
           this._toasterService.pop('error', 'Error', 'Usuario no registrado', );
         }
       );
