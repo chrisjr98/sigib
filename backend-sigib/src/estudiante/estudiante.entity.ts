@@ -6,7 +6,8 @@ import {
     OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    JoinColumn
 } from "typeorm";
 import { CarreraEntity } from "../carrera/carrera.entity";
 import { RegistroAsistenciaEntity } from "../registro-asistencia/registro-asistencia.entity";
@@ -91,6 +92,6 @@ export class EstudianteEntity {
     @OneToOne(type => UsuarioEntity, usuario => usuario.estudiante)
     usuario: UsuarioEntity;
 
-    @OneToOne(type => GradoEntity, grado => grado.id)
-    grado: GradoEntity;
+    @OneToOne(type => GradoEntity, grado => grado.estudiante)
+    grado?: GradoEntity;
 }

@@ -28,7 +28,7 @@ import { RutaMatriculacionComponent } from "./rutas/ruta-matriculacion/ruta-matr
 import { MenuOpcionesEstudianteModule } from "src/app/componentes/menu-opciones-estudiante/menu-opciones-estudiante.module";
 import { RutaNotasEstudianteComponent } from "./rutas/ruta-notas-estudiante/ruta-notas-estudiante.component";
 import { RutaCursoProfesorComponent } from "./rutas/ruta-curso-profesor/ruta-curso-profesor.component";
-import { RutaAsistenciaComponent } from "./rutas/ruta-asistencia/ruta-asistencia.component";
+import { RutaAsistenciaEstudianteComponent } from "./rutas/ruta-asistencia-estudiante/ruta-asistencia-estudiante.component";
 import { MenuProfesorModule } from "src/app/componentes/menu-profesor/menu-profesor.module";
 import { RutaGestionProfesoresComponent } from "./rutas/ruta-gestion-profesores/ruta-gestion-profesores.component";
 import { FormularioEstudianteComponent } from "./formularios/formulario-estudiante/formulario-estudiante.component";
@@ -46,6 +46,7 @@ import { CrearEditarProfesorComponent } from "./modales/crear-editar-profesor/cr
 import { FormularioGradoComponent } from './formularios/formulario-grado/formulario-grado.component';
 import { CrearEditarGradoComponent } from './modales/crear-editar-grado/crear-editar-grado.component';
 import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
+import { RutaIngresoAsistenciaComponent } from './rutas/ruta-ingreso-asistencia/ruta-ingreso-asistencia.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingre
     RutaMatriculacionComponent,
     RutaNotasEstudianteComponent,
     RutaCursoProfesorComponent,
-    RutaAsistenciaComponent,
+    RutaAsistenciaEstudianteComponent,
     RutaGestionProfesoresComponent,
     FormularioEstudianteComponent,
     CrearEditarEstudianteComponent,
@@ -77,6 +78,7 @@ import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingre
     CrearEditarProfesorComponent,
     FormularioGradoComponent,
     CrearEditarGradoComponent,
+    RutaIngresoAsistenciaComponent,
   ],
   imports: [
     CommonModule,

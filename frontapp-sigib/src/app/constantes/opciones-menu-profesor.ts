@@ -15,6 +15,6 @@ export const OPCIONES_MENU_PROFESOR = [
     textoBoton: 'ASISTENCIA',
     descripcionOpcion: 'Registra la asistencia de los estudiantes',
     pathImagen: 'assets/imagenes/opciones-menu-profesor/reloj.svg',
-    dirigirA: ['../asistencia']
+    dirigirA: ['../asistencia-estudiante']
   }
 ];

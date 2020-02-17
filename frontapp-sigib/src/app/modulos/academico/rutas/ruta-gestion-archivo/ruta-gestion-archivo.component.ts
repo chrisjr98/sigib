@@ -95,18 +95,16 @@ export class RutaGestionArchivoComponent implements OnInit {
     );
   }
 
-  abrirDialogo(estudianteSeleccionado?): void {
+  abrirDialogo(gradoSeleccionado?): void {
     const dialogRef = this.dialogo.open(CrearEditarGradoComponent, {
-      data: { estudiante: estudianteSeleccionado }
+      data: { grado: gradoSeleccionado }
     });
     const resultadoModal$ = dialogRef.afterClosed();
     resultadoModal$.subscribe(
       (registroCreado: GradoInterface) => {
         if (registroCreado) {
-          if (estudianteSeleccionado) {
-            const indiceRegistro = this.estudiantes.indexOf(
-              estudianteSeleccionado
-            );
+          if (gradoSeleccionado) {
+            const indiceRegistro = this.estudiantes.indexOf(gradoSeleccionado);
             this.grados[indiceRegistro] = registroCreado;
             this._toasterService.pop("success", "", "Grado actualizado");
           } else {
@@ -120,7 +118,7 @@ export class RutaGestionArchivoComponent implements OnInit {
         }
       },
       error => {
-        if (estudianteSeleccionado) {
+        if (gradoSeleccionado) {
           this._cargandoService.deshabilitarCargando();
           this._toasterService.pop(
             "error",

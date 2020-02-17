@@ -6,7 +6,8 @@ import {
     OneToMany,
     OneToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    JoinColumn
 } from "typeorm";
 import { EstudianteEntity } from "src/estudiante/estudiante.entity";
 
@@ -45,6 +46,7 @@ export class GradoEntity {
     })
     notaGrado: number = null;
 
-    @OneToOne(type => EstudianteEntity, estudiante => estudiante.codigo)
+    @OneToOne(type => EstudianteEntity, estudiante => estudiante.grado)
+    @JoinColumn()
     estudiante: EstudianteEntity;
 }
