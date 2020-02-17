@@ -1,7 +1,7 @@
-export class Cliente{
-nombre: string;
-apellido:string;
-cedula:string;
-direccion:string;
-telefono:string;
+export class Cliente {
+  nombre: string;
+  apellido: string;
+  cedula: string;
+  direccion: string;
+  telefono: string;
 }

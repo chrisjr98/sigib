@@ -30,7 +30,8 @@
     "apellido": "Aguirre",
     "telefono": "0934522000",
     "correo": "yac_4@gmail.com",
-    "usuario": 10
+    "usuario": 10,
+    "grado": 2
   },
   {
     "id'": 4,
@@ -52,6 +53,7 @@
     "apellido": "Jumbo",
     "telefono": "0987192388",
     "correo": "crisjc@gmail.com",
-    "usuario": 2
+    "usuario": 2,
+    "grado": 1
   }
 ]

@@ -51,6 +51,7 @@ export class CursoEntity {
     @Column({
         type: 'varchar',
         name: 'periodo_academico',
+        length: 4,
     })
     periodoAcademico: string = null;
 

@@ -22,37 +22,56 @@ export class RutaGestionComprobanteComponent implements OnInit {
 
   comprobantes: ComprobanteInterface[] = [
     {
-      numero:     '5883',
-      tipo:       'matricula',
-      formapago:  'Efectivo en caja',
+      numero:     5883,
       fecha:      '01/03/2019',
-      cantidad:   '70'
-
-
+      ci:         'matricula',
+      nombre:     'Efectivo en caja',
+      tipo:       '70',
+      formapago:   'Tarjeta de Crédito',
+      realizadop:   'Administrador',
+      comprobantep: '',
+      beneficiario: '',
+      estudiante: 4,
     },
         {
-      numero:     '5884',
-      tipo:       'mensualidad',
-      formapago:  'Deposito en banco',
-      fecha:      '02/03/2019',
-      cantidad:   '50'
+      numero:     5883,
+      fecha:      '01/03/2019',
+      ci:         'matricula',
+      nombre:     'Efectivo en caja',
+      tipo:       '70',
+      formapago:   'Tarjeta de Crédito',
+      realizadop:   'Administrador',
+      comprobantep: '',
+      beneficiario: '',
+      estudiante: 4,
     },
         {
-      numero:     '5885',
-      tipo:       'mensualidad',
-      formapago:  'Efectivo en caja',
-      fecha:      '03/03/2019',
-      cantidad:   '50'
+      numero:     5883,
+      fecha:      '01/03/2019',
+      ci:         'matricula',
+      nombre:     'Efectivo en caja',
+      tipo:       '70',
+      formapago:   'Tarjeta de Crédito',
+      realizadop:   'Administrador',
+      comprobantep: '',
+      beneficiario: '',
+      estudiante: 4,
     }
   ];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
-    {field: 'numero', header: 'Numero', width: '20%'},
-    {field: 'tipo', header: 'Tipo', width: '20%'},
-    {field: 'formapago', header: 'FormaDePago', width: '20%'},
-    {field: 'fecha', header: 'Fecha', width: '20%'},
-    {field: 'cantidad', header: 'Cantidad', width: '20%'}
+    {field: 'numero', header: 'Numero', width: '10%'},
+    {field: 'fecha', header: 'Fecha', width: '10%'},
+    {field: 'ci', header: 'Ced Identidad', width: '10%'},
+    {field: 'nombre', header: 'Nombre', width: '10%'},
+    {field: 'tipo', header: 'Tipo', width: '10%'},
+    {field: 'formapago', header: 'Forma de pago', width: '10%'},
+    {field: 'realizadop', header: 'Realizado por', width: '20%'},
+    {field: 'comprobantep', header: 'Comprobante pago', width: '10%'},
+    {field: 'beneficiario', header: 'Beneficiario', width: '10%'},
+    {field: 'estudiante', header: 'Estudiante', width: '10%'},
+    {field: 'acciones', header: 'Acciones', width: '20%'}
   ];
   rows = NUMERO_FILAS_TABLAS;
   totalRecords: number;

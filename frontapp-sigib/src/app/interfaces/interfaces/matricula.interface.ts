@@ -1,8 +1,10 @@
-import {EstudianteInterface} from './estudiante.interface';
-import {CursoInterface} from './curso.interface';
+import { EstudianteInterface } from './estudiante.interface';
+import { CursoInterface } from './curso.interface';
 
 export interface MatriculaInterface {
+
   id?: number;
-  estudiante: number  | EstudianteInterface;
-  cursos: number  | CursoInterface;
+  estudiante: number | EstudianteInterface;
+  curso: number |CursoInterface;
+
 }

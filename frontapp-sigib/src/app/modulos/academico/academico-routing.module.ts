@@ -13,117 +13,134 @@ import { RutaMatriculacionComponent } from './rutas/ruta-matriculacion/ruta-matr
 import { MenuProfesorComponent } from 'src/app/componentes/menu-profesor/menu-profesor/menu-profesor.component';
 import { RutaNotasEstudianteComponent } from './rutas/ruta-notas-estudiante/ruta-notas-estudiante.component';
 import { RutaCursoProfesorComponent } from './rutas/ruta-curso-profesor/ruta-curso-profesor.component';
-import { RutaAsistenciaComponent } from './rutas/ruta-asistencia/ruta-asistencia.component';
 import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
 import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
 import {RutaIngresoNotasComponent} from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
-
+import {RutaVerNominaComponent} from './rutas/ruta-ver-nomina/ruta-ver-nomina.component';
+import {RutaAsistenciaEstudianteComponent} from './rutas/ruta-asistencia-estudiante/ruta-asistencia-estudiante.component';
+import {RutaIngresoAsistenciaComponent} from './rutas/ruta-ingreso-asistencia/ruta-ingreso-asistencia.component';
 
 const routes: Routes = [
   {
-    path: 'menu-academico',
+    path: "menu-academico",
     children: [
       {
-        path: '',
-        component: MenuOpcionesAcademicoComponent,
+        path: "",
+        component: MenuOpcionesAcademicoComponent
       },
       {
-        path: 'carreras',
+        path: "carreras",
         children: [
           {
-            path: '',
+            path: "",
             component: RutaGestionCarrerasComponent
           },
           {
-            path: ':id/materias',
+            path: ":id/materias",
             component: RutaGestionMateriasCarreraComponent
           }
         ]
-
       },
       {
-        path: 'cursos',
+        path: "cursos",
         component: RutaGestionCursosComponent
       },
       {
-        path: 'estudiantes',
+        path: "estudiantes",
         children: [
           {
-            path: '',
+            path: "",
             component: MenuOpcionesEstudianteComponent
           },
           {
-            path: 'ver-comprobantes',
+            path: "ver-comprobantes",
             component: RutaVerComprobantesComponent
           },
           {
-            path: 'ver-horarios',
+            path: "ver-horarios",
             component: RutaVerHorariosComponent
           },
           {
-            path: 'ver-curriculum',
+            path: "ver-curriculum",
             component: RutaVerCurriculumComponent
           },
           {
-            path: 'matriculacion',
+            path: "matriculacion",
             component: RutaMatriculacionComponent
           }
         ]
       },
       {
-        path: 'profesores',
-                children: [
+        path: "profesores",
+        children: [
           {
-            path: '',
+            path: "",
             component: MenuProfesorComponent
           },
           {
-            path: 'notas-estudiante',
+            path: "notas-estudiante",
             children: [
               {
-                path: '',
+                path: "",
                 component: RutaNotasEstudianteComponent
               },
               {
-                path: ':id/notas',
+                path: ":id/notas",
                 component: RutaIngresoNotasComponent
               }
             ]
           },
           {
-            path: 'cursos-profesor',
-            component: RutaCursoProfesorComponent
+            path: "cursos-profesor",
+            children: [
+              {
+                path: '',
+                component: RutaCursoProfesorComponent
+              },
+              {
+                path: ':id/nomina',
+                component: RutaVerNominaComponent,
+              }
+            ]
           },
           {
-            path: 'asistencia',
-            component: RutaAsistenciaComponent
+            path: "asistencia-estudiante",
+            children: [
+              {
+                path: "",
+                component: RutaAsistenciaEstudianteComponent
+              },
+              {
+                path: ":id/asistencia",
+                component: RutaIngresoAsistenciaComponent
+              }
+            ]
           }
         ]
       },
       {
-        path: 'archivo',
+        path: "archivo",
         component: RutaGestionArchivoComponent
       },
       {
-        path: 'gestion-profesores',
+        path: "gestion-profesores",
         component: RutaGestionProfesoresComponent
       },
       {
-        path: 'gestion-estudiantes',
+        path: "gestion-estudiantes",
         component: RutaGestionEstudiantesComponent
       }
     ]
   },
   {
-    path: '',
-    redirectTo: 'menu-academico',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "menu-academico",
+    pathMatch: "full"
   }
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AcademicoRoutingModule { }
+export class AcademicoRoutingModule {}

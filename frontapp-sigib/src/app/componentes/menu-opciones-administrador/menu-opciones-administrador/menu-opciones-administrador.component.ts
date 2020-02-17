@@ -13,17 +13,18 @@ export class MenuOpcionesAdministradorComponent implements OnInit {
   opcionesMenuAdministrador = OPCIONES_MENU_ADMINISTRADOR;
   esEstudiante = false;
   esProfesor = false;
-  esAdmin = false;
+  esAdmin = true;
+  rol;
   constructor(
-        private readonly _router: Router,
-        private readonly _activatedRoute: ActivatedRoute,
-        private readonly _localStorageService: LocalStorageService,
+    private readonly _router: Router,
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _localStorageService: LocalStorageService,
 
 
   ) { }
 
   ngOnInit() {
-      this._activatedRoute
+    this._activatedRoute
       .queryParams
       .subscribe(
         params => {
@@ -38,12 +39,11 @@ export class MenuOpcionesAdministradorComponent implements OnInit {
               }
             }else{
               if(params.rol === 'Profesor'){
-            const url = ['/administrador','menu','academico','menu-academico','profesores'];
-            return this._router.navigate(url);
+                const url = ['/administrador','menu','academico','menu-academico','profesores'];
+                return this._router.navigate(url);
+              }
             }
-            }
-            }
-          console.log('queryParams', params);
+          }
         }
       );
   }
