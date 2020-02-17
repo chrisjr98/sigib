@@ -15,6 +15,8 @@ import {FormControl} from '@angular/forms';
 import {VALIDACION_NOTA} from '../../../../constantes/validaciones-formulario/validacion-input';
 import {debounceTime} from 'rxjs/operators';
 import {RegistroNotaInterface} from '../../../../interfaces/interfaces/registro-nota.interface';
+import {NotasTablaInterface} from '../../../../interfaces/interfaces/notas-tabla.interface';
+import {MatriculaInterface} from '../../../../interfaces/interfaces/matricula.interface';
 
 @Component({
   selector: 'app-ruta-ingreso-notas',
@@ -25,8 +27,7 @@ export class RutaIngresoNotasComponent implements OnInit {
 
   idCurso: number;
   padre: CursoInterface;
-  notas: any[];
-  check = false;
+  notas: NotasTablaInterface[];
   columnas = [
     {field: 'cedula', header: 'Cédula', width: '10%'},
     {field: 'nombre', header: 'Nombre', width: '20%'},
@@ -41,8 +42,7 @@ export class RutaIngresoNotasComponent implements OnInit {
   busqueda = '';
   ruta = [];
   nombreCurso = '';
-  notaControl = new FormControl('', VALIDACION_NOTA);
-
+  clonedNotas: { [s: string]: NotasTablaInterface; } = {};
   constructor(
     private _activatedRoute: ActivatedRoute,
     private readonly  _router: Router,
@@ -53,13 +53,7 @@ export class RutaIngresoNotasComponent implements OnInit {
     private readonly _registroNotaService: RegistroNotaRestService,
     private readonly _matriculaService: MatriculaRestService,
     public dialogo: MatDialog,
-  ) {
-    this.notaControl.valueChanges
-      .pipe(debounceTime(500))
-      .subscribe(valor => {
-        console.log('adfadf', valor);
-      });
-  }
+  ) {}
 
   ngOnInit() {
     this._activatedRoute.paramMap.subscribe(param => {
@@ -103,7 +97,7 @@ export class RutaIngresoNotasComponent implements OnInit {
     };
     this._matriculaService.findAll(JSON.stringify(consulta))
       .subscribe(
-        (respuesta: [any[], number]) => {
+        (respuesta: [MatriculaInterface[], number]) => {
           this.notas = respuesta[0].map(
             r => {
               const notas = {
@@ -130,11 +124,12 @@ export class RutaIngresoNotasComponent implements OnInit {
         }
       );
   }
-  onRowEditInit(book) {
+  onRowEditInit(nota: NotasTablaInterface) {
     console.log('Row edit initialized');
+    this.clonedNotas[nota.cedula] = {...nota};
   }
 
-  onRowEditSave(item) {
+  onRowEditSave(item: NotasTablaInterface) {
     this._cargandoService.habilitarCargando();
     const valor1 = this.validateDecimal(item.notaPrimerQuimestre);
     const valor2 = this.validateDecimal(item.notaSegundoQuimestre);
@@ -171,8 +166,12 @@ export class RutaIngresoNotasComponent implements OnInit {
       this._toasterService.pop('error', 'Error', 'La calificación no es válida  Ej. 0.00 o 10.00');
     }
   }
-  onRowEditCancel(book, index: number) {
-    console.log('Row edit cancelled');
+  onRowEditCancel(nota: NotasTablaInterface, index: number) {
+    console.log('nota', nota);
+    console.log('index', index);
+    console.log('index', this.clonedNotas[nota.cedula]);
+    this.notas[index] = this.clonedNotas[nota.cedula];
+    delete this.clonedNotas[nota.cedula];
   }
   validateDecimal(valor) {
     const RE = /^\d*(\.\d{1})?\d{0,1}$/;
