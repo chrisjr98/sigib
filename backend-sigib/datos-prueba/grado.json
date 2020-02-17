@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "notaCurriculum": 8.5,
+        "notaProyecto": 9.5,
+        "notaGrado": 9,
+        "estudiante": 5
+    },
+    {
+        "id": 2,
+        "notaCurriculum": 9,
+        "notaProyecto": 10,
+        "notaGrado": 9.5,
+        "estudiante": 3
+    }
+]
