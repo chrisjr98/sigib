@@ -39,17 +39,15 @@ import { RouterModule } from "@angular/router";
 import { FormularioMateriasCarreraComponent } from "./formularios/formulario-materias-carrera/formulario-materias-carrera.component";
 import { CrearEditarMateriasCarreraComponent } from "./modales/crear-editar-materias-carrera/crear-editar-materias-carrera.component";
 import { RutaGestionMateriasCarreraComponent } from "./rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component";
-import { FormularioCursoComponent } from "./formularios/formulario-curso/formulario-curso.component";
-import { CrearEditarCursoComponent } from "./modales/crear-editar-curso/crear-editar-curso.component";
-import { FormularioProfesorComponent } from "./formularios/formulario-profesor/formulario-profesor.component";
-import { CrearEditarProfesorComponent } from "./modales/crear-editar-profesor/crear-editar-profesor.component";
 import { FormularioGradoComponent } from './formularios/formulario-grado/formulario-grado.component';
 import { CrearEditarGradoComponent } from './modales/crear-editar-grado/crear-editar-grado.component';
 import { RutaIngresoNotasComponent } from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
-import {FormularioProfesorComponent} from './formularios/formulario-profesor/formulario-profesor.component';
-import {CrearEditarProfesorComponent} from './modales/crear-editar-profesor/crear-editar-profesor.component';
 import { RutaVerNominaComponent } from './rutas/ruta-ver-nomina/ruta-ver-nomina.component';
 import { RutaIngresoAsistenciaComponent } from './rutas/ruta-ingreso-asistencia/ruta-ingreso-asistencia.component';
+import {FormularioCursoComponent} from './formularios/formulario-curso/formulario-curso.component';
+import {FormularioProfesorComponent} from './formularios/formulario-profesor/formulario-profesor.component';
+import {CrearEditarProfesorComponent} from './modales/crear-editar-profesor/crear-editar-profesor.component';
+import {CrearEditarCursoComponent} from './modales/crear-editar-curso/crear-editar-curso.component';
 
 @NgModule({
   declarations: [

@@ -13,12 +13,12 @@ import { RutaMatriculacionComponent } from './rutas/ruta-matriculacion/ruta-matr
 import { MenuProfesorComponent } from 'src/app/componentes/menu-profesor/menu-profesor/menu-profesor.component';
 import { RutaNotasEstudianteComponent } from './rutas/ruta-notas-estudiante/ruta-notas-estudiante.component';
 import { RutaCursoProfesorComponent } from './rutas/ruta-curso-profesor/ruta-curso-profesor.component';
-import { RutaAsistenciaComponent } from './rutas/ruta-asistencia/ruta-asistencia.component';
 import { RutaGestionProfesoresComponent } from './rutas/ruta-gestion-profesores/ruta-gestion-profesores.component';
 import { RutaGestionMateriasCarreraComponent } from './rutas/ruta-gestion-materias-carrera/ruta-gestion-materias-carrera.component';
 import {RutaIngresoNotasComponent} from './rutas/ruta-ingreso-notas/ruta-ingreso-notas.component';
 import {RutaVerNominaComponent} from './rutas/ruta-ver-nomina/ruta-ver-nomina.component';
-import { RutaIngresoAsistenciaComponent } from "./rutas/ruta-ingreso-asistencia/ruta-ingreso-asistencia.component";
+import {RutaAsistenciaEstudianteComponent} from './rutas/ruta-asistencia-estudiante/ruta-asistencia-estudiante.component';
+import {RutaIngresoAsistenciaComponent} from './rutas/ruta-ingreso-asistencia/ruta-ingreso-asistencia.component';
 
 const routes: Routes = [
   {

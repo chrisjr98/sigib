@@ -15,6 +15,7 @@ import { RegistroAsistenciaRestService } from "src/app/servicios/rest/servicios/
 import { debounceTime } from "rxjs/operators";
 import { EstudianteInterface } from "src/app/interfaces/interfaces/estudiante.interface";
 import { RegistroAsistenciaInterface } from "src/app/interfaces/interfaces/registro-asistencia.interface";
+import {NotasTablaInterface} from '../../../../interfaces/interfaces/notas-tabla.interface';
 
 @Component({
   selector: "app-ruta-ingreso-asistencia",
@@ -26,7 +27,7 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
   padre: CursoInterface;
   horas: any[];
   check = false;
-
+  clonedhoras: { [s: string]: any; } = {};
   columnas = [
     { field: "cedula", header: "Cédula", width: "10%" },
     { field: "nombre", header: "Nombre", width: "20%" },
@@ -126,8 +127,9 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
     );
   }
 
-  onRowEditInit(book) {
+  onRowEditInit(hora) {
     console.log("Row edit initialized");
+    this.clonedhoras[hora.cedula] = {...hora};
   }
 
   onRowEditSave(item) {
@@ -179,8 +181,11 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
     }
   }
 
-  onRowEditCancel(book, index: number) {
+  onRowEditCancel(hora, index: number) {
     console.log("Row edit cancelled");
+    console.log('index', this.clonedhoras[hora.cedula]);
+    this.horas[index] = this.clonedhoras[hora.cedula];
+    delete this.clonedhoras[hora.cedula];
   }
 
   validateEntero(valor) {
