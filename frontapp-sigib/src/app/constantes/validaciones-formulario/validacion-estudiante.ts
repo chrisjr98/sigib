@@ -64,6 +64,6 @@ export const VALIDACION_TELEFONO_ESTUDIANTE = [
 ];
 
 export const MENSAJES_VALIDACION_TELEFONO_ESTUDIANTE = {
-  required: 'Por favor ingrese el número de telefono del estudiante',
-  maxlength: 'Número de telefono no válido',
+  required: 'Por favor ingrese el número de teléfono del estudiante',
+  maxlength: 'Número de teléfono no válido',
 };

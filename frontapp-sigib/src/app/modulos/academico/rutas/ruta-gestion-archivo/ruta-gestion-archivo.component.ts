@@ -28,7 +28,6 @@ export class RutaGestionArchivoComponent implements OnInit {
     { field: "notaCurriculum", header: "Nota Promedio Carrera", width: "15%" },
     { field: "notaProyecto", header: "Nota Proyecto Final", width: "15%" },
     { field: "notaGrado", header: "Nota de Grado", width: "15%" },
-    { field: "acciones", header: "Acciones", width: "20%" }
   ];
 
   rows = NUMERO_FILAS_TABLAS;

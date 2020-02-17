@@ -22,12 +22,12 @@ export class RutaGestionProfesoresComponent implements OnInit {
     { field: "cedula", header: "Cédula", width: "15%" },
     { field: "nombre", header: "Nombre", width: "15%" },
     { field: "apellido", header: "Apellido", width: "15%" },
-    { field: "telefono", header: "Telefono", width: "20%" },
+    { field: "telefono", header: "Teléfono", width: "20%" },
     { field: "correo", header: "Correo", width: "30%" },
     { field: "tipoContrato", header: "Contrato", width: "15%" },
     {
       field: "fechaContratacion",
-      header: "Fecha de Contratacion",
+      header: "Fecha de Contratación",
       width: "20%"
     },
     {

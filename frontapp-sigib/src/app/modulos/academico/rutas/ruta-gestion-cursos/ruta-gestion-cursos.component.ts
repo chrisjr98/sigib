@@ -21,12 +21,12 @@ export class RutaGestionCursosComponent implements OnInit {
   materias: MateriaInterface[];
   profesores: ProfesorInterface[];
   columnas = [
-    { field: "id", header: "Codigo", width: "10%" },
+    { field: "id", header: "Código", width: "10%" },
     { field: "grupo", header: "Grupo", width: "20%" },
     { field: "horario", header: "Horario", width: "10%" },
     { field: "aula", header: "Aula", width: "10%" },
     { field: "numeroMaximoAlumnos", header: "Alumnos", width: "10%" },
-    { field: "periodoAcademico", header: "Periodo Academico", width: "10%" },
+    { field: "periodoAcademico", header: "Período Académico", width: "10%" },
     { field: "profesor", header: "Profesor", width: "20%" },
     { field: "materia", header: "Materia", width: "20%" },
     { field: "acciones", header: "Acciones", width: "10%" }

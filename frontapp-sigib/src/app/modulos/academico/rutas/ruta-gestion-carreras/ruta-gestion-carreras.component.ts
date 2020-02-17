@@ -24,7 +24,7 @@ export class RutaGestionCarrerasComponent implements OnInit {
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
   estados = ESTADOS;
   columnas = [
-    {field: 'codigo', header: 'Codigo', width: '20%'},
+    {field: 'codigo', header: 'Código', width: '20%'},
     {field: 'nombre', header: 'Nombre', width: '40%'},
     {field: 'duracion', header: 'Duración', width: '40%'},
     {field: 'acciones', header: 'Acciones', width: '40%'},

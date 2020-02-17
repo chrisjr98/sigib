@@ -12,6 +12,12 @@ import { LocalStorageService } from 'src/app/servicios/rest/servicios/local-stor
 import { EstudianteRestService } from 'src/app/servicios/rest/servicios/estudiante-rest.service';
 import { CursoRestService } from 'src/app/servicios/rest/servicios/curso-rest.service';
 import { UsuarioSistemaInterface } from 'src/app/interfaces/interfaces/usuario-sistema';
+import * as xlsx from 'xlsx';
+import * as FileSaver from 'file-saver';
+import {ReportesHorarioInterface} from '../../../../interfaces/interfaces/reportesHorario.interface';
+import {validarCedula} from '../../../../funciones/validar-cedula';
+import {ProfesorInterface} from '../../../../interfaces/interfaces/profesor.interface';
+import {MateriaInterface} from '../../../../interfaces/interfaces/materia.interface';
 
 @Component({
   selector: 'app-ruta-ver-horarios',
@@ -23,6 +29,7 @@ export class RutaVerHorariosComponent implements OnInit {
   cursos: CursoInterface[];
   matriculas: MatriculaInterface[];
   estudiante: EstudianteInterface;
+  reportesHorario: ReportesHorarioInterface[];
   columnas = [
     { field: "horario", header: "Horario", width: "20%" },
     { field: "grupo", header: "Grupo", width: "10%" },
@@ -120,6 +127,47 @@ export class RutaVerHorariosComponent implements OnInit {
           );
         }
       );
+  }
+
+  exportExcel() {
+    if (this.matriculas) {
+      this.reportesHorario = this.matriculas.map( value => {
+          return {
+            horario: (value.curso as CursoInterface ).horario,
+            grupo: (value.curso as CursoInterface ).grupo,
+            aula: (value.curso as CursoInterface ).aula,
+            // tslint:disable-next-line:max-line-length
+            profesor: ((value.curso as CursoInterface ).profesor as ProfesorInterface).nombre + ' ' + ((value.curso as CursoInterface ).profesor as ProfesorInterface).apellido,
+            materia: ((value.curso as CursoInterface ).materia as MateriaInterface).nombre,
+            año: ((value.curso as CursoInterface ).materia as MateriaInterface).anio,
+          };
+        }
+      );
+      const worksheet = xlsx.utils.json_to_sheet(this.reportesHorario);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, 'horario-estudiante');
+      this._toasterService.pop(
+        'success',
+        "",
+        "Reporte horario generado exitosamente"
+      );
+    } else {
+      this._toasterService.pop(
+        'error',
+        "Error",
+        "No existen registros"
+      );
+    }
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
 }

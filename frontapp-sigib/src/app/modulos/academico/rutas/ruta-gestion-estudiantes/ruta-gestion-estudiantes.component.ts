@@ -24,7 +24,7 @@ export class RutaGestionEstudiantesComponent implements OnInit {
     {field: 'nombre', header: 'Nombre', width: '20%'},
     {field: 'apellido', header: 'Apellido', width: '20%'},
     {field: 'telefono', header: 'Telefono', width: '20%'},
-    {field: 'correo', header: 'Correo', width: '20%'},
+    {field: 'correo', header: 'Correo Electrónico', width: '20%'},
     {field: 'acciones', header: 'Acciones', width: '10%'},
   ];
   rows = NUMERO_FILAS_TABLAS;

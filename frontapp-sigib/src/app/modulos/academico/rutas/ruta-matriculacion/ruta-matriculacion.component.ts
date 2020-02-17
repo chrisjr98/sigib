@@ -174,7 +174,7 @@ export class RutaMatriculacionComponent implements OnInit {
             console.log('registro creado', r);
             this._toasterService.pop({
               type: "success",
-              body: "Matrícula registrada exitosamente",
+              body: "Inscripción exitosa",
               timeout: 10000
             });
           },

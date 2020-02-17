@@ -76,6 +76,14 @@
           [resizableColumns]="true"
           [responsive]="true"
         >
+          <ng-template pTemplate="caption">
+            <div class="ui-helper-clearfix" style="text-align: left">
+              <button type="button" textContent="EXCEL" (click)="exportExcel()" class="btn btn-block btn-success">
+                EXCEL
+                <i class="fas fa-file-excel"></i>
+              </button>
+            </div>
+          </ng-template>
           <ng-template pTemplate="header" let-columns>
             <tr>
               <th
