@@ -52,7 +52,7 @@ export class RutaGestionClienteComponent implements OnInit {
     {field: 'nombre', header: 'Nombre', width: '20%'},
     {field: 'apellido', header: 'Apellido', width: '20%'},
     {field: 'direccion', header: 'Direccion', width: '20%'},
-    {field: 'telefono', header: 'Telefono', width: '20%'},
+    {field: 'telefono', header: 'Teléfono', width: '20%'},
     {field: 'acciones', header: 'Acciones', width: '20%'}
   ];
   rows = NUMERO_FILAS_TABLAS;

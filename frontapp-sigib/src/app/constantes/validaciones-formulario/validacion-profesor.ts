@@ -45,8 +45,8 @@ export const VALIDACION_TELEFONO_PROFESOR = [
   Validators.minLength(10)
 ];
 export const MENSAJES_VALIDACION_TELEFONO_PROFESOR = {
-  required: 'Por favor ingrese el número de telefono del profesor',
-  maxlength: 'Número de telefono no válido',
+  required: 'Por favor ingrese el número de teléfono del profesor',
+  maxlength: 'Número de teléfono no válido',
 };
 
 export const VALIDACION_CORREO_PROFESOR = [

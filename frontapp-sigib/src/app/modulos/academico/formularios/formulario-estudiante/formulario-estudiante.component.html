@@ -34,7 +34,7 @@
           </div>
           <div class="col-sm-6">
             <mat-form-field>
-              <mat-label>Telefono</mat-label>
+              <mat-label>Teléfono</mat-label>
               <input matInput placeholder="Ej. 0987192355" formControlName="telefono" required>
               <mat-error *ngIf="mensajesError.telefono.length > 0">
                 <div *ngFor="let mensaje of mensajesError.telefono">{{mensaje}}</div>
@@ -43,7 +43,7 @@
           </div>
           <div class="col-sm-6">
             <mat-form-field>
-              <mat-label>Correo</mat-label>
+              <mat-label>Correo Electrónico</mat-label>
               <input matInput placeholder="Ej. usuario@gmail.com" formControlName="correo" required type="email">
               <mat-error *ngIf="mensajesError.correo.length > 0">
                 <div *ngFor="let mensaje of mensajesError.correo">{{mensaje}}</div>

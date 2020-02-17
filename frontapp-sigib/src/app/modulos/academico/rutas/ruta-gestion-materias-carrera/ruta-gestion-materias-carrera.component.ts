@@ -24,7 +24,7 @@ export class RutaGestionMateriasCarreraComponent implements OnInit {
   columnas = [
     {field: 'codigo', header: 'Código', width: '10%'},
     {field: 'nombre', header: 'Nombre', width: '20%'},
-    {field: 'anio', header: 'Anio', width: '20%'},
+    {field: 'anio', header: 'Año', width: '20%'},
     {field: 'tipoMateria', header: 'Tipo', width: '20%'},
     {field: 'carrera', header: 'Carrera', width: '20%'},
     {field: 'acciones', header: 'Acciones', width: '10%'},

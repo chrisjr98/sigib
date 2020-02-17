@@ -174,7 +174,7 @@ export class FormularioProfesorComponent implements OnInit {
       const cedula = evento;
       const respuestaValidarCedula = validarCedula(cedula);
       if (respuestaValidarCedula) {
-        this._toasterService.pop("success", "Exito", "Cédula Válida");
+        this._toasterService.pop("success", '', "Cédula Válida");
       } else {
         this._toasterService.pop("error", "Error", "Cédula no válida");
       }
