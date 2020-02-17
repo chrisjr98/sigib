@@ -28,7 +28,7 @@ export class RutaMatriculacionComponent implements OnInit {
   profesores: ProfesorInterface[];
   estudiante: EstudianteInterface;
   columnas = [
-    { field: "id", header: "Codigo", width: "10%" },
+    { field: "id", header: "Código", width: "10%" },
     { field: "grupo", header: "Grupo", width: "10%" },
     { field: "horario", header: "Horario", width: "15%" },
     { field: "aula", header: "Aula", width: "10%" },

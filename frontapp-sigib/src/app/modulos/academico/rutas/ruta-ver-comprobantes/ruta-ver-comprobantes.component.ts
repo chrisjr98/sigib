@@ -36,9 +36,9 @@ export class RutaVerComprobantesComponent implements OnInit {
   ruta = [];
 
   columnas = [
-    {field: 'numero', header: 'Numero', width: '10%'},
+    {field: 'numero', header: 'Número', width: '10%'},
     {field: 'fecha', header: 'Fecha', width: '10%'},
-    {field: 'ci', header: 'Ced Identidad', width: '10%'},
+    {field: 'ci', header: 'Cédula Identidad', width: '10%'},
     {field: 'nombre', header: 'Nombre', width: '10%'},
     {field: 'tipo', header: 'Tipo', width: '10%'},
     {field: 'formaPago', header: 'Forma de pago', width: '10%'},
@@ -66,7 +66,7 @@ export class RutaVerComprobantesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-  
+
     }
 
     cargarDatosLazy(event) {
@@ -79,7 +79,7 @@ export class RutaVerComprobantesComponent implements OnInit {
     buscar(skip: number) {
 
       const cedulaEstudiante: UsuarioSistemaInterface =  JSON.parse(this._localStorage.obtenerDatosLocalStorage('usuario'));
-     
+
       const consulta = {
         where: {
           ci: cedulaEstudiante.cedulaUsuario,
