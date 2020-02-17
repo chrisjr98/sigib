@@ -112,6 +112,9 @@
                 <div *ngIf="col.field === 'materia'">
                   {{ rowData.curso.materia.nombre }}
                 </div>
+                <div *ngIf="col.field === 'anio'">
+                  {{ rowData.curso.materia.anio }}
+                </div>
               </td>
             </tr>
           </ng-template>

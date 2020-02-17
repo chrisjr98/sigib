@@ -25,10 +25,11 @@ export class RutaVerHorariosComponent implements OnInit {
   estudiante: EstudianteInterface;
   columnas = [
     { field: "horario", header: "Horario", width: "20%" },
-    { field: "grupo", header: "Grupo", width: "20%" },
+    { field: "grupo", header: "Grupo", width: "10%" },
     { field: "aula", header: "Aula", width: "20%" },
     { field: "profesor", header: "Profesor", width: "20%" },
     { field: "materia", header: "Materia", width: "20%" },
+    { field: "anio", header: "Año", width: "10%" },
   ];
 
   rows = NUMERO_FILAS_TABLAS;

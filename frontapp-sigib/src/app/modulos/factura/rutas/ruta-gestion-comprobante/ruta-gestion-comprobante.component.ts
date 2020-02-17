@@ -31,6 +31,7 @@ export class RutaGestionComprobanteComponent implements OnInit {
       realizadop:   'Administrador',
       comprobantep: '',
       beneficiario: '',
+      estudiante: 4,
     },
         {
       numero:     5883,
@@ -42,6 +43,7 @@ export class RutaGestionComprobanteComponent implements OnInit {
       realizadop:   'Administrador',
       comprobantep: '',
       beneficiario: '',
+      estudiante: 4,
     },
         {
       numero:     5883,
@@ -53,6 +55,7 @@ export class RutaGestionComprobanteComponent implements OnInit {
       realizadop:   'Administrador',
       comprobantep: '',
       beneficiario: '',
+      estudiante: 4,
     }
   ];
   opcionesHabilitado = OPCIONES_HABILITADO_SELECT;
@@ -67,6 +70,7 @@ export class RutaGestionComprobanteComponent implements OnInit {
     {field: 'realizadop', header: 'Realizado por', width: '20%'},
     {field: 'comprobantep', header: 'Comprobante pago', width: '10%'},
     {field: 'beneficiario', header: 'Beneficiario', width: '10%'},
+    {field: 'estudiante', header: 'Estudiante', width: '10%'},
     {field: 'acciones', header: 'Acciones', width: '20%'}
   ];
   rows = NUMERO_FILAS_TABLAS;
