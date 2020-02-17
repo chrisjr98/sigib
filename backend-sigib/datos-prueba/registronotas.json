@@ -22,15 +22,15 @@
     },
     {
       "id": 4,
-      "estudiante": 4,
+      "estudiante": 5,
       "curso": 1,
       "notaPrimerQuimestre": 3,
       "notaSegundoQuimestre": 10
     },
     {
       "id": 5,
-      "estudiante": 4,
-      "curso": 4,
+      "estudiante": 5,
+      "curso": 6,
       "notaPrimerQuimestre": 7,
       "notaSegundoQuimestre": 8
     }

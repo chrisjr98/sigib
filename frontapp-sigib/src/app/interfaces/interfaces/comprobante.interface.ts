@@ -1,3 +1,5 @@
+import { EstudianteInterface } from './estudiante.interface';
+
 export interface ComprobanteInterface{
     numero: number;
     fecha: string;
@@ -8,4 +10,6 @@ export interface ComprobanteInterface{
     realizadop: string;
     comprobantep: string;
     beneficiario: string;
+    estudiante: number | EstudianteInterface;
+
 }

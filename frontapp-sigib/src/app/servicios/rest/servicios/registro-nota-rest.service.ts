@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {PrincipalRestService} from '../rest-principal.service';
 import {environment} from '../../../../environments/environment';
 import {RegistroNotaInterface} from '../../../interfaces/interfaces/registro-nota.interface';
+import {Observable} from 'rxjs';
 
 @Injectable(
   {

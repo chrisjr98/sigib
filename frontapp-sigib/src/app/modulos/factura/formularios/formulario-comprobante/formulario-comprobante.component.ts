@@ -27,6 +27,7 @@ export class FormularioComprobanteComponent implements OnInit {
     realizadop: [],
     comprobantep: [],
     beneficiario: [],
+    estudiante: [],
   };
   formularioComprobante: FormGroup;
   subscribers = [];
