@@ -51,7 +51,6 @@ export class RutaIngresoNotasComponent implements OnInit {
     private readonly _cursoService: CursoRestService,
     private readonly _estudianteService: EstudianteRestService,
     private readonly _registroNotaService: RegistroNotaRestService,
-    private readonly _matriculaService: MatriculaRestService,
     public dialogo: MatDialog,
   ) {}
 
@@ -95,16 +94,17 @@ export class RutaIngresoNotasComponent implements OnInit {
       take: this.rows,
       order: {id: 'DESC'}
     };
-    this._matriculaService.findAll(JSON.stringify(consulta))
+    this._registroNotaService.findAll(JSON.stringify(consulta))
       .subscribe(
-        (respuesta: [MatriculaInterface[], number]) => {
+        (respuesta: [RegistroNotaInterface[], number]) => {
           this.notas = respuesta[0].map(
             r => {
               const notas = {
-                notaSegundoQuimestre: 0,
-                notaPrimerQuimestre: 0,
+                notaSegundoQuimestre: r.notaSegundoQuimestre,
+                notaPrimerQuimestre: r.notaSegundoQuimestre,
                 cedula: (r.estudiante as EstudianteInterface).cedula ,
                 nombre: (r.estudiante as EstudianteInterface).nombre + ' ' + (r.estudiante as EstudianteInterface).apellido ,
+                id: r.id,
               };
               return notas;
             }
@@ -131,6 +131,7 @@ export class RutaIngresoNotasComponent implements OnInit {
 
   onRowEditSave(item: NotasTablaInterface) {
     this._cargandoService.habilitarCargando();
+    console.log('item',item);
     const valor1 = this.validateDecimal(item.notaPrimerQuimestre);
     const valor2 = this.validateDecimal(item.notaSegundoQuimestre);
     if (valor1 && valor2) {
@@ -150,7 +151,7 @@ export class RutaIngresoNotasComponent implements OnInit {
             estudiante: idEstudiante,
             curso: this.idCurso,
           };
-          this._registroNotaService.create(registroNotas).subscribe(
+          this._registroNotaService.updateOne(item.id, registroNotas).subscribe(
             r => {
               this._cargandoService.deshabilitarCargando();
               this._toasterService.pop('success', '', 'Nota registrada con éxito');

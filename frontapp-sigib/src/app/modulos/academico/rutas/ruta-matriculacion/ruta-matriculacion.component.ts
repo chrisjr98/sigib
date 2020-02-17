@@ -15,6 +15,10 @@ import {EstudianteRestService} from '../../../../servicios/rest/servicios/estudi
 import {EstudianteInterface} from '../../../../interfaces/interfaces/estudiante.interface';
 import {CarreraInterface} from '../../../../interfaces/interfaces/carrera.interface';
 import {MatriculaRestService} from '../../../../servicios/rest/servicios/matricula-rest.service';
+import {RegistroNotaRestService} from '../../../../servicios/rest/servicios/registro-nota-rest.service';
+import {RegistroAsistenciaRestService} from '../../../../servicios/rest/servicios/registro-asistencia-rest.service';
+import {RegistroNotaInterface} from '../../../../interfaces/interfaces/registro-nota.interface';
+import {RegistroAsistenciaInterface} from '../../../../interfaces/interfaces/registro-asistencia.interface';
 
 @Component({
   selector: 'app-ruta-matriculacion',
@@ -58,6 +62,8 @@ export class RutaMatriculacionComponent implements OnInit {
     private readonly _estudianteService: EstudianteRestService,
     private readonly _cursoService: CursoRestService,
     private readonly _matriculaService: MatriculaRestService,
+    private readonly _registroNotaService: RegistroNotaRestService,
+    private readonly _registroAsistenciaService: RegistroAsistenciaRestService,
   ) {}
 
   ngOnInit() {}
@@ -171,12 +177,35 @@ export class RutaMatriculacionComponent implements OnInit {
           curso: curso.id
         }).subscribe(
           r => {
-            console.log('registro creado', r);
-            this._toasterService.pop({
-              type: "success",
-              body: "Inscripción exitosa",
-              timeout: 10000
-            });
+            const registroNota: RegistroNotaInterface = {
+              notaPrimerQuimestre: 0,
+              notaSegundoQuimestre: 0,
+              estudiante: this.estudiante.id,
+              curso: curso.id
+            };
+            this._registroNotaService.create(registroNota).subscribe(
+              r2 => {
+                const registroAsistencia: RegistroAsistenciaInterface = {
+                  estudiante: this.estudiante.id,
+                  curso: curso.id,
+                  horasAsistidas: 0,
+                };
+                this._registroAsistenciaService.create(registroAsistencia).subscribe(
+                  r3 => {
+                    console.log('registros creados', {
+                      matricula: r,
+                      notas: r2,
+                      asistencia: r3
+                    });
+                    this._toasterService.pop({
+                      type: "success",
+                      body: "Inscripción exitosa",
+                      timeout: 10000
+                    });
+                  }
+                );
+              }
+            );
           },
           error => {
             this._toasterService.pop({
