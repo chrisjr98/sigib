@@ -199,7 +199,7 @@ export class RutaMatriculacionComponent implements OnInit {
                     });
                     this._toasterService.pop({
                       type: "success",
-                      body: "Inscripción exitosa",
+                      body: "Matrícula registrada exitosamente",
                       timeout: 10000
                     });
                   }
