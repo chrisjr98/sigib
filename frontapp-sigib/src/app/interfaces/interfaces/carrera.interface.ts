@@ -3,4 +3,5 @@ id?: number;
 codigo?: string;
 nombre: string;
 duracion: number;
+
 }
