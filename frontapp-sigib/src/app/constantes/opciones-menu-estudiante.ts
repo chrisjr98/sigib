@@ -2,7 +2,7 @@ export const OPCIONES_MENU_ESTUDIANTE = [
     {
     textoBoton: 'MATRICULACIÓN',
     descripcionOpcion: 'Registra tu matrícula en el sistema',
-    pathImagen: 'assets/imagenes/periodico.png',
+    pathImagen: 'assets/imagenes/registro.svg',
     dirigirA: ['../matriculacion']
   },
   {
@@ -19,7 +19,7 @@ export const OPCIONES_MENU_ESTUDIANTE = [
   },
   {
     textoBoton: 'CURRICULUM',
-    descripcionOpcion: 'Consulta tu curriculum académico',
+    descripcionOpcion: 'Consulta tu currículum académico',
     pathImagen: 'assets/imagenes/opciones-menu-administrador/ajustes.png',
     dirigirA: ['../ver-curriculum']
   }

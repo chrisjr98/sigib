@@ -56,7 +56,6 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
     private readonly _cursoService: CursoRestService,
     private readonly _estudianteService: EstudianteRestService,
     private readonly _registroAsistenciaService: RegistroAsistenciaRestService,
-    private readonly _matriculaService: MatriculaRestService,
     public dialogo: MatDialog
   ) {
     this.horaControl.valueChanges
@@ -93,16 +92,17 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
       take: this.rows,
       order: { id: "DESC" }
     };
-    this._matriculaService.findAll(JSON.stringify(consulta)).subscribe(
-      (respuesta: [any[], number]) => {
+    this._registroAsistenciaService.findAll(JSON.stringify(consulta)).subscribe(
+      (respuesta: [RegistroAsistenciaInterface[], number]) => {
         this.horas = respuesta[0].map(r => {
           const horas = {
-            horasAsistidas: 0,
+            horasAsistidas: r.horasAsistidas,
             cedula: (r.estudiante as EstudianteInterface).cedula,
             nombre:
               (r.estudiante as EstudianteInterface).nombre +
               " " +
-              (r.estudiante as EstudianteInterface).apellido
+              (r.estudiante as EstudianteInterface).apellido,
+            id: r.id
           };
           return horas;
         });
@@ -152,7 +152,7 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
             estudiante: idEstudiante,
             curso: this.idCurso
           };
-          this._registroAsistenciaService.create(registroAsistencia).subscribe(
+          this._registroAsistenciaService.updateOne(item.id, registroAsistencia).subscribe(
             r => {
               this._cargandoService.deshabilitarCargando();
               this._toasterService.pop(
@@ -176,7 +176,7 @@ export class RutaIngresoAsistenciaComponent implements OnInit {
       this._toasterService.pop(
         "error",
         "Error",
-        "Las horas no son válidas Ej. 0.00 o 10.00"
+        "Las horas no válidas"
       );
     }
   }
