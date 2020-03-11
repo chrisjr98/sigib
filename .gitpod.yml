@@ -7,4 +7,5 @@ ports:
 tasks:
   - init: "git pull"
     command: "git pull && cd /workspace/sigib/frontapp-sigib/ && npm i && npm run start"
-    command: "cd /workspace/sigib/backend-sigib/ && npm i && npm run start:dev"
+  - init: "git pull"
+    command: "git pull && cd /workspace/sigib/backend-sigib/ && npm i && npm run start:dev"
