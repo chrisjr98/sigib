@@ -1,6 +1,6 @@
 /* tslint:disable */
 export const environment = {
   "production": false,
-  "url": "https://8080-e0af08e8-1a29-400e-87e5-085b6384bc5e.ws-us02.gitpod.io",
+  "url": "https://3000-fd4ab095-b3f6-42da-b85f-61b02c2e4306.ws-us02.gitpod.io",
   "port": ""
 };

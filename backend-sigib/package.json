@@ -46,6 +46,7 @@
     "nodemon": "^1.19.1",
     "passport": "^0.4.0",
     "passport-auth0": "^1.1.0",
+    "pdfmake": "^0.1.65",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",

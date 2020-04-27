@@ -24,3 +24,13 @@ npm i -g @nestjs/cli
 * Como generar un componente
 
 "ng generate componente <nombre-componente>"
+
+
+
+## Capaciotaciones de archivos de pdf para reportes
+
+
+### instalar la libreria de 
+
+* npm i pdfmake
+

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {PrincipalRestService} from '../rest-principal.service';
-import {environment} from '../../../../environments/environment';
-import {Observable} from 'rxjs';
+import { PrincipalRestService } from '../rest-principal.service';
+import { environment } from '../../../../environments/environment';
+import { Observable } from 'rxjs';
 import { EstudianteInterface } from 'src/app/interfaces/interfaces/estudiante.interface';
 
 @Injectable(
@@ -21,4 +21,17 @@ export class EstudianteRestService extends PrincipalRestService<EstudianteInterf
     this.port = environment.port;
     this.segmento = 'estudiante';
   }
+
+  crearPdf(consulta: string): Observable<any> {
+    return this._http
+      .get(
+        this.url +
+          ':' +
+          this.port +
+          `/${this.segmento}/crear - reporte - contactos - empresa ? consulta = ${
+        consulta
+      }`,
+      );
+  }
+
 }
