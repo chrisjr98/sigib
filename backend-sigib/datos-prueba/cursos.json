@@ -1,0 +1,71 @@
+[
+    {
+      "id": 1,
+      "grupo": "GR1",
+      "profesor": 4,
+      "materia": 1,
+      "horario": "Matutino",
+      "aula": 216,
+      "numeroMaximoAlumnos": 31,
+      "periodoAcademico": 2019,
+      "idCarrera": 1
+    },
+    {
+      "id": 2,
+      "grupo": "GR1",
+      "profesor": 1,
+      "materia": 1,
+      "horario": "Intensivo",
+      "aula": 405,
+      "numeroMaximoAlumnos": 25,
+      "periodoAcademico": 2019,
+      "idCarrera": 1
+    },
+    {
+      "id": 3,
+      "grupo": "GR1",
+      "profesor": 3,
+      "materia": 3,
+      "horario": "Matutino",
+      "aula": 123,
+      "numeroMaximoAlumnos": 18,
+      "periodoAcademico": 2020,
+      "idCarrera": 1
+    },
+    {
+      "id": 4,
+      "grupo": "GR1",
+      "profesor": 2,
+      "materia": 4,
+      "horario": "Vespertino",
+      "aula": 215,
+      "numeroMaximoAlumnos": 22,
+      "periodoAcademico": 2020,
+      "idCarrera": 2
+
+    },
+  {
+    "id": 5,
+    "grupo": "GR1",
+    "profesor": 5,
+    "materia": 1,
+    "horario": "Vespertino",
+    "aula": 215,
+    "numeroMaximoAlumnos": 22,
+    "periodoAcademico": 2020,
+    "idCarrera": 1
+
+  },
+  {
+    "id": 6,
+    "grupo": "GR1",
+    "profesor": 5,
+    "materia": 4,
+    "horario": "Vespertino",
+    "aula": 215,
+    "numeroMaximoAlumnos": 22,
+    "periodoAcademico": 2020,
+    "idCarrera": 2
+
+  }
+]

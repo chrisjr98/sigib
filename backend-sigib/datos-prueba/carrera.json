@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "codigo": "C1",
+      "nombre": "Belleza",
+      "duracion": 2
+    },
+    {
+        "id": 2,
+        "codigo": "B1",
+        "nombre": "Cosmetría",
+        "duracion": 2
+    },
+    {
+      "id": 3,
+      "codigo": "C2",
+      "nombre": "Micropigmentacion",
+      "duracion": 2
+    }
+  ]

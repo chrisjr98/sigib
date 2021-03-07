@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "carrera": 1,
+    "codigo": "1A",
+    "cedula": "1103756134",
+    "nombre": "Victor",
+    "apellido": "Aguinsaca",
+    "telefono": "0955432167",
+    "correo": "victor223@gmail.com",
+    "usuario": 8
+  },
+  {
+    "id": 2,
+    "carrera": 2,
+    "codigo": "2A",
+    "cedula": "0601646623",
+    "nombre": "José",
+    "apellido": "Banderas",
+    "telefono": "0975662410",
+    "correo": "madelga55@gmail.com",
+    "usuario": 9
+  },
+  {
+    "id": 3,
+    "carrera": 3,
+    "codigo": "3A",
+    "cedula": "1103201461",
+    "nombre": "Tania",
+    "apellido": "Aguirre",
+    "telefono": "0934522000",
+    "correo": "yac_4@gmail.com",
+    "usuario": 10,
+    "grado": 2
+  },
+  {
+    "id'": 4,
+    "carrera": 3,
+    "codigo": "4A",
+    "cedula": "0102051349",
+    "nombre": "Sandra",
+    "apellido": "Aguirre",
+    "telefono": "0974532666",
+    "correo": "78patgh@gmail.com",
+    "usuario": 11
+  },
+  {
+    "id": 5,
+    "carrera": 1,
+    "codigo": "1A",
+    "cedula": "1104125883",
+    "nombre": "Cristhian",
+    "apellido": "Jumbo",
+    "telefono": "0987192388",
+    "correo": "crisjc@gmail.com",
+    "usuario": 2,
+    "grado": 1
+  }
+]

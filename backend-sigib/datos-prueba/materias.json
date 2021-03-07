@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "codigo": "CP1",
+      "carrera": 1,
+      "nombre": "Teoria de la Especialización",
+      "anio": "primero",
+      "tipoMateria": "Especialidad"
+    },
+    {
+        "id": 2,
+        "codigo": "BS1",
+        "carrera": 1,
+        "nombre": "Inglés Teórico",
+        "anio": "segundo",
+        "tipoMateria": "Complementaria"
+    },
+    {
+      "id": 3,
+      "codigo": "BS2",
+      "carrera": 2,
+      "nombre": "Elaboración de Proyectos",
+      "anio": "primero",
+      "tipoMateria": "Especialidad"
+    },
+    {
+        "id": 4,
+        "codigo": "CS1",
+        "carrera": 3,
+        "nombre": "Práctica y Dibujo Aplicado",
+        "anio": "segundo",
+        "tipoMateria": "Especialidad"
+    },
+    {
+      "id": 5,
+      "codigo": "CS2",
+      "carrera": 3,
+      "nombre": "Computación",
+      "anio": "primero",
+      "tipoMateria": "Complementaria"
+    }
+  ]
