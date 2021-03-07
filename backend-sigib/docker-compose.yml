@@ -4,7 +4,7 @@
 version: '3.3'
 services:
   mysql_db:
-    container_name: mysql_sigib
+    container_name: mysql_app
     image: mysql:5.7
     restart: always
     environment:
@@ -18,7 +18,7 @@ services:
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
       # <Port exposed> : < MySQL Port running inside container>
-      - '30720:3306'
+      - '30721:3306'
     expose:
       # Opens port 3306 on the container
       - '3306'
@@ -26,12 +26,12 @@ services:
     volumes:
       - mysql-volume:/var/lib/mysql
   redis_db:
-    container_name: redis_sigib
+    container_name: redis_app
     image: redis:latest
     restart: always
     ports:
       # <Port exposed> : < Redis Port running inside container>
-      - '30626:6379'
+      - '30625:6379'
     expose:
       # Opens port 6379 on the container
       - '6379'
