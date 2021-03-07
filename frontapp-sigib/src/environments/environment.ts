@@ -1,6 +1,6 @@
 /* tslint:disable */
 export const environment = {
   "production": false,
-  "url": "http://localhost:8080",
+  "url": "http://lbbackend-523378251.us-east-1.elb.amazonaws.com:8080",
   "port": ""
 };
